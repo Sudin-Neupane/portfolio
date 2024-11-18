@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudin Neupane - Portfolio</title>
+    <style>
+
+        
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+           background-image: url("bg2.avif");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .navbar {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: #f1f1f1;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .navbar ul li a:hover {
+            color: #ff4081;
+            transition: color 0.3s ease;
+            text-shadow: 2px 2px 8px #ff4081;
+        }
+
+        /* Hero section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 360px;
+        }
+
+        .hero-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #2F3836;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #fff;
+            color: #ff4081;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* About section */
+     /*   #about {
+            padding: 60px 20px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }*/
+
+        /* Skills section */
+   /*     #skills {
+            padding: 60px 20px;
+            text-align: center;
+            position: absolute;
+            
+            right: 100%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+        }
+
+        .skills-box {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background-color: #282828;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .skill:hover {
+            transform: scale(1.1);
+        }
+*/*/
+        /* Projects section */
+
+       #projects {
+         background-image: url("bg2.avif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 60px 20px;
+            text-align: left;
+            position: absolute;
+            lexxxxx     
+            transform: translateY(-50%);
+            width: 300px;
+/*            background-color: rgba(0, 0, 0, 0.8);*/
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+             background-image: url('pr2.avif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+        }
+        }
+
+        .project-box {
+/*            background-color: #282828;*/
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-box:hover {
+            transform: translateY(-10px);
+        }
+
+      
+
+
+        /* Explore More Button */
+        .explore-button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+
+        .explore-button:hover {
+            background-color: #fff;
+            color: #16ECB3;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #504768, 0 0 20px #504768, 0 0 30px #504768;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+       
+        img {
+            
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+             background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+ border-radius: 20px;
+ transition: all .3s;
+  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+
+        }
+
+        
+.button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+.button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(181, 160, 255);
+  align-items: center;
+}
+
+.button:hover .svgIcon {
+  /* width: 20px; */
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+.button::before {
+  position: absolute;
+  bottom: -20px;
+  content: "Back to Top";
+  color: white;
+  font-size: 0px;
+}
+
+.button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}
+
+
+
+.pp svg {
+  width: 48px;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pp:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.pp__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: black;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pp:hover .pp__content {
+  transform: rotateX(0deg);
+}
+
+.pp__title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+}
+
+.pp:hover img {
+  scale: 0;
+}
+
+.pp__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by gharsh11032000 */ 
+#card {
+
+    padding: 50px 20px;
+            text-align: center;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 36px;
+  border-radius: 22px;
+  color: #3C6D66;
+  overflow: hidden;
+  background: black;
+
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content::before {
+  position: absolute;
+  content: "";
+  top: -1%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  transform: translate(-50%);
+  background: #272D2C;
+  z-index: -1;
+  transform-origin: bottom;
+
+  border-radius: inherit;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content::after {
+  position: absolute;
+  content: "";
+  top: -8%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%);
+  background: #2F3338;
+  z-index: -2;
+  transform-origin: bottom;
+  border-radius: inherit;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content svg {
+  width: 30px;
+  height: 30px;
+}
+
+.content .para {
+  z-index: 1;
+  opacity: 20;
+  font-size: 18px;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content .link {
+  z-index: 1;
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content .link:hover {
+  text-decoration: underline;
+}
+
+.card:hover {
+  transform: translate(0px, -16px);
+}
+
+.card:hover .content::before {
+  rotate: -8deg;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover .content::after {
+  rotate: 8deg;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+/* From Uiverse.io by gharsh11032000 */ 
+#card2 {
+    opacity: 30;
+  padding: 60px 20px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            text-align: center;
+            background-color: cyan;
+           
+            background-color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 36px;
+  border-radius: 22px;
+  color: #5A6141;
+  overflow: hidden;
+  background: black;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2::before {
+  position: absolute;
+  content: "";
+  top: -1%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  transform: translate(-50%);
+  background: #2C3534;
+  z-index: -1;
+  transform-origin: bottom;
+
+  border-radius: inherit;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2::after {
+  position: absolute;
+  content: "";
+  top: -8%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%);
+  background: #2C3335;
+  z-index: -2;
+  transform-origin: bottom;
+  border-radius: inherit;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 svg {
+  width: 30px;
+  height: 30px;
+}
+
+.content2 .para {
+  z-index: 1;
+  opacity: 20;
+  font-size: 18px;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 .link {
+  z-index: 1;
+  color: white;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content2 .link:hover {
+  text-decoration: underline;
+}
+
+.card2:hover {
+  transform: translate(0px, -16px);
+}
+
+.card2:hover .conten2t::before {
+  rotate: -8deg;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card2:hover .content2::after {
+  rotate: 8deg;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+/* Section styles */
+/* Section styles */
+#projects {
+    padding: 40px;
+    background-color: #1e1e1e; /* Dark background */
+    color: white;
+    text-align: center;
+}
+
+/* Container styles */
+.projects-container {
+    display: flex;
+    justify-content: space-around; /* Space out the project boxes */
+    flex-wrap: wrap; /* Allow wrapping to next line if needed */
+}
+
+/* Project box styles */
+.project-box {
+    background-color: #292929; /* Slightly lighter for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 45%; /* Adjust width to fit side by side */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Initially invisible */
+    transform: translateY(-50px); /* Start off-screen */
+    visibility: hidden; /* Hide project box until triggered */
+}
+
+/* Hover effect */
+.project-box:hover {
+    transform: translateY(-10px); /* Lift effect */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Image styles */
+.project-box img {
+    width: 100%; /* Make images responsive */
+    border-radius: 10px; /* Smooth corners for images */
+    transition: transform 0.3s ease;
+}
+
+.project-box img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Explore button styles */
+.explore-button {
+    display: inline-block;
+    margin-top: 15px; /* Space above the button */
+    padding: 10px 20px; /* Button padding */
+    color: white; /* Button text color */
+    background-color: #007bff; /* Button color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth effects */
+}
+
+.explore-button:hover {
+    background-color: #0056b3; /* Darker button on hover */
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Animation when project box is in view */
+.project-box.in-view {
+    animation: stickyNoteAnimation 1s forwards;
+    visibility: visible; /* Make the box visible once in view */
+}
+
+@keyframes stickyNoteAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px) rotate(5deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(10px) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+#skills {
+    position: absolute;
+    bottom: -150px;
+    left: 20px;
+    width: 220px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.skills-trigger {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #384C49;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.skills-trigger:hover {
+    background-color: #0056b3;
+}
+
+.skills-container {
+    max-width: 220px;
+    margin: 0 auto;
+    text-align: left;
+    opacity: 0; /* Initially hidden */
+    height: 0; /* Collapsed height */
+    overflow: hidden; /* Hide overflow */
+    transition: opacity 0.3s ease, height 0.3s ease; /* Smooth transition */
+}
+
+.skill {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skill-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.skill h5 {
+    margin: 0;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.skill-percentage {
+    color: red;
+}
+
+.skill-bar-container {
+    flex-grow: 1;
+    position: relative;
+    background-color: #ccc;
+    border-radius: 5px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.skill-bar {
+    background-color: #007bff;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    transition: width 1s ease-in-out;
+}
+
+.explore-button {
+    display: none;
+    margin-top: 10px;
+    padding: 8px 15px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.skills-container:hover ~ .explore-button {
+    display: inline-block; /* Show button on hover */
+}
+
+.explore-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #294641;  
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 2px solid #cyan; /* Add border for visibility */
+}
+
+.explore-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section" id="home">
+        <div class="hero-content">
+            <h1 class="fade-in">Sudin Neupane</h1>
+
+            <div class="pp">
+
+
+            <img src="mypic2.jpg" alt="Sudin's Picture">
+             <div class="pp__content">
+    <p class="pp__title">About Me</p>
+    <p class="pp__description">
+I’m fresh out of grade 12, having completed my studies in the computer science stream. Currently, I am exploring the exciting world of web design and learning how to create engaging and visually appealing websites. My goal is to develop projects that stand out and provide seamless user experiences.</p>
+
+  </div>
+   
+        </div>
+
+            <p class="fade-in">Web Developer & Creative Enthusiast</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-button">View My Work</a>
+                <a href="contact.html" class="cta-button">Get in Touch</a>
+
+            </div>
+            <a href="about.html" class="explore-button">Explore More</a>
+        </div>
+        <div class="background-overlay"></div>
+    </header>
+
+<!-- Skills Section -->
+<!-- Skills Section -->
+<section id="skills">
+    <div class="skills-trigger" id="skillsTrigger">
+        <h2>Skills</h2>
+    </div>
+    <div class="skills-container" id="skillsContainer">
+        <div class="skill">
+            <img src="html-css-logo.png" alt="HTML & CSS Logo" class="skill-logo">
+            <h5>HTML & CSS <span class="skill-percentage">80%</span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <img src="javascript-logo.png" alt="JavaScript Logo" class="skill-logo">
+            <h5>JavaScript <span class="skill-percentage">30%</span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 30%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <img src="mysql-logo.png" alt="MySQL Logo" class="skill-logo">
+            <h5>MySQL <span class="skill-percentage">20%</span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 20%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <img src="php-logo.png" alt="PHP Logo" class="skill-logo">
+            <h5>PHP <span class="skill-percentage">3%</span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 3%;"></div>
+            </div>
+        </div>
+    </div>
+    <a href="skills.html" class="explore-button">Explore More</a>
+</section>
+
+<script>
+    const skillsTrigger = document.getElementById('skillsTrigger');
+    const skillsContainer = document.getElementById('skillsContainer');
+    let timer;
+
+    skillsTrigger.addEventListener('mouseenter', () => {
+        skillsContainer.style.opacity = 1; // Show skills
+        skillsContainer.style.height = 'auto'; // Expand to fit content
+
+        // Clear any existing timer
+        clearTimeout(timer);
+    });
+
+    skillsTrigger.addEventListener('mouseleave', () => {
+        // Set a timer to hide the skills after 5 seconds
+        timer = setTimeout(() => {
+            skillsContainer.style.opacity = 0; // Hide skills
+            skillsContainer.style.height = '0'; // Collapse height
+        }, 5000); // 5000 ms = 5 seconds
+    });
+</script>
+ <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-container">
+          <div class="project-box">
+              <h3>Project for a Simple Website</h3>
+              <p>- Language Used: HTML, CSS & JS <br>- This is the front page of the project. Click explore more for complete details.</p>
+              <img src="energy.png" alt="Project 1 Image" height="200px" width="500px">
+              <a href="projects.html" class="explore-button">Explore More</a>
+          </div>
+          <div class="project-box">
+              <h3>Project in CRUD Operation</h3>
+              <p>- Language Used: HTML, CSS, JS, PHP & MySQL <br>- This is the front page of the project. Click explore more for complete details.</p>
+              <img src="fp.png" alt="Project 2 Image" height="200px" width="500px">
+              <a href="projects.html" class="explore-button">Explore More</a>
+          </div>
+          <!-- More project boxes can be added here -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+ 
+ <script type="text/javascript">
+     document.addEventListener("DOMContentLoaded", function() {
+    const projectBoxes = document.querySelectorAll('.project-box');
+
+    // Function to check visibility based on scroll
+    function checkVisibility() {
+        const scrollPosition = window.scrollY + window.innerHeight; // Bottom of the viewport
+
+        projectBoxes.forEach(box => {
+            const boxPosition = box.offsetTop + box.offsetHeight; // Bottom of the box
+            const boxTop = box.offsetTop; // Top of the box
+            
+            // If the box is partially or fully in view, keep it visible and animated
+            if (scrollPosition > boxTop && window.scrollY < boxPosition) {
+                box.classList.add('in-view');
+            } else {
+                box.classList.remove('in-view');
+            }
+        });
+    }
+
+    // Initial check
+    checkVisibility();
+
+    // Check visibility on scroll
+    window.addEventListener('scroll', function() {
+        checkVisibility();
+    });
+});
+
+
+ </script>
+
+
+
+  <section id="card">
+
+<div class="card">
+  <div class="content">
+    <svg
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+      ></path>
+    </svg>
+     <h2>Reach out, and let’s team up!</h2>
+        <p>You can visit the contact section to connect with me on social media or you can drop me an Email.</p>
+
+  </div>
+  <a href="contact.html" class="cta-button">Contact me </a>
+
+
+
+</div>
+</section>
+<section id="card2">
+<div class="card2">
+  <div class="content2">
+    <svg
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+      ></path>
+    </svg>
+          <h2>About Me</h2>
+        <p>I am a passionate web developer with skills in creating engaging, user-friendly websites. My goal is to build projects that not only function well but also provide excellent user experiences.</p>
+  </div>
+</div>
+
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Sudin Neupane. All Rights Reserved.</p>
+    </footer>
+
+
+    <button class="button" onclick="#home">
+  <svg class="svgIcon" viewBox="0 0 384 512">
+    <path
+      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+    ></path>
+     
+  </svg>
+</button>
+
+
+
+
+</body>
+</html>
