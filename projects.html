@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Sudeeen Neupane</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('pr2.avif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .projects-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .projects-section h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .projects-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 45%;
+        }
+
+        .project-card {
+            position: relative;
+             background-image: url('ab2.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .project-card video {
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #333;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .project-card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 15px 0;
+            animation: fadeInText 0.5s ease-in-out;
+        }
+
+        .controls {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .controls button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .controls.active {
+            display: block;
+        }
+
+        .project-card:hover video {
+            display: block;
+        }
+
+        /* Keyframes for Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-50%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes flipIn {
+            0% { transform: rotateY(0); }
+            100% { transform: rotateY(180deg); }
+        }
+
+        /* Hover Effects */
+        .project-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Page flip effect */
+        .flipped img {
+            opacity: 0;
+            transform: rotateY(180deg);
+        }
+
+        .flipped video {
+            display: block;
+            animation: flipIn 0.5s forwards;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .projects-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-card {
+                width: 90%;
+            }
+
+            .left-column, .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <h2>My Projects</h2>
+        <div class="projects-container">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <h3>Project in CRUD Operation</h3>
+                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
+                    <img src="fp.png" alt="Project 1">
+                    <video src="loginpagevid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- This is the front page of the project where overall data is shown.<br>- Updated data shows in the front page and the database.</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <h3>Insert Data Section</h3>
+                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
+                    <img src="insert.png" alt="Project 2">
+                    <video src="insertvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- User can insert data into the database using this section.</p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <h3>Modify Data Section</h3>
+                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
+                    <img src="rename.png" alt="Project 3">
+                    <video src="renamevid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- User can rename (modify) data using this section.</p>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <h3>Database Management</h3>
+                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
+                    <img src="database.png" alt="Project 4">
+                    <video src="dbvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- PhpMyAdmin is used as the database.<br>- Same data of the front page is stored in the database.</p>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <h3>Simple Website</h3>
+                    <p>Language Used: HTML, CSS & JS</p>
+                    <img src="energy.png" alt="Project 5">
+                    <video src="frontvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- All code is done by myself, but content is referenced from different websites and AIs.</p>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <h3>Website Navigation</h3>
+                    <p>Language Used: HTML, CSS & JS</p>
+                    <img src="energy2.png" alt="Project 6">
+                    <video src="renvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- Navigation bar of the website.</p>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <h3>Website Subpages</h3>
+                    <p>Language Used: HTML, CSS & JS</p>
+                    <img src="energy3.png" alt="Project 7">
+                    <video src="nonrenvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- Subpages that open when clicked in the navigation bar.</p>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <h3>Website - Final Look</h3>
+                    <p>Language Used: HTML, CSS & JS</p>
+                    <img src="energy4.png" alt="Project 8">
+                    <video src="whyvid.mp4" muted></video>
+                    <div class="controls">
+                        <button class="mute-btn">unmute</button>
+                        <button class="speed-btn" data-speed="1">1x</button>
+                    </div>
+                    <p>- Final look of the website.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h6 style="text-align: center;">Note: All the codes of these projects are available on my GitHub profile.</h6>
+
+    <script>
+        document.querySelectorAll('.project-card').forEach(card => {
+            const video = card.querySelector('video');
+            const muteBtn = card.querySelector('.mute-btn');
+            const speedBtn = card.querySelector('.speed-btn');
+            const controls = card.querySelector('.controls');
+            const img = card.querySelector('img');
+
+            // Show controls when the video is playing (on hover)
+            card.addEventListener('mouseenter', () => {
+                // Trigger page flip effect
+                img.classList.add('flipped');
+                video.style.display = 'block';
+                video.play();
+                controls.classList.add('active');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                img.classList.remove('flipped');
+                video.pause();
+                video.style.display = 'none';
+                controls.classList.remove('active');
+            });
+
+            // Mute and unmute functionality
+            muteBtn.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    muteBtn.textContent = 'Mute';
+                } else {
+                    video.muted = true;
+                    muteBtn.textContent = 'Unmute';
+                }
+            });
+
+            // Change video speed
+            speedBtn.addEventListener('click', () => {
+                let currentSpeed = parseFloat(speedBtn.getAttribute('data-speed'));
+                let newSpeed = currentSpeed === 2 ? 0.5 : currentSpeed + 0.5; // Cycles through 0.5x, 1x, 1.5x, and 2x speeds
+                video.playbackRate = newSpeed;
+                speedBtn.setAttribute('data-speed', newSpeed);
+                speedBtn.textContent = `${newSpeed}x`;
+            });
+        });
+    </script>
+</body>
+</html>
