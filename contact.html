@@ -283,16 +283,44 @@ footer {
     background-attachment: scroll;
   }
 
-  /* NAVBAR STACK */
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+.navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;                 /* force horizontal */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;             /* keep in one row */
+  gap: 10px;
+}
 
-  .nav-links li {
-    margin: 0;
-  }
+.navbar ul li {
+  display: inline-flex;          /* prevent vertical stacking */
+  margin: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar ul li:hover {
+  transform: scale(1.08);
+}
+
+.navbar ul li a {
+  color: #bdbdbd;                /* gray text */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 14px;
+  border: 1px solid #777;        /* button outline */
+  border-radius: 20px;           /* pill button */
+  display: inline-block;
+  white-space: nowrap;           /* no text wrap */
+  transition: all 0.3s ease;
+}
+
+/* hover effect without background */
+.navbar ul li a:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
 
   /* CONTACT SECTION */
   .contact-section {
@@ -460,4 +488,5 @@ footer {
 
   </body>
 </html>
+
 
