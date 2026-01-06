@@ -756,44 +756,56 @@ for mobile functioning */
   body {
     overflow-x: hidden;
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9; /* Soft background */
-    color: #333;
+
     margin: 0;
     padding: 0;
     line-height: 1.6;
   }
 
   /* Navbar Styling */
-  .navbar ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    text-align: center;
-    background-color: #333; /* Dark background for contrast */
-  }
+ .navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;                 /* force horizontal */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;             /* keep in one row */
+  gap: 10px;
+}
 
-  .navbar ul li {
-    display: inline-block;
-    margin: 10px;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-  }
+.navbar ul li {
+  display: inline-flex;          /* prevent vertical stacking */
+  margin: 0;
+  transition: transform 0.3s ease-in-out;
+}
 
-  .navbar ul li:hover {
-    transform: scale(1.1);
-  }
+.navbar ul li:hover {
+  transform: scale(1.08);
+}
 
-  .navbar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 15px;
-    display: block;
-  }
+.navbar ul li a {
+  color: #bdbdbd;                /* gray text */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 14px;
+  border: 1px solid #777;        /* button outline */
+  border-radius: 20px;           /* pill button */
+  display: inline-block;
+  white-space: nowrap;           /* no text wrap */
+  transition: all 0.3s ease;
+}
+
+/* hover effect without background */
+.navbar ul li a:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
 
   /* Hero Section */
   .hero-section {
-    background: linear-gradient(135deg, #ff6b6b, #f7a7a6); /* Gradient background */
+ 
     padding: 60px 20px;
     text-align: center;
     border-bottom: 3px solid #fff;
@@ -827,7 +839,7 @@ for mobile functioning */
   }
 
   .cta-buttons a {
-    background-color: #ff6b6b;
+    
     padding: 12px 25px;
     color: white;
     text-decoration: none;
@@ -836,7 +848,7 @@ for mobile functioning */
   }
 
   .cta-buttons a:hover {
-    background-color: #f7a7a6;
+
     transform: translateY(-5px);
   }
 
@@ -846,7 +858,7 @@ for mobile functioning */
     width: 90%;
     max-width: 360px;
     margin: 20px auto;
-    background: #fff;
+ 
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -865,7 +877,7 @@ for mobile functioning */
   /* Project Section */
   #projects {
     padding: 40px 20px;
-    background-color: #fff;
+
   }
 
   .projects-container {
@@ -879,7 +891,7 @@ for mobile functioning */
   .project-box {
     width: 90%;
     max-width: 360px;
-    background: #fff;
+ 
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -911,7 +923,7 @@ for mobile functioning */
   .explore-button, .cta-button {
     width: 100%;
     max-width: 260px;
-    background-color: #ff6b6b;
+
     text-align: center;
     padding: 12px 25px;
     border-radius: 50px;
@@ -921,7 +933,7 @@ for mobile functioning */
   }
 
   .explore-button:hover, .cta-button:hover {
-    background-color: #f7a7a6;
+
     transform: translateY(-5px);
   }
 
@@ -930,7 +942,7 @@ for mobile functioning */
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #ff6b6b;
+
     color: white;
     border-radius: 50%;
     width: 60px;
@@ -1222,6 +1234,7 @@ I’m a 1st-year CSIT student at Asian School of Management and Science with ove
 
 </body>
 </html>
+
 
 
 
