@@ -270,6 +270,94 @@ footer {
     transition: color 0.3s, transform 0.3s; /* Transform effect */
 }
 
+
+        /* ======================================
+   MOBILE OVERRIDES ONLY — CONTACT PAGE
+   DO NOT TOUCH DESKTOP
+   ====================================== */
+@media (max-width: 768px) {
+
+  /* BODY */
+  body {
+    overflow-x: hidden;
+    background-attachment: scroll;
+  }
+
+  /* NAVBAR STACK */
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  /* CONTACT SECTION */
+  .contact-section {
+    padding: 25px 15px;
+  }
+
+  /* STACK MAP + FORM */
+  .contact-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  /* MAP */
+  .map-container {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 250px;
+    transform: none !important;
+  }
+
+  /* CONTACT INFO */
+  .contact-info {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  /* FORM */
+  .contact-form {
+    max-width: 100%;
+    width: 100%;
+    transform: none !important;
+  }
+
+  /* INPUTS */
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+  }
+
+  /* SOCIAL ICONS */
+  .social-icons {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* DISABLE HOVER JUMPS ON MOBILE */
+  .map-container:hover iframe,
+  .contact-form:hover,
+  .contact-info h3:hover,
+  .contact-info p:hover,
+  .contact-form h3:hover,
+  .contact-form button:hover,
+  .social-icons a:hover {
+    transform: none;
+  }
+
+}
+
+
    </style>
 
 </head>
@@ -372,3 +460,4 @@ footer {
 
   </body>
 </html>
+
