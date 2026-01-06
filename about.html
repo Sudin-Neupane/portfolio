@@ -287,6 +287,87 @@
     animation: stickyNotesEffect 1.5s ease-out forwards 0.6s;
 }
 
+
+
+        /* ======================================
+   MOBILE OVERRIDES ONLY — ABOUT PAGE
+   DO NOT TOUCH DESKTOP
+   ====================================== */
+@media (max-width: 768px) {
+
+  /* FIX BODY SCROLL */
+  body {
+    height: auto;
+    display: block;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR STACK */
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  /* ABOUT SECTION */
+  .about-section {
+    padding: 30px 15px;
+  }
+
+  .about-section h2 {
+    font-size: 2rem;
+  }
+
+  /* GRID → SINGLE COLUMN */
+  .about-content {
+    grid-template-columns: 1fr;
+    row-gap: 30px;
+  }
+
+  /* CARD FIX (CRITICAL) */
+  .card {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    margin: 0 auto;
+    row-gap: 20px;
+  }
+
+  .card__background {
+    width: 100%;
+    height: 220px;
+  }
+
+  /* CONTENT ALWAYS VISIBLE (NO HOVER ON MOBILE) */
+  .card__content {
+    transform: none !important;
+    position: relative;
+  }
+
+  .card__content--container > *,
+  .card__button {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card__title::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* DISABLE SCALE JUMPS */
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+
+}
+
+
     </style>
 </head>
 <body>
@@ -369,6 +450,7 @@
     </section>
 </body>
 </html>
+
 
 
 
