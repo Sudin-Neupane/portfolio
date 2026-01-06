@@ -749,6 +749,111 @@
     background-color: #0056b3;
     transform: scale(1.1);
 }
+/* 
+for mobile functioning */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .hero-section {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .hero-content img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* CTA buttons stack */
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* ABSOLUTE ELEMENTS → NORMAL FLOW */
+  #card,
+  #card2,
+  #skills {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 360px;
+    margin: 20px auto;
+  }
+
+  /* CARD CONTENT */
+  .content,
+  .content2 {
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* PROJECTS */
+  #projects {
+    position: relative;
+    padding: 30px 15px;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-box {
+    width: 100%;
+    max-width: 360px;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+  .project-box img {
+    width: 100%;
+    height: auto;
+  }
+
+  .skills-container {
+    max-width: 100%;
+  }
+
+  .explore-button,
+  .cta-button {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
+
+  .button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+
+}
 
 
     </style>
@@ -1003,6 +1108,7 @@ I’m a 1st-year CSIT student at Asian School of Management and Science with ove
 
 </body>
 </html>
+
 
 
 
