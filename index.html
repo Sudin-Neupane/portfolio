@@ -159,7 +159,7 @@
             padding: 60px 20px;
             text-align: left;
             position: absolute;
-            lexxxxx     
+               
             transform: translateY(-50%);
             width: 300px;
 /*            background-color: rgba(0, 0, 0, 0.8);*/
@@ -169,7 +169,7 @@
   background-attachment: fixed;
   background-size: cover;
         }
-        }
+        
 
         .project-box {
 /*            background-color: #282828;*/
@@ -742,7 +742,7 @@
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    border: 2px solid #cyan; /* Add border for visibility */
+    border: 2px solid cyan; /* Add border for visibility */
 }
 
 .explore-button:hover {
@@ -1220,14 +1220,20 @@ I’m a 1st-year CSIT student at Asian School of Management and Science with ove
     </footer>
 
 
-    <button class="button" onclick="#home">
+ <button class="button" onclick="scrollToTop()">
   <svg class="svgIcon" viewBox="0 0 384 512">
-    <path
-      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
-    ></path>
-     
+    <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
   </svg>
 </button>
+<script>
+function scrollToTop(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+</script>
+
 
 
 
