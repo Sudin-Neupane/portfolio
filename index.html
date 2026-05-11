@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudin Neupane - Portfolio</title>
+    <link rel="stylesheet" href="styleindex.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section" id="home">
+        <div class="hero-content">
+            <h1 class="fade-in">Sudin Neupane</h1>
+
+            <div class="pp">
+
+
+            <img src="mypic2.jpg" alt="Sudin's Picture">
+             <div class="pp__content">
+    <p class="pp__title">About Me</p>
+    <p class="pp__description">
+I’m a 1st-year CSIT student at Asian School of Management and Science with over one year of experience in website management, SEO content writing, Canva design, and social media management. I’ve managed WordPress sites, optimized content with Yoast SEO, and created daily digital content. I’m passionate about building clean, user-friendly web experiences.
+    </p>
+             </div>
+        </div>
+                <br>
+
+            <p class="fade-in">Web Developer & Creative Enthusiast</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-button">View My Work</a>
+                <a href="contact.html" class="cta-button">Get in Touch</a>
+
+            </div>
+            <a href="about.html" class="explore-button">Explore More</a>
+        </div>
+        <div class="background-overlay"></div>
+    </header>
+
+<!-- Skills Section -->
+<!-- Skills Section -->
+<section id="skills">
+    <div class="skills-trigger" id="skillsTrigger">
+        <h2>Skills</h2>
+    </div>
+    <div class="skills-container" id="skillsContainer">
+        <div class="skill">
+           
+            <h5>HTML & CSS <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+         
+            <h5>JavaScript <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 30%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+           
+            <h5>MySQL <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 50%;"></div>
+            </div>
+        </div>
+        
+        <div class="skill">
+           
+            <h5>Wordpress <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 70%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+           
+            <h5>Yoast SEO <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+           
+            <h5>Contect Writing <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+           
+            <h5>Graphic Designing <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+        <div class="skill">
+           
+            <h5>Social Media Management <span class="skill-percentage"></span></h5>
+            <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+     
+           
+        </div>
+    </div>
+    <a href="skills.html" class="explore-button">Explore More</a>
+</section>
+
+<script>
+    const skillsTrigger = document.getElementById('skillsTrigger');
+    const skillsContainer = document.getElementById('skillsContainer');
+    let timer;
+
+    skillsTrigger.addEventListener('mouseenter', () => {
+        skillsContainer.style.opacity = 1; // Show skills
+        skillsContainer.style.height = 'auto'; // Expand to fit content
+
+        // Clear any existing timer
+        clearTimeout(timer);
+    });
+
+    skillsTrigger.addEventListener('mouseleave', () => {
+        // Set a timer to hide the skills after 5 seconds
+        timer = setTimeout(() => {
+            skillsContainer.style.opacity = 0; // Hide skills
+            skillsContainer.style.height = '0'; // Collapse height
+        }, 5000); // 5000 ms = 5 seconds
+    });
+</script>
+ <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-container">
+          <div class="project-box">
+              <h3>Project for a Simple Website</h3>
+              <p>- Language Used: HTML, CSS & JS <br>- This is the front page of the project. Click explore more for complete details.</p>
+              <img src="energy.png" alt="Project 1 Image" height="200px" width="500px">
+              <a href="projects.html" class="explore-button">Explore More</a>
+          </div>
+          <div class="project-box">
+              <h3>Project in CRUD Operation</h3>
+              <p>- Language Used: HTML, CSS, JS, PHP & MySQL <br>- This is the front page of the project. Click explore more for complete details.</p>
+              <img src="fp.png" alt="Project 2 Image" height="200px" width="500px">
+              <a href="projects.html" class="explore-button">Explore More</a>
+          </div>
+          <!-- More project boxes can be added here -->
+      </div>
+  </section>
+
+  <!-- JavaScript -->
+ 
+ <script type="text/javascript">
+     document.addEventListener("DOMContentLoaded", function() {
+    const projectBoxes = document.querySelectorAll('.project-box');
+
+    // Function to check visibility based on scroll
+    function checkVisibility() {
+        const scrollPosition = window.scrollY + window.innerHeight; // Bottom of the viewport
+
+        projectBoxes.forEach(box => {
+            const boxPosition = box.offsetTop + box.offsetHeight; // Bottom of the box
+            const boxTop = box.offsetTop; // Top of the box
+            
+            // If the box is partially or fully in view, keep it visible and animated
+            if (scrollPosition > boxTop && window.scrollY < boxPosition) {
+                box.classList.add('in-view');
+            } else {
+                box.classList.remove('in-view');
+            }
+        });
+    }
+
+    // Initial check
+    checkVisibility();
+
+    // Check visibility on scroll
+    window.addEventListener('scroll', function() {
+        checkVisibility();
+    });
+});
+
+
+ </script>
+
+
+
+  <section id="card">
+
+<div class="card">
+  <div class="content">
+    <svg
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+      ></path>
+    </svg>
+     <h2>Let's team up </h2>
+        <p>You can visit the contact section to connect with me on social media or you can drop me an Email.</p>
+
+  </div>
+  <a href="contact.html" class="cta-button">Contact me </a>
+
+
+
+</div>
+</section>
+<section id="card2">
+<div class="card2">
+  <div class="content2">
+    <svg
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z"
+      ></path>
+    </svg>
+          <h2>About Me</h2>
+        <p>Hi, I’m Sudin Neupane — a 1st-year CSIT student at Asian School of Management and Science. I create engaging websites and manage digital content, combining design, development, and SEO to deliver seamless user experiences.</p>
+  </div>
+</div>
+
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Sudin Neupane. All Rights Reserved.</p>
+    </footer>
+
+
+ <button class="button" onclick="scrollToTop()">
+  <svg class="svgIcon" viewBox="0 0 384 512">
+    <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
+  </svg>
+</button>
+<script>
+function scrollToTop(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
