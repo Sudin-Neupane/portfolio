@@ -292,9 +292,7 @@ if (indexCards.length > 0) {
 
 
 
-// ============================================================
-// ABOUT.HTML — About Page
-// ============================================================
+// about Page 
 
 // -- About page heading typewriter --
 var aboutHeading = document.querySelector(".about-section h2");
@@ -346,9 +344,7 @@ if (aboutCards.length > 0) {
 
 
 
-// ============================================================
-// SKILLS.HTML — Skills Page
-// ============================================================
+// skill page 
 
 // -- Skills heading typewriter --
 var skillsHeading = document.querySelector(".about-section h2");
@@ -392,9 +388,7 @@ for (var sg = 0; sg < allSkillCards.length; sg++) {
 
 
 
-// ============================================================
-// PROJECTS.HTML — Projects Page
-// ============================================================
+// projects page
 
 // -- Projects heading typewriter --
 var projectsHeading = document.querySelector(".projects-section h2");
@@ -499,9 +493,7 @@ if (githubNote) {
 
 
 
-// ============================================================
-// CONTACT.HTML — Contact Page
-// ============================================================
+// contact page 
 
 // -- Contact heading typewriter --
 var contactHeading = document.querySelector(".contact-header h2");
@@ -558,7 +550,22 @@ if (messageBox) {
             charCounter.style.color = "rgba(245,222,179,0.6)";
         }
     });
-}
+}  
+
+
+// if (messageBox) {
+//     messageBox.addEventListener("blur", function() {
+//         if (this.value.trim() === "") {
+//             charCounter.style.color = "#ff6b6b";
+//         }
+//         });
+//     }
+//     else{ 
+//         charCounter.style.color = "rgba(245,222,179,0.6)";
+//         this.style.border = "black";
+//         this.style.boxShadow = "0 0 8px rgba(105, 56, 18, 0.5)";
+
+//     }
 
 
 // -- Contact form: better submit experience --
