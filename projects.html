@@ -1,24 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Sudeeen Neupane</title>
+      <script src="script.js"></script>
+<title>Projects | Sudin Neupane - Web Development, JavaScript, Python & C++ Projects</title>
+ <link rel="icon" type="image/png" href="images/webprofile.png">
+
+<meta name="description" content="Explore projects built by Sudin Neupane, a CSIT student and developer from Nepal. View web development projects, JavaScript experiments, Python applications, C++ programs, portfolio work, and coding challenges.">
+
+<meta name="author" content="Sudin Neupane">
+
+<meta property="og:title" content="Projects | Sudin Neupane Portfolio">
+<meta property="og:description" content="A collection of web development, JavaScript, Python, and C++ projects created by Sudin Neupane.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sudin Neupane",
+  "url": "https://sudinneupane.com.np",
+  "sameAs": [
+    "https://github.com/Sudin-Neupane",
+    "YOUR_LINKEDIN_URL"
+  ],
+  "jobTitle": "CSIT Student & Developer",
+  "knowsAbout": [
+    "C++",
+    "Python",
+    "JavaScript",
+    "Web Development",
+    "SEO",
+    "GitHub"
+  ]
+}
+</script>
+<meta property="og:url" content="https://sudinneupane.com.np/projects">
+  
+
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
+      
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Barlow', Arial, sans-serif;
             background-image: url('pr2.avif');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            background-color: #111214;
+            color: #e8eaed;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        nav {
-            background-color: #333;
+        /* dark overlay on body background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(to bottom, rgba(10,11,13,0.55), rgba(10,11,13,0.72));
+            pointer-events: none;
+        }
+
+        /* Navigation (original style)  */
+       nav {
+/*            background-color: #0F0F0F;*/
             padding: 1rem;
+            animation: fadeInDown 2s ease;
         }
 
         .nav-links {
@@ -37,344 +92,910 @@
             color: #fff;
             text-decoration: none;
             font-size: 1.1rem;
+/*            background-color: black;*/
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .nav-links a:hover {
             color: #ff6b6b;
+            background-color: #252525;
+            transform: scale(1.05);
+/*            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);*/
         }
-
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease; /* Global transition for smooth effects */
+}
+     
         .projects-section {
-            padding: 50px 20px;
-            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 50px 24px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .projects-section h2 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease-in-out;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+            animation: fadeIn 0.7s ease-in-out;
         }
 
-        .projects-container {
+        .section-underline {
+            width: 64px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, transparent);
+            margin: 0 auto 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 300;
+            color: #7c8499;
+            margin-bottom: 42px;
+            animation: fadeIn 0.8s ease-in-out 0.1s both;
+        }
+
+        .filter-bar {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            animation: fadeInUp 1s ease-in-out;
+            gap: 8px;
+            margin-bottom: 36px;
+            animation: fadeInUp 0.7s ease-in-out 0.15s both;
         }
 
-        .left-column, .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 45%;
+        .filter-btn {
+            padding: 6px 18px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: #8a8f9c;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
+        .filter-btn:hover {
+            color: #e8eaed;
+            border-color: rgba(255,255,255,0.22);
+        }
+
+        .filter-btn.active[data-filter="all"]  { background: rgba(255,107,107,0.10); border-color: rgba(255,107,107,0.38); color: #ff6b6b; }
+        .filter-btn.active[data-filter="web"]  { background: rgba(255,107,107,0.10); border-color: rgba(255,107,107,0.38); color: #ff6b6b; }
+        .filter-btn.active[data-filter="c"]    { background: rgba(255,183,77,0.10);  border-color: rgba(255,183,77,0.38);  color: #ffb74d; }
+        .filter-btn.active[data-filter="ai"]   { background: rgba(100,181,246,0.10); border-color: rgba(100,181,246,0.38); color: #64b5f6; }
+        .filter-btn.active[data-filter="py"]   { background: rgba(129,199,132,0.10); border-color: rgba(129,199,132,0.38); color: #81c784; }
+
+    /* project grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            animation: fadeInUp 0.8s ease-in-out 0.2s both;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* Project card  */
         .project-card {
             position: relative;
-             background-image: url('ab2.png');
+            background-image: url('ab2.png');
             background-repeat: no-repeat;
-            background-attachment: fixed;
             background-size: cover;
-
-            padding: 20px;
+            background-attachment: local;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.07);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(22px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease, opacity 0.5s ease;
+        }
+
+        /* dark overlay on card bg texture */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: rgba(10, 12, 16, 0.70);
+            pointer-events: none;
+        }
+
+        .project-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.012);
+            border-color: rgba(255, 107, 107, 0.45);
+            box-shadow: 0 16px 44px -10px rgba(0,0,0,0.70),
+                        0 0 26px -6px rgba(255, 107, 107, 0.20);
+        }
+
+        /* all card children above the overlay */
+        .card-media,
+        .card-body {
+            position: relative;
+            z-index: 1;
+        }
+
+   /* Card image area */
+        .card-media {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #0a0b0e;
+            flex-shrink: 0;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .card-media img {
+            transform: scale(1.06);
+        }
+
+        /* bottom fade on image */
+        .card-media::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(10,12,16,0.75), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* category badge on image */
+        .cat-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            z-index: 2;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            backdrop-filter: blur(6px);
+        }
+
+        .cat-badge.web { background: rgba(255,107,107,0.16); border: 1px solid rgba(255,107,107,0.35); color: #ff6b6b; }
+        .cat-badge.c   { background: rgba(255,183,77,0.14);  border: 1px solid rgba(255,183,77,0.35);  color: #ffb74d; }
+        .cat-badge.ai  { background: rgba(100,181,246,0.14); border: 1px solid rgba(100,181,246,0.35); color: #64b5f6; }
+        .cat-badge.py  { background: rgba(129,199,132,0.14); border: 1px solid rgba(129,199,132,0.35); color: #81c784; }
+
+        /* placeholder for cards with no image */
+        .card-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(140deg, #0c0e12, #111318);
+        }
+
+        .ph-icon {
+            width: 52px; height: 52px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .ph-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            letter-spacing: 0.07em;
+            color: #44484f;
+        }
+/* Card body  */
+        .card-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            flex: 1;
+        }
+
+        .card-body h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #fff;
+            line-height: 1.2;
+            transition: color 0.2s ease;
+        }
+
+        .project-card:hover .card-body h3 {
+            color: #ff8e8e;
+        }
+
+        /* animated red underline — echoes site's angular style */
+        .title-line {
+            width: 30px;
+            height: 2px;
+            background: #ff6b6b;
+            margin-top: 1px;
+            transition: width 0.35s ease;
+        }
+
+        .project-card:hover .title-line {
+            width: 54px;
+        }
+
+        .card-body p {
+            font-size: 13.5px;
+            font-weight: 300;
+            color: #7c8499;
+            line-height: 1.65;
+        }
+
+        /* tech stack tags */
+        .stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 2px;
+        }
+
+        .stack-tag {
+            padding: 2px 8px;
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.04);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #7c8499;
+            letter-spacing: 0.04em;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover .stack-tag {
+            border-color: rgba(255,107,107,0.18);
+            color: rgba(255,255,255,0.68);
+        }
+
+        /* GitHub button */
+        .card-footer {
+            display: flex;
+            gap: 8px;
+            padding-top: 6px;
+            margin-top: auto;
+        }
+
+        .btn-gh {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 4px;
+            background: rgba(255,107,107,0.06);
+            border: 1px solid rgba(255,107,107,0.20);
+            color: rgba(255,255,255,0.70);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.22s ease;
+        }
+
+        .btn-gh:hover {
+            background: rgba(255,107,107,0.12);
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+            transform: translateY(-1px);
+        }
+
+        .btn-gh svg {
+            flex-shrink: 0;
+        }
+
+        .btn-code {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 12px;
+            border-radius: 4px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #44484f;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            text-decoration: none;
+            transition: all 0.22s ease;
+        }
+
+        .btn-code:hover {
+            border-color: rgba(255,255,255,0.20);
+            color: #8a8f9c;
+        }
+
+        /* ─── GitHub CTA section ────────────────── */
+        .github-cta {
+            margin-top: 60px;
+            padding: 38px 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,107,107,0.18);
+            background: linear-gradient(135deg, rgba(255,107,107,0.06) 0%, rgba(20,22,26,0.88) 60%);
+            backdrop-filter: blur(14px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.5s ease-in-out forwards;
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
 
-        .project-card img {
-            width: 100%;
-            border-radius: 10px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+        /* left red accent stripe */
+        .github-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom, #ff6b6b, transparent);
         }
 
-        .project-card video {
-            width: 100%;
-            display: none;
-            border-radius: 10px;
+        .github-cta.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .project-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-            color: #333;
-            animation: slideIn 0.5s ease-in-out;
+        .cta-text {
+            padding-left: 16px;
         }
 
-        .project-card p {
-            font-size: 1.1rem;
-            color: #555;
-            margin: 15px 0;
-            animation: fadeInText 0.5s ease-in-out;
+        .cta-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ff6b6b;
+            margin-bottom: 8px;
         }
 
-        .controls {
-            display: none;
-            text-align: center;
-            margin-top: 10px;
+        .cta-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 8px;
         }
 
-        .controls button {
-            padding: 5px 10px;
-            margin-right: 10px;
-            border: none;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            cursor: pointer;
+        .cta-sub {
+            font-size: 14px;
+            font-weight: 300;
+            color: #7c8499;
+            max-width: 380px;
+            line-height: 1.6;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 26px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            background: #ff6b6b;
+            border: 1px solid #ff6b6b;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
         }
 
-        .controls button:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+        .btn-primary:hover {
+            background: #ff8e8e;
+            border-color: #ff8e8e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px -4px rgba(255,107,107,0.38);
         }
 
-        .controls.active {
-            display: block;
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 5px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.14);
+            color: #8a8f9c;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
         }
 
-        .project-card:hover video {
-            display: block;
+        .btn-outline:hover {
+            border-color: rgba(255,255,255,0.30);
+            color: #e8eaed;
+            transform: translateY(-2px);
         }
 
-        /* Keyframes for Animations */
+        /* ─── Keyframes (original names kept) ──── */
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 1; }
+            to   { opacity: 1; }
         }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(-50%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
+        /* ─── Responsive ────────────────────────── */
+        @media (max-width: 600px) {
+            nav {
+                padding: 0.85rem 0.5rem;
+            }
 
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+            .nav-links {
+                gap: 6px 10px;
+            }
 
-        @keyframes flipIn {
-            0% { transform: rotateY(0); }
-            100% { transform: rotateY(180deg); }
-        }
+            .nav-links li {
+                margin: 0;
+            }
 
-        /* Hover Effects */
-        .project-card:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
+            .nav-links a {
+                font-size: 0.95rem;
+            }
 
-        /* Page flip effect */
-        .flipped img {
-            opacity: 0;
-            transform: rotateY(180deg);
-        }
+            .projects-section {
+                padding: 32px 14px 56px;
+            }
 
-        .flipped video {
-            display: block;
-            animation: flipIn 0.5s forwards;
-            opacity: 1;
-        }
+            .section-subtitle {
+                padding: 0 6px;
+            }
 
-        @media (max-width: 768px) {
-            .projects-container {
+            .github-cta {
+                padding: 26px 20px;
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
 
-            .project-card {
-                width: 90%;
+            .cta-text {
+                padding-left: 12px;
             }
 
-            .left-column, .right-column {
+            .cta-actions {
                 width: 100%;
+            }
+
+            .cta-actions a {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .filter-bar {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                margin-bottom: 28px;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+            }
+
+            .card-footer {
+                flex-wrap: wrap;
+            }
+
+            .btn-gh,
+            .btn-code {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .projects-section h2 {
+                font-size: 30px;
+            }
+
+            .card-body {
+                padding: 14px 14px 16px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- Navigation (original) -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="skills.html">Skills</a></li>
-            <li><a href="projects.html">Projects</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Projects Section -->
     <section class="projects-section">
+
         <h2>My Projects</h2>
+        <div class="section-underline"></div>
+        <p class="section-subtitle">
+            These are few of my projects that I have built over time. They showcase my skills in web development, programming, and problem-solving. Each project is a testament to my dedication to learning and improving as a developer. Visit my github repository to explore more of my work and contributions to the open-source community.
+        </p>
+
+        <!-- Filter bar -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All (7)</button>
+            <button class="filter-btn" data-filter="web">Web Dev (3)</button>
+            <button class="filter-btn" data-filter="c">C Programming (2)</button>
+            <button class="filter-btn" data-filter="ai">AI &amp; Vision (1)</button>
+            <button class="filter-btn" data-filter="py">Python (1)</button>
+        </div>
+
+        <!-- Grid -->
         <div class="projects-container">
-            <!-- Left Column -->
-            <div class="left-column">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <h3>Project in CRUD Operation</h3>
-                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
-                    <img src="fp.png" alt="Project 1">
-                    <video src="loginpagevid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
-                    </div>
-                    <p>- This is the front page of the project where overall data is shown.<br>- Updated data shows in the front page and the database.</p>
-                </div>
 
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <h3>Insert Data Section</h3>
-                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
-                    <img src="insert.png" alt="Project 2">
-                    <video src="insertvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
-                    </div>
-                    <p>- User can insert data into the database using this section.</p>
+            <!-- 1. CRUD Operations Web App -->
+            <div class="project-card" data-category="web">
+                <div class="card-media">
+                    <img src="fp.png" alt="CRUD Operations Web App">
+                    <span class="cat-badge web">Web Dev</span>
                 </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <h3>Modify Data Section</h3>
-                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
-                    <img src="rename.png" alt="Project 3">
-                    <video src="renamevid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
+                <div class="card-body">
+                    <h3>CRUD Operations App</h3>
+                    <div class="title-line"></div>
+                    <p>Full-stack web app for Create, Read, Update and Delete operations. Data persists in a MySQL database via phpMyAdmin, with a PHP backend and a dynamic JavaScript front-end.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">HTML</span>
+                        <span class="stack-tag">CSS</span>
+                        <span class="stack-tag">JavaScript</span>
+                        <span class="stack-tag">PHP</span>
+                        <span class="stack-tag">MySQL</span>
                     </div>
-                    <p>- User can rename (modify) data using this section.</p>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <h3>Database Management</h3>
-                    <p>Language Used: HTML, CSS, JS, PHP & MySQL</p>
-                    <img src="database.png" alt="Project 4">
-                    <video src="dbvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/CRUD-" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/CRUD-" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
-                    <p>- PhpMyAdmin is used as the database.<br>- Same data of the front page is stored in the database.</p>
                 </div>
             </div>
 
-            <!-- Right Column -->
-            <div class="right-column">
-                <!-- Project 5 -->
-                <div class="project-card">
+            <!-- 2. Simple Website -->
+            <div class="project-card" data-category="web">
+                <div class="card-media">
+                    <img src="energy.png" alt="Simple Website">
+                    <span class="cat-badge web">Web Dev</span>
+                </div>
+                <div class="card-body">
                     <h3>Simple Website</h3>
-                    <p>Language Used: HTML, CSS & JS</p>
-                    <img src="energy.png" alt="Project 5">
-                    <video src="frontvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
+                    <div class="title-line"></div>
+                    <p>A fully hand-coded multi-section website built without any framework. Demonstrates semantic HTML, responsive CSS layouts, and vanilla JS interactivity,  all written from scratch.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">HTML</span>
+                        <span class="stack-tag">CSS</span>
+                        <span class="stack-tag">JavaScript</span>
                     </div>
-                    <p>- All code is done by myself, but content is referenced from different websites and AIs.</p>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <h3>Website Navigation</h3>
-                    <p>Language Used: HTML, CSS & JS</p>
-                    <img src="energy2.png" alt="Project 6">
-                    <video src="renvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
-                    </div>
-                    <p>- Navigation bar of the website.</p>
+            <!-- 3. Hospital Management System -->
+            <div class="project-card" data-category="c">
+                    
+              <div class="card-media">
+                    <img src="hospital-c.png" alt="Simple Website">
+                    <span class="cat-badge web">Web Dev</span>
                 </div>
+                <div class="card-body">
+                    <h3>Hospital Management System</h3>
+                    <div class="title-line" style="background: #ffb74d;"></div>
+                    <p>Console-based hospital management tool written in C. Handles patient records, doctor scheduling and billing ,  showcasing file I/O, linked lists and structured data management.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">C Language</span>
+                        <span class="stack-tag">File I/O</span>
+                        <span class="stack-tag">Data Structures</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/Hospital-Management-System" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/Hospital-Management-System" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Project 7 -->
-                <div class="project-card">
-                    <h3>Website Subpages</h3>
-                    <p>Language Used: HTML, CSS & JS</p>
-                    <img src="energy3.png" alt="Project 7">
-                    <video src="nonrenvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
+            <!-- 4. C Programming Repository -->
+            <div class="project-card" data-category="c">
+                <div class="card-media">
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(255,183,77,0.09); border: 1px solid rgba(255,183,77,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffb74d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">C Language · Programs Collection</span>
                     </div>
-                    <p>- Subpages that open when clicked in the navigation bar.</p>
+                    <span class="cat-badge c">C Programming</span>
                 </div>
+                <div class="card-body">
+                    <h3>C Programming Repository</h3>
+                    <div class="title-line" style="background: #ffb74d;"></div>
+                    <p>A growing collection of C programs covering algorithms, data structures, string handling and memory management , a solid reference for foundational low-level programming.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">C Language</span>
+                        <span class="stack-tag">Algorithms</span>
+                        <span class="stack-tag">Pointers</span>
+                        <span class="stack-tag">Memory Mgmt</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/C-Programming" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/C-Programming" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Project 8 -->
-                <div class="project-card">
-                    <h3>Website - Final Look</h3>
-                    <p>Language Used: HTML, CSS & JS</p>
-                    <img src="energy4.png" alt="Project 8">
-                    <video src="whyvid.mp4" muted></video>
-                    <div class="controls">
-                        <button class="mute-btn">unmute</button>
-                        <button class="speed-btn" data-speed="1">1x</button>
+            <!-- 5. Finger Gesture Control System -->
+            <div class="project-card" data-category="ai">
+                <div class="card-media">
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(100,181,246,0.09); border: 1px solid rgba(100,181,246,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64b5f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                                <line x1="6" y1="1" x2="6" y2="4"/>
+                                <line x1="10" y1="1" x2="10" y2="4"/>
+                                <line x1="14" y1="1" x2="14" y2="4"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">Python · OpenCV · MediaPipe</span>
                     </div>
-                    <p>- Final look of the website.</p>
+                    <span class="cat-badge ai">AI &amp; Vision</span>
                 </div>
+                <div class="card-body">
+                    <h3>Finger Gesture Control</h3>
+                    <div class="title-line" style="background: #64b5f6;"></div>
+                    <p>Real-time hand-tracking system using OpenCV and MediaPipe. Reads finger gestures from a webcam and maps them to system controls  bridging computer vision and human-computer interaction : Built with the help of Claude</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">OpenCV</span>
+                        <span class="stack-tag">MediaPipe</span>
+                             <span class="stack-tag">Claude</span>
+                        <span class="stack-tag">Computer Vision</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/fingergestures" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/fingergestures" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Recreate Pages -->
+            <div class="project-card" data-category="web">
+                <div class="card-media">
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(255,107,107,0.09); border: 1px solid rgba(255,107,107,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">HTML · CSS · Pixel-perfect Clones</span>
+                    </div>
+                    <span class="cat-badge web">Web Dev</span>
+                </div>
+                <div class="card-body">
+                    <h3>Recreate Pages</h3>
+                    <div class="title-line"></div>
+                    <p>A practice repository of recreated real-world web pages, built pixel-by-pixel from scratch to sharpen layout precision, responsive structuring and attention to design detail.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">HTML</span>
+                        <span class="stack-tag">CSS</span>
+                        <span class="stack-tag">Responsive Design</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/Recreate-pages" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/Recreate-pages" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Learning Python -->
+            <div class="project-card" data-category="py">
+                <div class="card-media">
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(129,199,132,0.09); border: 1px solid rgba(129,199,132,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#81c784" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v3a4 4 0 0 0 4 4h0"/>
+                                <path d="M12 22a4 4 0 0 0 4-4v-2h2a2 2 0 0 0 2-2v-3a4 4 0 0 0-4-4h0"/>
+                                <circle cx="9" cy="6" r="0.6" fill="#81c784"/>
+                                <circle cx="15" cy="18" r="0.6" fill="#81c784"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">Python · Learning Journey</span>
+                    </div>
+                    <span class="cat-badge py">Python</span>
+                </div>
+                <div class="card-body">
+                    <h3>Learning Python</h3>
+                    <div class="title-line" style="background: #81c784;"></div>
+                    <p>A hands-on collection of Python exercises and mini-projects written while learning the language  covering core syntax, functions, file handling and basic problem-solving.</p>
+                    <div class="stack-row">
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">Fundamentals</span>
+                        <span class="stack-tag">Practice</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Sudin-Neupane/Python--Programming" target="_blank" class="btn-gh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://github.com/Sudin-Neupane/Python--Programming" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /projects-container -->
+
+        <!-- GitHub CTA -->
+        <div class="github-cta" id="githubCta">
+            <div class="cta-text">
+                <p class="cta-eyebrow">Open Source</p>
+                <h2 class="cta-title">More Projects on GitHub</h2>
+                <p class="cta-sub">All source code is publicly available. Browse the full commit history, branches and issues or fork whatever you find useful.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-primary">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    @Sudin-Neupane
+                </a>
+                <a href="https://github.com/Sudin-Neupane?tab=repositories" target="_blank" class="btn-outline">All Repos →</a>
             </div>
         </div>
+
     </section>
-    <h6 style="text-align: center;">Note: All the codes of these projects are available on my GitHub profile.</h6>
+
+    <!-- Footer (original) -->
+    <h6 style="text-align: center; position: relative; z-index: 1; padding: 0 0 32px; font-family: Arial, sans-serif; font-weight: 400; color: #7c8499; letter-spacing: 0.03em;">
+        Note: All the codes of these projects are available on my GitHub profile.
+    </h6>
 
     <script>
-        document.querySelectorAll('.project-card').forEach(card => {
-            const video = card.querySelector('video');
-            const muteBtn = card.querySelector('.mute-btn');
-            const speedBtn = card.querySelector('.speed-btn');
-            const controls = card.querySelector('.controls');
-            const img = card.querySelector('img');
+        // ── Filter system ──────────────────────────────────────
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
 
-            // Show controls when the video is playing (on hover)
-            card.addEventListener('mouseenter', () => {
-                // Trigger page flip effect
-                img.classList.add('flipped');
-                video.style.display = 'block';
-                video.play();
-                controls.classList.add('active');
-            });
+                document.querySelectorAll('.filter-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
 
-            card.addEventListener('mouseleave', () => {
-                img.classList.remove('flipped');
-                video.pause();
-                video.style.display = 'none';
-                controls.classList.remove('active');
-            });
-
-            // Mute and unmute functionality
-            muteBtn.addEventListener('click', () => {
-                if (video.muted) {
-                    video.muted = false;
-                    muteBtn.textContent = 'Mute';
-                } else {
-                    video.muted = true;
-                    muteBtn.textContent = 'Unmute';
-                }
-            });
-
-            // Change video speed
-            speedBtn.addEventListener('click', () => {
-                let currentSpeed = parseFloat(speedBtn.getAttribute('data-speed'));
-                let newSpeed = currentSpeed === 2 ? 0.5 : currentSpeed + 0.5; // Cycles through 0.5x, 1x, 1.5x, and 2x speeds
-                video.playbackRate = newSpeed;
-                speedBtn.setAttribute('data-speed', newSpeed);
-                speedBtn.textContent = `${newSpeed}x`;
+                document.querySelectorAll('.project-card').forEach(function(card) {
+                    var cat = card.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
             });
         });
+
+        // ── Scroll reveal ──────────────────────────────────────
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -16px 0px' });
+
+        document.querySelectorAll('.project-card').forEach(function(card) {
+            observer.observe(card);
+        });
+
+        // ── CTA reveal ─────────────────────────────────────────
+        var ctaObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    ctaObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14 });
+
+        var cta = document.getElementById('githubCta');
+        if (cta) { ctaObserver.observe(cta); }
     </script>
+
 </body>
 </html>

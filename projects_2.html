@@ -3,7 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Sudin Neupane</title>
+      <script src="script.js"></script>
+<title>Projects | Sudin Neupane - Web Development, JavaScript, Python & C++ Projects</title>
+ <link rel="icon" type="image/png" href="images/webprofile.png">
+
+<meta name="description" content="Explore projects built by Sudin Neupane, a CSIT student and developer from Nepal. View web development projects, JavaScript experiments, Python applications, C++ programs, portfolio work, and coding challenges.">
+
+<meta name="author" content="Sudin Neupane">
+
+<meta property="og:title" content="Projects | Sudin Neupane Portfolio">
+<meta property="og:description" content="A collection of web development, JavaScript, Python, and C++ projects created by Sudin Neupane.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sudin Neupane",
+  "url": "https://sudinneupane.com.np",
+  "sameAs": [
+    "https://github.com/Sudin-Neupane",
+    "YOUR_LINKEDIN_URL"
+  ],
+  "jobTitle": "CSIT Student & Developer",
+  "knowsAbout": [
+    "C++",
+    "Python",
+    "JavaScript",
+    "Web Development",
+    "SEO",
+    "GitHub"
+  ]
+}
+</script>
+<meta property="og:url" content="https://sudinneupane.com.np/projects">
+  
 
 
     <style>
@@ -50,8 +83,10 @@
             list-style: none;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             margin: 0;
             padding: 0;
+            gap: 4px 0;
         }
 
         .nav-links li {
@@ -140,6 +175,7 @@
         .filter-btn.active[data-filter="web"]  { background: rgba(255,107,107,0.10); border-color: rgba(255,107,107,0.38); color: #ff6b6b; }
         .filter-btn.active[data-filter="c"]    { background: rgba(255,183,77,0.10);  border-color: rgba(255,183,77,0.38);  color: #ffb74d; }
         .filter-btn.active[data-filter="ai"]   { background: rgba(100,181,246,0.10); border-color: rgba(100,181,246,0.38); color: #64b5f6; }
+        .filter-btn.active[data-filter="py"]   { background: rgba(129,199,132,0.10); border-color: rgba(129,199,132,0.38); color: #81c784; }
 
     /* project grid */
         .projects-container {
@@ -155,9 +191,10 @@
             }
         }
 
-        @media (max-width: 620px) {
+        @media (max-width: 720px) {
             .projects-container {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
         }
 
@@ -261,6 +298,7 @@
         .cat-badge.web { background: rgba(255,107,107,0.16); border: 1px solid rgba(255,107,107,0.35); color: #ff6b6b; }
         .cat-badge.c   { background: rgba(255,183,77,0.14);  border: 1px solid rgba(255,183,77,0.35);  color: #ffb74d; }
         .cat-badge.ai  { background: rgba(100,181,246,0.14); border: 1px solid rgba(100,181,246,0.35); color: #64b5f6; }
+        .cat-badge.py  { background: rgba(129,199,132,0.14); border: 1px solid rgba(129,199,132,0.35); color: #81c784; }
 
         /* placeholder for cards with no image */
         .card-placeholder {
@@ -546,16 +584,80 @@
 
         /* ─── Responsive ────────────────────────── */
         @media (max-width: 600px) {
+            nav {
+                padding: 0.85rem 0.5rem;
+            }
+
+            .nav-links {
+                gap: 6px 10px;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+
             .projects-section {
-                padding: 36px 14px 60px;
+                padding: 32px 14px 56px;
+            }
+
+            .section-subtitle {
+                padding: 0 6px;
             }
 
             .github-cta {
                 padding: 26px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cta-text {
+                padding-left: 12px;
+            }
+
+            .cta-actions {
+                width: 100%;
+            }
+
+            .cta-actions a {
+                flex: 1;
+                justify-content: center;
             }
 
             .filter-bar {
                 justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 4px;
+                margin-bottom: 28px;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+            }
+
+            .card-footer {
+                flex-wrap: wrap;
+            }
+
+            .btn-gh,
+            .btn-code {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .projects-section h2 {
+                font-size: 30px;
+            }
+
+            .card-body {
+                padding: 14px 14px 16px;
             }
         }
     </style>
@@ -579,15 +681,16 @@
         <h2>My Projects</h2>
         <div class="section-underline"></div>
         <p class="section-subtitle">
-            A collection of projects I've built across web development, C programming and AI — each one coded hands-on.
+            These are few of my projects that I have built over time. They showcase my skills in web development, programming, and problem-solving. Each project is a testament to my dedication to learning and improving as a developer. Visit my github repository to explore more of my work and contributions to the open-source community.
         </p>
 
         <!-- Filter bar -->
         <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">All (8)</button>
-            <button class="filter-btn" data-filter="web">Web Dev (6)</button>
+            <button class="filter-btn active" data-filter="all">All (7)</button>
+            <button class="filter-btn" data-filter="web">Web Dev (3)</button>
             <button class="filter-btn" data-filter="c">C Programming (2)</button>
             <button class="filter-btn" data-filter="ai">AI &amp; Vision (1)</button>
+            <button class="filter-btn" data-filter="py">Python (1)</button>
         </div>
 
         <!-- Grid -->
@@ -611,11 +714,11 @@
                         <span class="stack-tag">MySQL</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/CRUD-" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/CRUD-" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
@@ -629,7 +732,7 @@
                 <div class="card-body">
                     <h3>Simple Website</h3>
                     <div class="title-line"></div>
-                    <p>A fully hand-coded multi-section website built without any framework. Demonstrates semantic HTML, responsive CSS layouts, and vanilla JS interactivity — all written from scratch.</p>
+                    <p>A fully hand-coded multi-section website built without any framework. Demonstrates semantic HTML, responsive CSS layouts, and vanilla JS interactivity,  all written from scratch.</p>
                     <div class="stack-row">
                         <span class="stack-tag">HTML</span>
                         <span class="stack-tag">CSS</span>
@@ -655,18 +758,18 @@
                 <div class="card-body">
                     <h3>Hospital Management System</h3>
                     <div class="title-line" style="background: #ffb74d;"></div>
-                    <p>Console-based hospital management tool written in C. Handles patient records, doctor scheduling and billing — showcasing file I/O, linked lists and structured data management.</p>
+                    <p>Console-based hospital management tool written in C. Handles patient records, doctor scheduling and billing ,  showcasing file I/O, linked lists and structured data management.</p>
                     <div class="stack-row">
                         <span class="stack-tag">C Language</span>
                         <span class="stack-tag">File I/O</span>
                         <span class="stack-tag">Data Structures</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/Hospital-Management-System" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/Hospital-Management-System" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
@@ -688,7 +791,7 @@
                 <div class="card-body">
                     <h3>C Programming Repository</h3>
                     <div class="title-line" style="background: #ffb74d;"></div>
-                    <p>A growing collection of C programs covering algorithms, data structures, string handling and memory management — a solid reference for foundational low-level programming.</p>
+                    <p>A growing collection of C programs covering algorithms, data structures, string handling and memory management , a solid reference for foundational low-level programming.</p>
                     <div class="stack-row">
                         <span class="stack-tag">C Language</span>
                         <span class="stack-tag">Algorithms</span>
@@ -696,11 +799,11 @@
                         <span class="stack-tag">Memory Mgmt</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/C-Programming" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/C-Programming" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
@@ -725,94 +828,90 @@
                 <div class="card-body">
                     <h3>Finger Gesture Control</h3>
                     <div class="title-line" style="background: #64b5f6;"></div>
-                    <p>Real-time hand-tracking system using OpenCV and MediaPipe. Reads finger gestures from a webcam and maps them to system controls — bridging computer vision and human-computer interaction.</p>
+                    <p>Real-time hand-tracking system using OpenCV and MediaPipe. Reads finger gestures from a webcam and maps them to system controls  bridging computer vision and human-computer interaction : Built with the help of Claude</p>
                     <div class="stack-row">
                         <span class="stack-tag">Python</span>
                         <span class="stack-tag">OpenCV</span>
                         <span class="stack-tag">MediaPipe</span>
+                             <span class="stack-tag">Claude</span>
                         <span class="stack-tag">Computer Vision</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/fingergestures" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/fingergestures" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. Website Navigation UI -->
+            <!-- 6. Recreate Pages -->
             <div class="project-card" data-category="web">
                 <div class="card-media">
-                    <img src="energy2.png" alt="Website Navigation UI">
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(255,107,107,0.09); border: 1px solid rgba(255,107,107,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">HTML · CSS · Pixel-perfect Clones</span>
+                    </div>
                     <span class="cat-badge web">Web Dev</span>
                 </div>
                 <div class="card-body">
-                    <h3>Website Navigation UI</h3>
+                    <h3>Recreate Pages</h3>
                     <div class="title-line"></div>
-                    <p>A polished, responsive navigation bar component with smooth transitions and accessible keyboard support — a reusable UI module built for production websites.</p>
+                    <p>A practice repository of recreated real-world web pages, built pixel-by-pixel from scratch to sharpen layout precision, responsive structuring and attention to design detail.</p>
                     <div class="stack-row">
                         <span class="stack-tag">HTML</span>
                         <span class="stack-tag">CSS</span>
-                        <span class="stack-tag">JavaScript</span>
+                        <span class="stack-tag">Responsive Design</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/Recreate-pages" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/Recreate-pages" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. Website Subpages -->
-            <div class="project-card" data-category="web">
+            <!-- 7. Learning Python -->
+            <div class="project-card" data-category="py">
                 <div class="card-media">
-                    <img src="energy3.png" alt="Website Subpages">
-                    <span class="cat-badge web">Web Dev</span>
+                    <div class="card-placeholder">
+                        <div class="ph-icon" style="background: rgba(129,199,132,0.09); border: 1px solid rgba(129,199,132,0.30);">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#81c784" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v3a4 4 0 0 0 4 4h0"/>
+                                <path d="M12 22a4 4 0 0 0 4-4v-2h2a2 2 0 0 0 2-2v-3a4 4 0 0 0-4-4h0"/>
+                                <circle cx="9" cy="6" r="0.6" fill="#81c784"/>
+                                <circle cx="15" cy="18" r="0.6" fill="#81c784"/>
+                            </svg>
+                        </div>
+                        <span class="ph-label">Python · Learning Journey</span>
+                    </div>
+                    <span class="cat-badge py">Python</span>
                 </div>
                 <div class="card-body">
-                    <h3>Website Subpages</h3>
-                    <div class="title-line"></div>
-                    <p>Multi-page website architecture with deep-linked subpages. Each section opens cleanly from the navigation, demonstrating consistent URL structure and smooth page-to-page transitions.</p>
+                    <h3>Learning Python</h3>
+                    <div class="title-line" style="background: #81c784;"></div>
+                    <p>A hands-on collection of Python exercises and mini-projects written while learning the language  covering core syntax, functions, file handling and basic problem-solving.</p>
                     <div class="stack-row">
-                        <span class="stack-tag">HTML</span>
-                        <span class="stack-tag">CSS</span>
-                        <span class="stack-tag">JavaScript</span>
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">Fundamentals</span>
+                        <span class="stack-tag">Practice</span>
                     </div>
                     <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
+                        <a href="https://github.com/Sudin-Neupane/Python--Programming" target="_blank" class="btn-gh">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                             GitHub
                         </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Final Website UI -->
-            <div class="project-card" data-category="web">
-                <div class="card-media">
-                    <img src="energy4.png" alt="Final Website UI">
-                    <span class="cat-badge web">Web Dev</span>
-                </div>
-                <div class="card-body">
-                    <h3>Final Website UI</h3>
-                    <div class="title-line"></div>
-                    <p>The polished, production-ready version of the full website — all components integrated with refined animations and a consistent visual identity across every page.</p>
-                    <div class="stack-row">
-                        <span class="stack-tag">HTML</span>
-                        <span class="stack-tag">CSS</span>
-                        <span class="stack-tag">JavaScript</span>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-gh">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
+                        <a href="https://github.com/Sudin-Neupane/Python--Programming" target="_blank" class="btn-code">&lt;/&gt; Repo</a>
                     </div>
                 </div>
             </div>
@@ -824,7 +923,7 @@
             <div class="cta-text">
                 <p class="cta-eyebrow">Open Source</p>
                 <h2 class="cta-title">More Projects on GitHub</h2>
-                <p class="cta-sub">All source code is publicly available. Browse the full commit history, branches and issues — or fork whatever you find useful.</p>
+                <p class="cta-sub">All source code is publicly available. Browse the full commit history, branches and issues or fork whatever you find useful.</p>
             </div>
             <div class="cta-actions">
                 <a href="https://github.com/Sudin-Neupane" target="_blank" class="btn-primary">
