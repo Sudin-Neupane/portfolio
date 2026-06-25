@@ -1,19 +1,5 @@
-// ============================================================
-// script.js — Sudin Neupane Portfolio
-// Works across: index.html, about.html, skills.html,
-//               projects.html, contact.html
-// Plain vanilla JS — beginner friendly, no frameworks
-// ============================================================
 
 
-
-
-// ============================================================
-// SHARED — runs on every page
-// ============================================================
-
-// -- Active nav link highlight --
-// Adds "active" style to whichever nav link matches current page
 
 var currentPage = window.location.pathname.split("/").pop();
 
@@ -141,12 +127,6 @@ function typeText(element, text, speed) {
     }, speed);
 }
 
-
-
-
-// ============================================================
-// INDEX.HTML — Home Page
-// ============================================================
 
 var heroTitle = document.querySelector(".hero-section h1");
 

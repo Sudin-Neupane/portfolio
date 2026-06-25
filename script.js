@@ -529,7 +529,7 @@ for (var fi = 0; fi < formInputs.length; fi++) {
 }
 
 
-// -- Contact form: character counter for message textarea --
+// Contact form: character counter for message textarea 
 
 var messageBox = document.querySelector(".contact-form textarea");
 
@@ -630,7 +630,7 @@ function showFormMessage(text, type) {
     ].join(";");
 
     if (type === "success") {
-        msg.style.background = "rgba(76, 175, 80, 0.25)";
+        msg.style.background = "rgba(73, 146, 75, 0.25)";
         msg.style.color = "#a5d6a7";
         msg.style.border = "1px solid rgba(76,175,80,0.5)";
     } else {
