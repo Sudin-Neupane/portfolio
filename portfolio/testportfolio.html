@@ -106,4 +106,26 @@
             background-size: 200% auto;
             animation: textGradient 6s linear infinite;
         }
-        
+         /* Interactive smooth custom cursor (Desktop) */
+        #custom-cursor {
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 107, 107, 0.75);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease, background 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+        }
+
+        @media (min-width: 1024px) {
+            html, body, button, a, input, textarea {
+                cursor: none;
+            }
+        }
+
+
