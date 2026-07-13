@@ -127,5 +127,17 @@
                 cursor: none;
             }
         }
+         /* Scroll Animation States */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    
 
 
