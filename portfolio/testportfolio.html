@@ -138,6 +138,40 @@
             transform: translateY(0);
         }
     </style>
-    
+
+</head>
+<body class="relative min-h-screen bg-[#050608] selection:bg-brand-coral selection:text-white overflow-x-hidden">
+
+    <!-- Smooth Mouse Follower Cursor (Desktop) -->
+    <div id="custom-cursor" class="hidden lg:block"></div>
+
+    <!-- Background Particle nodes canvas -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-10"></canvas>
+
+    <!-- Background Grid overlay -->
+    <div class="fixed inset-0 pointer-events-none grid-overlay z-0 opacity-40"></div>
+
+    <!-- Aesthetic Radial ambient mesh glow blobs -->
+    <div class="fixed top-0 left-[-10%] w-[60vw] h-[60vw] mesh-glow-1 pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] mesh-glow-2 pointer-events-none z-0"></div>
+
+    <!-- 1. Start Loader -->
+    <div id="loader" class="fixed inset-0 bg-[#050608] z-50 flex flex-col items-center justify-center font-mono transition-opacity duration-500">
+        <div class="relative flex flex-col items-center">
+            <!-- Stylized Launcher logo -->
+            <div class="w-16 h-16 rounded-xl border border-brand-coral/30 bg-black/60 flex items-center justify-center shadow-[0_0_20px_rgba(255,107,107,0.2)] animate-pulse mb-6">
+                <span class="text-xl font-bold font-display text-brand-coral">S</span>
+            </div>
+            
+            <h1 class="text-md uppercase tracking-[0.2em] text-white/90 mb-2 font-display font-semibold">SUDIN NEUPANE</h1>
+            <p class="text-xs text-slate-500 tracking-wider mb-8 uppercase font-mono">compiling boilerlab module</p>
+
+            <!-- Loading progress track -->
+            <div class="w-64 h-1.5 bg-slate-900 rounded-full overflow-hidden border border-white/5">
+                <div id="loader-bar" class="h-full bg-gradient-to-r from-brand-coral via-brand-blue to-brand-green transition-all duration-75 ease-out" style="width: 0%;"></div>
+            </div>
+            <span id="loader-text" class="text-xs text-slate-400 mt-2">0%</span>
+        </div>
+    </div>
 
 
