@@ -1144,3 +1144,20 @@
             function renderNodes() {
                 if (!ctx) return;
                 ctx.clearRect(0, 0, width, height);
+
+                ;
+
+        // --- Interactive Contact Message Form logic ---
+        const messageBox = document.getElementById('form-message');
+        const charCounter = document.getElementById('char-counter');
+        if (messageBox && charCounter) {
+            messageBox.addEventListener('input', () => {
+                const count = messageBox.value.length;
+                charCounter.textContent = `${count} characters`;
+                if (count > 450) {
+                    charCounter.style.color = '#ff6b6b';
+                } else {
+                    charCounter.style.color = '#64b5f6';
+                }
+            });
+        }
