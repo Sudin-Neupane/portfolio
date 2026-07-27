@@ -1188,3 +1188,19 @@
             }
             renderNodes();
         }
+
+        // --- Hamburger menu dropdown logic ---
+        const hamBtn = document.getElementById('hamburger-btn');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
+        if (hamBtn && mobileDropdown) {
+            hamBtn.addEventListener('click', () => {
+                mobileDropdown.classList.toggle('hidden');
+            });
+        }
+
+        const mobBtns = document.querySelectorAll('.mob-btn');
+        mobBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (mobileDropdown) mobileDropdown.classList.add('hidden');
+            });
+        });
