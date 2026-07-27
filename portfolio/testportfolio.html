@@ -1110,3 +1110,81 @@
             if (loaderBar) loaderBar.style.width = loadProgress + '%';
             if (loaderText) loaderText.style.textContent = loadProgress + '%';
         }, 40);
+ // --- Interactive background particle nodes logic ---
+        const canvas = document.getElementById('particles-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            const particles = [];
+            const count = Math.min(65, Math.floor(width / 24));
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.45,
+                    vy: (Math.random() - 0.5) * 0.45,
+                    radius: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.25
+                });
+            }
+
+            let mouse = { x: -1000, y: -1000 };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function renderNodes() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, width, height);
+
+                // Highlight radial glow around mouse coordinate
+                if (mouse.x > -1000) {
+                    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
+                    grad.addColorStop(0, 'rgba(255, 107, 107, 0.04)');
+                    grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                
+                particles.forEach((p, index) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                    ctx.fill();
+
+                    // Connect lines of proximal elements
+                    for (let j = index + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.lineWidth = (100 - dist) / 100 * 0.45;
+                            ctx.strokeStyle = `rgba(100, 181, 246, ${((100 - dist) / 100) * 0.08})`;
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(renderNodes);
+            }
+            renderNodes();
+        }
