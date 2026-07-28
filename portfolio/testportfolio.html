@@ -1227,3 +1227,27 @@
                 });
             });
         });
+
+
+        // --- Filter systems: Projects ---
+        const prBtns = document.querySelectorAll('.pr-filter-btn');
+        const prCards = document.querySelectorAll('.pr-card');
+
+        prBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                prBtns.forEach(b => {
+                    b.className = "pr-filter-btn px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-300 bg-white/[0.01] border-white/5 text-slate-400 hover:text-white hover:border-white/10";
+                });
+                btn.className = "pr-filter-btn px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-300 bg-brand-green border-brand-green text-black font-bold shadow-[0_0_20px_rgba(129,199,132,0.3)]";
+                
+                const filter = btn.getAttribute('data-filter');
+                prCards.forEach(card => {
+                    const cat = card.getAttribute('data-cat');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
