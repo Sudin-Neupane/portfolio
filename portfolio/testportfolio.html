@@ -1204,3 +1204,26 @@
                 if (mobileDropdown) mobileDropdown.classList.add('hidden');
             });
         });
+        
+        // --- Filter systems: Skills ---
+        const skBtns = document.querySelectorAll('.sk-filter-btn');
+        const skCards = document.querySelectorAll('.sk-card');
+
+        skBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                skBtns.forEach(b => {
+                    b.className = "sk-filter-btn px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-300 bg-white/[0.01] border-white/5 text-slate-400 hover:text-white hover:border-white/10";
+                });
+                btn.className = "sk-filter-btn px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-300 bg-brand-blue border-brand-blue text-black font-bold shadow-[0_0_20px_rgba(100,181,246,0.3)]";
+                
+                const filter = btn.getAttribute('data-filter');
+                skCards.forEach(card => {
+                    const cat = card.getAttribute('data-cat');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
