@@ -23,3 +23,28 @@
                 }
             });
         });
+     // --- Simulated Pre-Loader screen logic ---
+        let loadProgress = 0;
+        const loader = document.getElementById('loader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+
+        const loadInterval = setInterval(() => {
+            if (loadProgress >= 100) {
+                clearInterval(loadInterval);
+                setTimeout(() => {
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                            // Activate first viewport triggers
+                            triggerScrollRevelations();
+                        }, 500);
+                    }
+                }, 300);
+                return;
+            }
+            loadProgress += 4;
+            if (loaderBar) loaderBar.style.width = loadProgress + '%';
+            if (loaderText) loaderText.style.textContent = loadProgress + '%';
+        }, 40);
