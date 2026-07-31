@@ -48,3 +48,24 @@
             if (loaderBar) loaderBar.style.width = loadProgress + '%';
             if (loaderText) loaderText.style.textContent = loadProgress + '%';
         }, 40);
+        
+            // --- Interactive background particle nodes logic ---
+        const canvas = document.getElementById('particles-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            const particles = [];
+            const count = Math.min(65, Math.floor(width / 24));
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.45,
+                    vy: (Math.random() - 0.5) * 0.45,
+                    radius: Math.random() * 2 + 1,
+                    opacity: Math.random() * 0.5 + 0.25
+                });
+            }
