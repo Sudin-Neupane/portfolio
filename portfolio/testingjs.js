@@ -69,3 +69,18 @@
                     opacity: Math.random() * 0.5 + 0.25
                 });
             }
+        let mouse = { x: -1000, y: -1000 };
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            function renderNodes() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, width, height);
+                
