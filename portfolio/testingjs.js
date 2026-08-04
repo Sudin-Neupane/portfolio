@@ -83,4 +83,27 @@
             function renderNodes() {
                 if (!ctx) return;
                 ctx.clearRect(0, 0, width, height);
+
+                   // Highlight radial glow around mouse coordinate
+                if (mouse.x > -1000) {
+                    const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
+                    grad.addColorStop(0, 'rgba(255, 107, 107, 0.04)');
+                    grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
                 
+                particles.forEach((p, index) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                    ctx.fill();
+                    
