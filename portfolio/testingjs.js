@@ -106,4 +106,22 @@
                     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
                     ctx.fill();
-                    
+                           // Connect lines of proximal elements
+                    for (let j = index + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.lineWidth = (100 - dist) / 100 * 0.45;
+                            ctx.strokeStyle = `rgba(100, 181, 246, ${((100 - dist) / 100) * 0.08})`;
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(renderNodes);
+            }
+            renderNodes();
+        }
