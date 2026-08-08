@@ -186,3 +186,40 @@
                 });
             });
         });
+
+        
+        // --- Interactive Contact Message Form logic ---
+        const messageBox = document.getElementById('form-message');
+        const charCounter = document.getElementById('char-counter');
+        if (messageBox && charCounter) {
+            messageBox.addEventListener('input', () => {
+                const count = messageBox.value.length;
+                charCounter.textContent = `${count} characters`;
+                if (count > 450) {
+                    charCounter.style.color = '#ff6b6b';
+                } else {
+                    charCounter.style.color = '#64b5f6';
+                }
+            });
+        }
+
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        if (contactForm && formFeedback) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('form-name').value.trim();
+                const email = document.getElementById('form-email').value.trim();
+                const message = messageBox.value.trim();
+
+                if (!name || !email || !message) {
+                    formFeedback.className = "text-xs py-2 px-3 rounded-lg text-center font-mono bg-brand-coral/10 text-brand-coral border border-brand-coral/30";
+                    formFeedback.textContent = "Please populate all layout fields.";
+                    formFeedback.classList.remove('hidden');
+                    return;
+                }
+
+                const subject = encodeURIComponent(`Inquiry from ${name} // Portfolio`);
+                const body = encodeURIComponent(`Greetings Sudin,\n\nI visited your boilerlab-styled portfolio and would love to connect.\n\nSender Name: ${name}\nSender Email: ${email}\n\nMessage Details:\n${message}\n\nBest regards,\n${name}`);
+                git
