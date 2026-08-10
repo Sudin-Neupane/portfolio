@@ -237,3 +237,23 @@
                 }, 4000);
             });
         }
+              // --- Intersection Observer Scroll Revelations logic ---
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        function triggerScrollRevelations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // If it contains skill bars, animate them
+                        const skBars = entry.target.querySelectorAll('.sk-bar');
+                        skBars.forEach(bar => {
+                            const level = bar.getAttribute('data-level');
+                            bar.style.width = level;
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
