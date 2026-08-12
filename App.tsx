@@ -112,3 +112,33 @@ const skillsData: Skill[] = [
   { name: "Teamwork & Synergy", status: "Core Strength", tag: "Community Lead", rating: 5, category: "core", description: "Collaborating in multi-functional squads, mentoring peers, and organizing community tech sprints." },
   { name: "Time Management", status: "Core Strength", tag: "CSIT & Dev Balance", rating: 5, category: "core", description: "Balancing active BSc.CSIT academic coursework with freelance development tasks and Code for Change roles." }
 ];
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  category: "web" | "c" | "ai" | "py";
+  tags: string[];
+  githubUrl: string;
+  gradientFrom: string;
+  gradientTo: string;
+  filename: string;
+  codeSnippet: string;
+  highlights: string[];
+}
+
+const projectsData: Project[] = [
+  {
+    id: "crud",
+    name: "CRUD Operations App",
+    description: "A complete database administration interface designed to handle full operational cycles. Integrates safe PHP script pipelines with query engines and client-side JS data validation modules.",
+    category: "web",
+    tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+    githubUrl: "https://github.com/Sudin-Neupane/CRUD-",
+    gradientFrom: "from-[#ff6b6b]/20",
+    gradientTo: "to-[#ff8e53]/10",
+    filename: "crud_workflow.php",
+    highlights: [
+      "Procedural SQL query binding",
+      "Dynamic data-grid rendering",
+      "Sanitized client-input verification"
+    ],
