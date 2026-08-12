@@ -89,3 +89,26 @@ const aboutCardsData: AboutCard[] = [
     badge: "Tactical Execution"
   }
 ];
+interface Skill {
+  name: string;
+  status: string;
+  tag: string;
+  rating: number; // 1-5 signal lights
+  category: "frontend" | "backend" | "seo_management" | "core";
+  description: string;
+}
+
+const skillsData: Skill[] = [
+  { name: "HTML & CSS", status: "Production Ready", tag: "Responsive & Flex/Grid", rating: 5, category: "frontend", description: "Building structured, responsive, and visually consistent web interfaces using semantic HTML and modern CSS." },
+  { name: "JavaScript", status: "Core Stack", tag: "DOM & Async API", rating: 4, category: "frontend", description: "Adding interactive functionality, dynamic behavior, and responsive user experiences to web applications." },
+  { name: "MySQL Database", status: "Production Ready", tag: "Relational Schema", rating: 4, category: "backend", description: "Designing, querying, and managing structured data using SQL for efficient and reliable database operations.(learning)" },
+  { name: "PHP Scripting", status: "Production Ready", tag: "Procedural Engine", rating: 4, category: "backend", description: "Server-side page processing, form handling, procedural query architectures, and safe database connections." },
+  { name: "WordPress Design", status: "Daily Driver", tag: "Custom CMS Build", rating: 5, category: "seo_management", description: "Custom site building, plugin management, child theme modification, and client portfolio templates." },
+  { name: "Yoast SEO Optimization", status: "Specialist", tag: "Schema & Indexing", rating: 5, category: "seo_management", description: "Meta-tag structures, keyword density analyzer, clean schema markup, and dynamic crawl indexing." },
+  { name: "Content Writing", status: "Specialist", tag: "High-Reach Copy", rating: 5, category: "seo_management", description: "High-reach SEO optimization, structured copy, blog writing, and engaging, target-centered narratives." },
+  { name: "Graphic Designing", status: "Specialist", tag: "UI & Brand Assets", rating: 4, category: "seo_management", description: "Visual vector design, UI layouts, color harmony mapping, and promotional banner graphics." },
+  { name: "Social Media Management", status: "High Velocity", tag: "Audience & Campaign", rating: 5, category: "seo_management", description: "Account strategy, brand scheduling, reach analysis, and student engagement campaigns." },
+  { name: "Communication & Pitching", status: "Core Strength", tag: "Technical Briefs", rating: 5, category: "core", description: "Explaining technical workflows, presenting project briefs, and hosting local developer bootcamps." },
+  { name: "Teamwork & Synergy", status: "Core Strength", tag: "Community Lead", rating: 5, category: "core", description: "Collaborating in multi-functional squads, mentoring peers, and organizing community tech sprints." },
+  { name: "Time Management", status: "Core Strength", tag: "CSIT & Dev Balance", rating: 5, category: "core", description: "Balancing active BSc.CSIT academic coursework with freelance development tasks and Code for Change roles." }
+];
