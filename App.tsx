@@ -142,3 +142,111 @@ const projectsData: Project[] = [
       "Dynamic data-grid rendering",
       "Sanitized client-input verification"
     ],
+       codeSnippet: `
+    <?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/config/database.php';
+
+$action = $_POST['action'] ?? $_GET['action'] ?? 'read';
+
+function clean(string $value): string {
+    return trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
+}
+
+try {
+
+    switch ($action) {
+
+        // CREATE
+        case 'create':
+            $name    = clean($_POST['name'] ?? '');
+            $email   = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+            $message = clean($_POST['message'] ?? '');
+
+            if (!$name || !$email) {
+                throw new InvalidArgumentException('Valid name and email required.');
+            }
+
+            $stmt = $pdo->prepare(
+                "INSERT INTO users_records (name, email, message)
+                 VALUES (:name, :email, :message)"
+            );
+
+            $stmt->execute([
+                ':name'    => $name,
+                ':email'   => $email,
+                ':message' => $message
+            ]);
+
+            respond(201, 'Record created successfully.');
+            break;
+
+
+        // UPDATE
+        case 'update':
+            $stmt = $pdo->prepare(
+                "UPDATE users_records
+                 SET name = :name,
+                     email = :email,
+                     message = :message
+                 WHERE id = :id"
+            );
+
+            $stmt->execute([
+                ':id'      => (int) $_POST['id'],
+                ':name'    => clean($_POST['name']),
+                ':email'   => $_POST['email'],
+                ':message' => clean($_POST['message'])
+            ]);
+
+            respond(200, 'Record updated successfully.');
+            break;
+
+
+        // DELETE
+        case 'delete':
+            $stmt = $pdo->prepare(
+                "DELETE FROM users_records WHERE id = :id"
+            );
+
+            $stmt->execute([
+                ':id' => (int) $_POST['id']
+            ]);
+
+            respond(200, 'Record deleted successfully.');
+            break;
+
+
+        // READ
+        default:
+            $stmt = $pdo->query(
+                "SELECT id, name, email, message, created_at
+                 FROM users_records
+                 ORDER BY created_at DESC"
+            );
+
+            echo json_encode([
+                'success' => true,
+                'records' => $stmt->fetchAll(PDO::FETCH_ASSOC)
+            ]);
+    }
+
+} catch (Throwable $error) {
+
+    respond(400, $error->getMessage());
+}
+
+
+function respond(int $status, string $message): void {
+
+    http_response_code($status);
+
+    echo json_encode([
+        'success' => $status < 400,
+        'message' => $message
+    ]);
+}
+?>
+
+`
