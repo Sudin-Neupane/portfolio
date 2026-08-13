@@ -310,4 +310,65 @@ COPY . .
 RUN npm install
 CMD ["npm", "start"]`
   },
+
+   {
+    id: "hospital",
+    name: "Hospital Management System",
+    description: "A low-level system automation tool coded in structured C. Uses safe file descriptors to catalog logs, patient medical charts, billing sheets, and doctor schedules.",
+    category: "c",
+    tags: ["C Language", "File I/O", "Data Structures"],
+    githubUrl: "https://github.com/Sudin-Neupane/Hospital-Management-System",
+    gradientFrom: "from-[#ffb74d]/20",
+    gradientTo: "to-[#ffa726]/10",
+    filename: "hospital_core.c",
+    highlights: [
+      "Persistent binary file stream records",
+      "Algorithmic search and sorting indexes",
+      "Strict data alignment and pointer structures"
+    ],
+    codeSnippet: `#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct PatientRecord {
+    int patientID;
+    char name[60];
+    char diagnosis[100];
+    int roomAllocation;
+    float billingSum;
+};
+
+void registerPatient() {
+    FILE *filePointer;
+    struct PatientRecord record;
+    
+    filePointer = fopen("hospital_data.bin", "ab");
+    if(filePointer == NULL) {
+        printf("Error: File descriptors failed to launch.\\n");
+        return;
+    }
+    
+    printf("Enter Patient ID: ");
+    scanf("%d", &record.patientID);
+    getchar(); // Clear terminal buffer
+    
+    printf("Enter Full Name: ");
+    fgets(record.name, sizeof(record.name), stdin);
+    record.name[strcspn(record.name, "\\n")] = 0; // Strip newline
+    
+    printf("Enter Diagnosis: ");
+    fgets(record.diagnosis, sizeof(record.diagnosis), stdin);
+    record.diagnosis[strcspn(record.diagnosis, "\\n")] = 0;
+    
+    printf("Allocate Room Number: ");
+    scanf("%d", &record.roomAllocation);
+    
+    printf("Calculate Billing: ");
+    scanf("%f", &record.billingSum);
+    
+    fwrite(&record, sizeof(struct PatientRecord), 1, filePointer);
+    fclose(filePointer);
+    printf("Patient registry compiled successfully.\\n");
+}`
+  },
   
