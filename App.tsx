@@ -371,4 +371,62 @@ void registerPatient() {
     printf("Patient registry compiled successfully.\\n");
 }`
   },
-  
+   {
+    id: "c_repo",
+    name: "C Programming Repository",
+    description: "An extensive academic index showcasing complex algorithmic problem-solving, dynamic memory structures, custom utility libraries, and foundational CSIT data structures.",
+    category: "c",
+    tags: ["C Language", "Algorithms", "Pointers", "CSIT Core"],
+    githubUrl: "https://github.com/Sudin-Neupane/C-Programming",
+    gradientFrom: "from-[#81c784]/20",
+    gradientTo: "to-[#66bb6a]/10",
+    filename: "algorithms_demo.c",
+    highlights: [
+      "Dynamic memory allocating algorithms",
+      "Recursions and custom pointer matrices",
+      "Foundational sorting and list configurations"
+    ],
+    codeSnippet: `#include <stdio.h>
+#include <stdlib.h>
+
+// Dynamic array memory allocation & recursive search demonstration
+int linearSearchRecursive(int *array, int size, int index, int target) {
+    if(index >= size) {
+        return -1; // Target not located
+    }
+    if(array[index] == target) {
+        return index; // Target isolated
+    }
+    return linearSearchRecursive(array, size, index + 1, target);
+}
+
+int main() {
+    int *dynamicArray, size, targetElement;
+    printf("Enter size of dynamic dataset: ");
+    scanf("%d", &size);
+    
+    dynamicArray = (int*)malloc(size * sizeof(int));
+    if(dynamicArray == NULL) {
+        printf("Dynamic allocation failed.\\n");
+        return 1;
+    }
+    
+    for(int i = 0; i < size; i++) {
+        printf("Record value for node [%d]: ", i);
+        scanf("%d", &dynamicArray[i]);
+    }
+    
+    printf("Enter value to locate: ");
+    scanf("%d", &targetElement);
+    
+    int resultIndex = linearSearchRecursive(dynamicArray, size, 0, targetElement);
+    if(resultIndex != -1) {
+        printf("Node located safely at index slot: %d\\n", resultIndex);
+    } else {
+        printf("Element not detected in database array.\\n");
+    }
+    
+    free(dynamicArray);
+    return 0;
+}`
+  },
