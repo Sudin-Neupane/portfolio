@@ -430,3 +430,55 @@ int main() {
     return 0;
 }`
   },
+   {
+    id: "gesture",
+    name: "Finger Gesture Control",
+    description: "An interactive computer vision control system mapping coordinate structures of skeletal fingers into computer commands. Powered by OpenCV and neural hand nodes.",
+    category: "ai",
+    tags: ["Python", "OpenCV", "MediaPipe", "Computer Vision"],
+    githubUrl: "https://github.com/Sudin-Neupane/fingergestures",
+    gradientFrom: "from-[#a78bfa]/20",
+    gradientTo: "to-[#8b5cf6]/10",
+    filename: "gesture_controller.py",
+    highlights: [
+      "Skeletal keypoints coordinate tracking",
+      "Dynamic gesture mapping threshold calculations",
+      "Real-time low-latency video thread pipeline"
+    ],
+    codeSnippet: `# Interactive OpenCV & MediaPipe Gesture Controller Pipeline
+import cv2
+import mediapipe as mp
+import numpy as np
+
+class HandSkeletonTracker:
+    def __init__(self):
+        self.mp_hands = mp.solutions.hands
+        self.hands = self.mp_hands.Hands(
+            max_num_hands=1,
+            min_detection_confidence=0.75,
+            min_tracking_confidence=0.75
+        )
+        self.mp_draw = mp.solutions.drawing_utils
+
+    def process_camera_frame(self, frame):
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        results = self.hands.process(rgb_frame)
+        gesture_detected = "Scanning..."
+        
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                self.mp_draw.draw_landmarks(frame, hand_landmarks, self.mp_hands.HAND_CONNECTIONS)
+                
+                # Check coordinates for thumb & index fingertips
+                thumb_tip = hand_landmarks.landmark[4]
+                index_tip = hand_landmarks.landmark[8]
+                
+                # Dynamic spatial distance formula
+                distance = np.sqrt((thumb_tip.x - index_tip.x)**2 + (thumb_tip.y - index_tip.y)**2)
+                if distance < 0.05:
+                    gesture_detected = "ACTION: ACTIVE PINCH (CLICK Triggered)"
+                else:
+                    gesture_detected = "STATUS: TRACKING HAND NODES"
+                    
+        return frame, gesture_detected`
+  },
