@@ -250,3 +250,64 @@ function respond(int $status, string $message): void {
 ?>
 
 `
+ },
+  {
+    id: "simple_site",
+    name: "Simple Website",
+    description: "A comprehensive web design structure crafted entirely with native CSS flex grids. Demonstrates responsive frameworks and smooth transform layouts without any external styling libraries.",
+    category: "web",
+    tags: ["HTML", "CSS", "Vanilla JS"],
+    githubUrl: "https://github.com/Sudin-Neupane",
+    gradientFrom: "from-[#64b5f6]/20",
+    gradientTo: "to-[#4fc3f7]/10",
+    filename: "layout_core.css",
+    highlights: [
+      "100% native grid layout matrices",
+      "Custom viewport-responsive scale formulas",
+      "High-performance CSS transform animations"
+    ],
+    codeSnippet: `
+    // TypeScript / React — Frontend
+const ProjectCard = ({ title, stack }: ProjectProps) => (
+    <article className="project">
+        <h2>{title}</h2>
+        <p>{stack.join(" • ")}</p>
+    </article>
+);
+
+
+// Node.js — API
+app.get("/api/projects", async (req, res) => {
+    const projects = await db.query(
+        "SELECT * FROM projects ORDER BY created_at DESC"
+    );
+
+    res.json(projects.rows);
+});
+
+
+# Python — AI / Backend Service
+def analyze_project(description: str):
+    return {
+        "summary": generate_summary(description),
+        "status": "processed"
+    }
+
+
+-- PostgreSQL
+CREATE TABLE projects (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(120) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+
+# Docker
+FROM node:22-alpine
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["npm", "start"]`
+  },
+  
