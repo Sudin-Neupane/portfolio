@@ -532,3 +532,48 @@ class HandSkeletonTracker:
 </body>
 </html>`
   },
+    {
+    id: "learn_py",
+    name: "Learning Python System",
+    description: "A catalog of OOP architecture sandboxes, logic processors, directory sorters, and standard mathematical algorithm scripts designed for high performance.",
+    category: "py",
+    tags: ["Python", "Object-Oriented", "Data Pipelines"],
+    githubUrl: "https://github.com/Sudin-Neupane/Python--Programming",
+    gradientFrom: "from-[#4ade80]/20",
+    gradientTo: "to-[#22c55e]/10",
+    filename: "oop_data_sorter.py",
+    highlights: [
+      "Standard recursive list processing",
+      "Error exception handlers and data logs",
+      "Object-oriented design model schemas"
+    ],
+    codeSnippet: `# OOP Data Sorter Pipeline
+import os
+import json
+
+class DatasetOptimizer:
+    def __init__(self, target_directory):
+        self.directory = target_directory
+        self.logs = []
+
+    def load_and_evaluate(self):
+        try:
+            if not os.path.exists(self.directory):
+                raise FileNotFoundError(f"Target path {self.directory} is unreachable.")
+                
+            file_array = os.listdir(self.directory)
+            # Filter standard JSON configurations using list comprehension
+            json_files = [f for f in file_array if f.endswith('.json')]
+            self.logs.append(f"Located {len(json_files)} configuration datasets.")
+            return json_files
+        except Exception as error:
+            self.logs.append(f"CRITICAL ERROR: {str(error)}")
+            return []
+
+# Execute pipeline sandbox
+if __name__ == "__main__":
+    sorter = DatasetOptimizer("./data_sandbox")
+    results = sorter.load_and_evaluate()
+    print(f"Operational logs: {sorter.logs}")`
+  }
+];
