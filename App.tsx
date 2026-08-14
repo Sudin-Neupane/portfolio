@@ -14,6 +14,7 @@ import {
   FileText, Sliders, Info, Heart, Twitter, Sparkles, 
   ShieldCheck, Trophy, Image as ImageIcon, Download, ZoomIn
 } from "lucide-react";
+
 interface AboutCard {
   id: string;
   title: string;
@@ -89,6 +90,7 @@ const aboutCardsData: AboutCard[] = [
     badge: "Tactical Execution"
   }
 ];
+
 interface Skill {
   name: string;
   status: string;
@@ -112,6 +114,7 @@ const skillsData: Skill[] = [
   { name: "Teamwork & Synergy", status: "Core Strength", tag: "Community Lead", rating: 5, category: "core", description: "Collaborating in multi-functional squads, mentoring peers, and organizing community tech sprints." },
   { name: "Time Management", status: "Core Strength", tag: "CSIT & Dev Balance", rating: 5, category: "core", description: "Balancing active BSc.CSIT academic coursework with freelance development tasks and Code for Change roles." }
 ];
+
 interface Project {
   id: string;
   name: string;
@@ -142,7 +145,7 @@ const projectsData: Project[] = [
       "Dynamic data-grid rendering",
       "Sanitized client-input verification"
     ],
-       codeSnippet: `
+    codeSnippet: `
     <?php
 declare(strict_types=1);
 
@@ -250,7 +253,7 @@ function respond(int $status, string $message): void {
 ?>
 
 `
- },
+  },
   {
     id: "simple_site",
     name: "Simple Website",
@@ -310,8 +313,7 @@ COPY . .
 RUN npm install
 CMD ["npm", "start"]`
   },
-
-   {
+  {
     id: "hospital",
     name: "Hospital Management System",
     description: "A low-level system automation tool coded in structured C. Uses safe file descriptors to catalog logs, patient medical charts, billing sheets, and doctor schedules.",
@@ -371,7 +373,7 @@ void registerPatient() {
     printf("Patient registry compiled successfully.\\n");
 }`
   },
-   {
+  {
     id: "c_repo",
     name: "C Programming Repository",
     description: "An extensive academic index showcasing complex algorithmic problem-solving, dynamic memory structures, custom utility libraries, and foundational CSIT data structures.",
@@ -430,7 +432,7 @@ int main() {
     return 0;
 }`
   },
-   {
+  {
     id: "gesture",
     name: "Finger Gesture Control",
     description: "An interactive computer vision control system mapping coordinate structures of skeletal fingers into computer commands. Powered by OpenCV and neural hand nodes.",
@@ -482,7 +484,8 @@ class HandSkeletonTracker:
                     
         return frame, gesture_detected`
   },
-   id: "recreate",
+  {
+    id: "recreate",
     name: "Recreate Pages",
     description: "A design catalog focusing on pixel-perfect template replication of top-tier websites. Serves as a deep study in grid alignment, fluid typography, and responsive styles.",
     category: "web",
@@ -532,7 +535,7 @@ class HandSkeletonTracker:
 </body>
 </html>`
   },
-    {
+  {
     id: "learn_py",
     name: "Learning Python System",
     description: "A catalog of OOP architecture sandboxes, logic processors, directory sorters, and standard mathematical algorithm scripts designed for high performance.",
