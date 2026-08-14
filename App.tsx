@@ -482,3 +482,53 @@ class HandSkeletonTracker:
                     
         return frame, gesture_detected`
   },
+   id: "recreate",
+    name: "Recreate Pages",
+    description: "A design catalog focusing on pixel-perfect template replication of top-tier websites. Serves as a deep study in grid alignment, fluid typography, and responsive styles.",
+    category: "web",
+    tags: ["HTML", "CSS", "Responsive Design"],
+    githubUrl: "https://github.com/Sudin-Neupane/Recreate-pages",
+    gradientFrom: "from-[#14b8a6]/20",
+    gradientTo: "to-[#0d9488]/10",
+    filename: "responsive_grid.html",
+    highlights: [
+      "High-contrast visual design structures",
+      "Custom screen-ratio breakpoint setups",
+      "Pixel-perfect media scale configurations"
+    ],
+    codeSnippet: `<!-- High Fidelity Responsive Grid Scaffold -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aesthetic Scaffold Replication</title>
+  <style>
+    .showcase-stage {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 1024px) {
+      .showcase-stage {
+        grid-template-columns: repeat(8, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .showcase-stage {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="showcase-stage">
+    <!-- Recreated modules go here -->
+  </div>
+</body>
+</html>`
+  },
