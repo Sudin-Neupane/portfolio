@@ -607,3 +607,12 @@ const timelineData: TimelineMilestone[] = [
     iconType: "edu",
     tags: ["NIST", "High School Computer Science", "Graduated"]
   },
+  {
+    year: "2025 - 2026",
+    title: "College Representative",
+    institution: "Code for Change Nepal",
+    description: "Elected as official College representative for the 2025/2026 tenure. Actively bridging tech students across Colleges, coordinating specialized workshops, and organizing local bootcamps.",
+    iconType: "leadership",
+    tags: ["Leadership", "Tech Networking", "Event Coordination"]
+  },
+  
