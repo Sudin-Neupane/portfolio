@@ -615,4 +615,12 @@ const timelineData: TimelineMilestone[] = [
     iconType: "leadership",
     tags: ["Leadership", "Tech Networking", "Event Coordination"]
   },
+     {
+    year: "2026",
+    title: "AsianHack 2026 : Professionalism Award",
+    institution: "Team PRIMORDIALS",
+    description: "Participated in AsianHack 2026 with team 'PRIMORDIALS' and developed 'CivicFlow' : a full-stack civic tech web application that earned the prestigious Professionalism Award for code architecture and engineering discipline.",
+    iconType: "leadership",
+    tags: ["AsianHack 2026", "PRIMORDIALS", "CivicFlow", "Professionalism Award", "Hackathon"]
+  },
   
