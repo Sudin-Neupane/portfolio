@@ -624,3 +624,11 @@ const timelineData: TimelineMilestone[] = [
     tags: ["AsianHack 2026", "PRIMORDIALS", "CivicFlow", "Professionalism Award", "Hackathon"]
   },
   
+      {
+    year: "2026",
+    title: "Codefest 2026 Provincial Phase Organizer",
+    institution: "Technology Team // Codefest 2026",
+    description: "Organized Codefest 2026 Provincial Phase as a core member of the Technology Team, coordinating platform infrastructure, hackathon workflows, and developer event operations.",
+    iconType: "leadership",
+    tags: ["Codefest 2026", "Tech Team", "Provincial Phase", "Event Organizer"]
+  },
