@@ -632,3 +632,13 @@ const timelineData: TimelineMilestone[] = [
     iconType: "leadership",
     tags: ["Codefest 2026", "Tech Team", "Provincial Phase", "Event Organizer"]
   },
+    {
+    year: "2026",
+    title: "111 Days of Learning Challenge (Certified)",
+    institution: "Continuous Software Engineering Sprints",
+    description: "Successfully completed the intensive 111 Days of Learning challenge, publishing daily technical deep dives and code logs on LinkedIn, and earned verified completion certification.",
+    iconType: "leadership",
+    tags: ["111 Days Challenge", "LinkedIn Certified", "Continuous Learning", "Full-Stack Mastery"]
+  },
+ 
+];
