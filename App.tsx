@@ -580,3 +580,30 @@ if __name__ == "__main__":
     print(f"Operational logs: {sorter.logs}")`
   }
 ];
+
+interface TimelineMilestone {
+  year: string;
+  title: string;
+  institution: string;
+  description: string;
+  iconType: "edu" | "leadership" | "work";
+  tags: string[];
+}
+
+const timelineData: TimelineMilestone[] = [
+  {
+    year: "2024 - Present",
+    title: "BSc. Computer Science & Information Technology",
+    institution: "Asian College of Management and Technology",
+    description: "Deepening theoretical and practical foundations in operating systems, algorithms, database management systems, structures, and modern program compiler fundamentals.",
+    iconType: "edu",
+    tags: ["BSc.CSIT", "University Student", "Kathmandu"]
+  },
+   {
+    year: "2024",
+    title: "High School Graduation (+2 Computer Science)",
+    institution: "National Institute of Science and Technology (NIST)",
+    description: "Completed rigorous high-school stream focused on computational logic, core programming algorithms, database basics, and structured systems development.",
+    iconType: "edu",
+    tags: ["NIST", "High School Computer Science", "Graduated"]
+  },
