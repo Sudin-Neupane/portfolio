@@ -914,3 +914,39 @@ function FilmGrainCanvas() {
   );
 }
 
+// 0.2 CUSTOM MAGNETIC CURSOR COMPONENT
+function CustomMagneticCursor() {
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hoverLabel, setHoverLabel] = useState<string | null>(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    // Check touch or reduced motion
+    const touchCheck = window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(hover: none)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (touchCheck || reducedMotion) {
+      setIsTouch(true);
+      return;
+    }
+
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    // Use GSAP quickTo for ultra-smooth 60fps tracking without lag
+    const xDot = gsap.quickTo(dot, "x", { duration: 0.08, ease: "power3.out" });
+    const yDot = gsap.quickTo(dot, "y", { duration: 0.08, ease: "power3.out" });
+    const xRing = gsap.quickTo(ring, "x", { duration: 0.28, ease: "power3.out" });
+    const yRing = gsap.quickTo(ring, "y", { duration: 0.28, ease: "power3.out" });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      xDot(e.clientX - 4);
+      yDot(e.clientY - 4);
+      xRing(e.clientX - 16);
+      yRing(e.clientY - 16);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    
