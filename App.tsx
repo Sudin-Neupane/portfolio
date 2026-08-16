@@ -949,4 +949,26 @@ function CustomMagneticCursor() {
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    
+
+
+    // Attach magnetic hover detection & pull to interactive elements
+    const interactiveSelector = "a, button, input, textarea, [data-magnetic], .glass-card, [role='button']";
+    const handleElementOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest(interactiveSelector);
+      if (target) {
+        setIsHovered(true);
+        const label = target.getAttribute("data-cursor-label");
+        setHoverLabel(label || null);
+      }
+    };
+
+    const handleElementOut = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest(interactiveSelector);
+      if (target) {
+        setIsHovered(false);
+        setHoverLabel(null);
+      }
+    };
+
+    document.addEventListener("mouseover", handleElementOver, { passive: true });
+    document.addEventListener("mouseout", handleElementOut, { passive: true });
