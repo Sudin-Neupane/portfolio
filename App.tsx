@@ -972,3 +972,73 @@ function CustomMagneticCursor() {
 
     document.addEventListener("mouseover", handleElementOver, { passive: true });
     document.addEventListener("mouseout", handleElementOut, { passive: true });
+    
+    // Magnetic pull setup on buttons & magnetic tagged elements
+    const magneticElements = document.querySelectorAll<HTMLElement>("button, a, [data-magnetic]");
+    const magneticCleanups: (() => void)[] = [];
+
+    magneticElements.forEach((el) => {
+      const xTo = gsap.quickTo(el, "x", { duration: 0.3, ease: "power2.out" });
+      const yTo = gsap.quickTo(el, "y", { duration: 0.3, ease: "power2.out" });
+
+      const onMagMove = (e: MouseEvent) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distPropX = (e.clientX - centerX) * 0.32;
+        const distPropY = (e.clientY - centerY) * 0.32;
+
+        xTo(distPropX);
+        yTo(distPropY);
+      };
+
+      const onMagLeave = () => {
+        xTo(0);
+        yTo(0);
+      };
+
+      el.addEventListener("mousemove", onMagMove, { passive: true });
+      el.addEventListener("mouseleave", onMagLeave, { passive: true });
+
+      magneticCleanups.push(() => {
+        el.removeEventListener("mousemove", onMagMove);
+        el.removeEventListener("mouseleave", onMagLeave);
+      });
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseover", handleElementOver);
+      document.removeEventListener("mouseout", handleElementOut);
+      magneticCleanups.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
+  if (isTouch) return null;
+
+  return (
+    <>
+      {/* Precision Dot */}
+      <div
+        ref={dotRef}
+        className={`fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[1000] transform-gpu transition-colors duration-200 ${
+          isHovered ? "bg-white scale-150" : "bg-white/90"
+        }`}
+        aria-hidden="true"
+      />
+
+      {/* Trailing Ring */}
+      <div
+        ref={ringRef}
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[999] transform-gpu transition-all duration-300 flex items-center justify-center text-[9px] font-mono font-bold tracking-widest text-black uppercase ${
+          isHovered
+            ? "w-16 h-16 -ml-4 -mt-4 bg-white/90 border-white text-black scale-110 shadow-lg shadow-white/10"
+            : "border-white/30 bg-transparent text-transparent"
+        }`}
+        aria-hidden="true"
+      >
+        {hoverLabel && <span className="animate-fade-in px-1 truncate max-w-[50px]">{hoverLabel}</span>}
+      </div>
+    </>
+  );
+}
