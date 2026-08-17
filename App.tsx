@@ -1114,3 +1114,64 @@ interface CounterProps {
   decimals?: number;
   className?: string;
 }
+
+
+// 1. SCROLL-SCRUBBED SVG LINE DRAWING PROCEDURAL DIVIDER
+function SignatureProceduralDivider({ label, codeSnippet }: { label: string; codeSnippet?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const glowDotRef = useRef<SVGCircleElement>(null);
+
+  useEffect(() => {
+    const path = pathRef.current;
+    const container = containerRef.current;
+    if (!path || !container) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const pathLength = path.getTotalLength();
+    gsap.set(path, {
+      strokeDasharray: pathLength,
+      strokeDashoffset: pathLength,
+    });
+
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: "top 88%",
+      end: "bottom 30%",
+      scrub: 0.6,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const currentOffset = pathLength * (1 - progress);
+        gsap.set(path, { strokeDashoffset: currentOffset });
+
+        if (glowDotRef.current) {
+          const point = path.getPointAtLength(pathLength * progress);
+          gsap.set(glowDotRef.current, { cx: point.x, cy: point.y, opacity: progress > 0.02 && progress < 0.98 ? 1 : 0 });
+        }
+      },
+    });
+
+    return () => trigger.kill();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full relative py-6 overflow-hidden my-8 select-none">
+      {/* SVG Vector Line Scrubbed to Scroll */}
+      <div className="w-full h-2 relative mb-2">
+        <svg className="w-full h-2 overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 10">
+          {/* Subtle background track */}
+          <path d="M0 5 L1000 5" stroke="#262626" strokeWidth="1" strokeDasharray="4 4" />
+          {/* Animated SVG Path scrubbed with scroll */}
+          <path
+            ref={pathRef}
+            d="M0 5 L1000 5"
+            stroke="#FFFFFF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          {/* Traveling glow pulse head */}
+          <circle ref={glowDotRef} r="4" fill="#FFFFFF" className="filter drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] opacity-0" />
+        </svg>
+      </div>
