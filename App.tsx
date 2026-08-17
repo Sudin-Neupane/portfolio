@@ -1042,3 +1042,75 @@ function CustomMagneticCursor() {
     </>
   );
 }
+
+// 0.3 CLIP-PATH / MASK SECTION WIPE WRAPPER
+interface ClipPathMaskSectionProps {
+  children: React.ReactNode;
+  id: string;
+  maskType?: "curtain" | "radial" | "diagonal";
+  className?: string;
+}
+
+function ClipPathMaskSection({
+  children,
+  id,
+  maskType = "curtain",
+  className = "",
+}: ClipPathMaskSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let initClip = "";
+    let finalClip = "";
+
+    if (maskType === "curtain") {
+      initClip = "inset(8% 5% 8% 5% round 32px)";
+      finalClip = "inset(0% 0% 0% 0% round 0px)";
+    } else if (maskType === "radial") {
+      initClip = "circle(15% at 50% 50%)";
+      finalClip = "circle(140% at 50% 50%)";
+    } else if (maskType === "diagonal") {
+      initClip = "polygon(0 15%, 100% 0, 100% 85%, 0 100%)";
+      finalClip = "polygon(0 0, 100% 0, 100% 100%, 0 100%)";
+    }
+
+    gsap.set(container, { clipPath: initClip });
+
+    const anim = gsap.to(container, {
+      clipPath: finalClip,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        start: "top 92%",
+        end: "top 25%",
+        scrub: 0.8,
+      },
+    });
+
+    return () => anim.kill();
+  }, [maskType]);
+
+  return (
+    <div
+      ref={containerRef}
+      id={id}
+      className={`relative will-change-[clip-path] transform-gpu ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+interface CounterProps {
+  value: number;
+  suffix?: string;
+  prefix?: string;
+  decimals?: number;
+  className?: string;
+}
