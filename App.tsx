@@ -1175,3 +1175,60 @@ function SignatureProceduralDivider({ label, codeSnippet }: { label: string; cod
           <circle ref={glowDotRef} r="4" fill="#FFFFFF" className="filter drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] opacity-0" />
         </svg>
       </div>
+      
+      <div className="signature-procedural-ribbon flex items-center justify-between px-6 py-2 text-[11px] text-[#8A8A8A] font-mono select-none border-y border-[#262626] bg-[#0A0A0A]/90 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-white opacity-90 animate-pulse" />
+          <span className="text-white font-bold tracking-widest uppercase">{label}</span>
+          <span className="text-[#5C5C5C]">|</span>
+          <span className="text-[#8A8A8A] hidden sm:inline">{codeSnippet || "void main(int argc, char *argv[]) { init_sys(); }"}</span>
+        </div>
+        <div className="flex items-center gap-4 text-[10px]">
+          <span className="text-[#5C5C5C] font-mono hidden md:inline">NODE_ID: #0x8F9E</span>
+          <span className="text-white font-bold tracking-wider border border-white/20 bg-white/5 px-2 py-0.5 rounded">[ACTIVE_VERIFIED]</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AnimatedGSAPCounter({ value, suffix = "", prefix = "", decimals = 0, className = "" }: CounterProps) {
+  const countRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = countRef.current;
+    if (!el) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      el.innerText = `${prefix}${value.toFixed(decimals)}${suffix}`;
+      return;
+    }
+
+    const obj = { val: 0 };
+    
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: "top 88%",
+      onEnter: () => {
+        gsap.to(obj, {
+          val: value,
+          duration: 1.8,
+          ease: "power1.out",
+          onUpdate: () => {
+            if (el) {
+              el.innerText = `${prefix}${obj.val.toFixed(decimals)}${suffix}`;
+            }
+          },
+        });
+      },
+      once: true,
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, [value, suffix, prefix, decimals]);
+
+  return <span ref={countRef} className={className}>{prefix}0{suffix}</span>;
+}
