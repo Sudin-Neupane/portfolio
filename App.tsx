@@ -1396,3 +1396,23 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
       ${subHeader}
     </text>
   </g>
+  
+  <!-- Divider Ribbon -->
+  <line x1="450" y1="310" x2="950" y2="310" stroke="${primaryAccent}" stroke-width="2" stroke-opacity="0.5" />
+  <polygon points="700,305 710,310 700,315 690,310" fill="${primaryAccent}" />
+
+  <!-- Recipient Section -->
+  <g transform="translate(700, 375)" text-anchor="middle">
+    <text x="0" y="0" font-size="14" font-weight="600" fill="#8A8A8A" letter-spacing="5">PROUDLY PRESENTED TO</text>
+    <text x="0" y="55" font-size="46" font-weight="900" fill="url(#goldGrad)" letter-spacing="4">
+      SUDIN NEUPANE
+    </text>
+    <line x1="380" y1="75" x2="1020" y2="75" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+  </g>
+
+  <!-- Statement Description (Standard SVG multiline text) -->
+  <g transform="translate(700, 500)" text-anchor="middle" font-size="16" fill="#D1D5DB">
+    <text x="0" y="0" font-weight="500">${certLines[0]}</text>
+    <text x="0" y="28" font-weight="500">${certLines[1]}</text>
+    <text x="0" y="56" font-weight="500">${certLines[2]}</text>
+  </g>
