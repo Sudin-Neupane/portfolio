@@ -1364,3 +1364,35 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
     </pattern>
   </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1400" height="950" fill="url(#bgGrad)" />
+  <rect width="1400" height="950" fill="url(#grid)" />
+
+  <!-- Outer Certificate Border -->
+  <rect x="35" y="35" width="1330" height="880" rx="16" fill="none" stroke="${primaryAccent}" stroke-width="2" stroke-opacity="0.6" />
+  <rect x="45" y="45" width="1310" height="860" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+  <rect x="52" y="52" width="1296" height="846" rx="8" fill="none" stroke="${primaryAccent}" stroke-width="1" stroke-dasharray="8 6" stroke-opacity="0.4" />
+
+  <!-- Corner Ornaments -->
+  <g fill="${primaryAccent}">
+    <polygon points="45,45 85,45 85,50 50,50 50,85 45,85" opacity="0.8" />
+    <polygon points="1355,45 1315,45 1315,50 1350,50 1350,85 1355,85" opacity="0.8" />
+    <polygon points="45,905 85,905 85,900 50,900 50,865 45,865" opacity="0.8" />
+    <polygon points="1355,905 1315,905 1315,900 1350,900 1350,865 1355,865" opacity="0.8" />
+  </g>
+
+  <!-- Top Logo & Header -->
+  <g transform="translate(700, 140)" text-anchor="middle">
+    <circle cx="0" cy="0" r="38" fill="#141414" stroke="${primaryAccent}" stroke-width="2"/>
+    <text x="0" y="8" font-size="20" font-weight="900" fill="${primaryAccent}" letter-spacing="2">SN</text>
+    <text x="0" y="65" font-size="13" font-weight="800" fill="${primaryAccent}" letter-spacing="6" text-transform="uppercase">
+      ${card.subtitle.toUpperCase()}
+    </text>
+    <text x="0" y="105" font-size="34" font-weight="900" fill="#FFFFFF" letter-spacing="4">
+      ${certCategory}
+    </text>
+    <text x="0" y="132" font-size="14" font-weight="700" fill="${secondaryAccent}" letter-spacing="3">
+      ${subHeader}
+    </text>
+  </g>
