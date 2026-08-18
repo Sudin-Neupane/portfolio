@@ -1655,4 +1655,104 @@ function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
                 />
               </div>
 
+              {/* Bottom Quick Info & Meta Footnote */}
+              <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-[#8A8A8A] pt-1 px-1">
+                <div className="flex items-center gap-3">
+                  <span className="text-white font-semibold flex items-center gap-1">
+                    <Trophy className="w-3.5 h-3.5 text-amber-400" />
+                    Recipient: Sudin Neupane
+                  </span>
+                  <span className="text-[#5C5C5C]">â€¢</span>
+                  <span>Category: {activeCert.tag}</span>
+                  <span className="text-[#5C5C5C]">â€¢</span>
+                  <span>Issued: {activeCert.subtitle}</span>
+                </div>
+                <div className="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                  <span>Format: Portable Network Graphics (PNG)</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// =========================================================
+// CUSTOM SCROLL-DRIVEN INTERACTIVE PORTFOLIO COMPONENTS
+// =========================================================
+
+function BookChapterPageTurn() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 90%", "center 30%"]
+  });
+
+  // Page turn rotation around left spine
+  const pageRotateY = useTransform(scrollYProgress, [0, 0.85], [0, -135]);
+  const pageShadowOpacity = useTransform(scrollYProgress, [0, 0.5, 0.85], [0, 0.7, 0]);
+  const pageFoldScale = useTransform(scrollYProgress, [0, 0.85], [1, 0.96]);
+  const textOpacity = useTransform(scrollYProgress, [0.4, 0.9], [0.3, 1]);
+
+  return (
+    <div ref={containerRef} className="relative w-full py-12 overflow-hidden [perspective:1400px]">
+      {/* Underlying Chapter Page */}
+      <motion.div 
+        style={{ scale: pageFoldScale }}
+        className="relative max-w-4xl mx-auto bg-[#080808] border-2 border-[#262626] rounded-2xl p-8 md:p-12 shadow-2xl text-center overflow-hidden"
+      >
+        {/* Book Spine Accent Line */}
+        <div className="absolute top-0 left-0 bottom-0 w-3 bg-gradient-to-r from-[#222] via-[#111] to-transparent border-r border-[#333]" />
+        
+        {/* Page Header */}
+        <motion.div style={{ opacity: textOpacity }} className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-[#141414] text-white font-mono text-[11px] uppercase tracking-widest font-bold mb-4">
+            <BookOpen className="w-3.5 h-3.5 text-white" />
+            <span>CHAPTER II // ABOUT ME</span>
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-3 uppercase tracking-tight">
+            ABOUT <span className="text-[#8A8A8A]">SUDIN NEUPANE</span>
+          </h2>
+          
+          <div className="w-16 h-1 bg-white mx-auto rounded-full mb-4" />
+          
+          <p className="text-[#8A8A8A] text-sm md:text-base leading-relaxed max-w-xl mx-auto font-mono">
+            "Iâ€™m building my path in tech through CSIT, hands-on projects, programming, hackathons, and active involvement in student technology communities."
+          </p>
+        </motion.div>
+
+        {/* Page Corner Fold Tag */}
+        <div className="absolute bottom-3 right-3 text-[10px] font-mono text-[#555] uppercase tracking-widest flex items-center gap-1">
+          <span>SUDIN NEUPANE // PORTFOLIO</span>
+          <Sparkles className="w-3 h-3 text-[#666]" />
+        </div>
+      </motion.div>
+
+      {/* Turning Book Cover Page Leaf */}
+      <motion.div
+        style={{
+          rotateY: pageRotateY,
+          transformOrigin: "left center",
+          backfaceVisibility: "hidden",
+        }}
+        className="absolute inset-0 max-w-4xl mx-auto bg-[#121212] border-2 border-[#333] rounded-2xl p-8 md:p-12 shadow-2xl pointer-events-none z-20 flex flex-col justify-between"
+      >
+        <div className="flex justify-between items-center border-b border-[#262626] pb-4">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#8A8A8A]">CHRONICLES VOLUME I</span>
+          <span className="font-mono text-xs text-white uppercase tracking-widest border border-[#333] px-2.5 py-0.5 rounded">EXPLORE PROFILE</span>
+        </div>
+
+        <div className="my-auto text-center py-8">
+          <div className="w-12 h-12 rounded-full border border-[#333] bg-[#000] mx-auto flex items-center justify-center mb-4 text-white">
+            <BookOpen className="w-6 h-6" />
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold font-display text-white uppercase tracking-wider">
+            CHAPTER II: ABOUT ME
+          </h3>
+          <p className="text-xs font-mono text-[#8A8A8A] mt-2">A look into academic foundations and technical focus</p>
+        </div>
+
 </svg>`;
