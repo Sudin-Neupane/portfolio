@@ -1289,3 +1289,35 @@ function GSAPInfiniteMarquee({ items, speed = 25 }: { items: { name: string; cat
     </div>
   );
 }
+
+// 3. GSAP HORIZONTAL SCROLL CARD ROW WITH CERTIFICATE PNG VIEWER & PHOTO UPLOAD
+interface HorizontalCard {
+  id: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  tag: string;
+  certTitle?: string;
+  certIssuer?: string;
+  certDate?: string;
+  certBadge?: string;
+  certDetails?: string[];
+  certProofLink?: string;
+}
+
+// Generate high-resolution official vector certificate graphic (SVG / PNG format)
+function getOfficialCertificateSvgUri(card: HorizontalCard): string {
+  const isAsianHack = card.id.includes("asianhack");
+  const is111Days = card.id.includes("111_days");
+  const isCodefest = card.id.includes("codefest");
+
+  const primaryAccent = isAsianHack ? "#F59E0B" : is111Days ? "#06B6D4" : "#10B981";
+  const secondaryAccent = isAsianHack ? "#D97706" : is111Days ? "#3B82F6" : "#059669";
+  const bgGradStart = isAsianHack ? "#171206" : is111Days ? "#041426" : "#041B13";
+  
+  const certCategory = isAsianHack 
+    ? "OFFICIAL CERTIFICATE OF EXCELLENCE" 
+    : is111Days 
+    ? "CERTIFICATE OF SPRINT COMPLETION" 
+    : "CERTIFICATE OF APPRECIATION & LEADERSHIP";
+    
