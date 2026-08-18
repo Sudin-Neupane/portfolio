@@ -1755,4 +1755,104 @@ function BookChapterPageTurn() {
           <p className="text-xs font-mono text-[#8A8A8A] mt-2">A look into academic foundations and technical focus</p>
         </div>
 
+        <div className="flex justify-between items-center border-t border-[#262626] pt-4 text-[10px] font-mono text-[#5C5C5C]">
+          <span>BIOGRAPHY & BACKGROUND</span>
+          <span>SUDIN NEUPANE PORTFOLIO</span>
+        </div>
+
+        {/* Page Shadow overlay */}
+        <motion.div 
+          style={{ opacity: pageShadowOpacity }}
+          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+function ScrollDrivenRoadmapTimeline({ 
+  timelineData, 
+  timelineActiveIdx, 
+  setTimelineActiveIdx 
+}: { 
+  timelineData: any[]; 
+  timelineActiveIdx: number; 
+  setTimelineActiveIdx: (idx: number) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 85%", "end 15%"]
+  });
+
+  // Left card coming from left side, right card from right side
+  const leftX = useTransform(scrollYProgress, [0, 0.4, 0.75, 1], [-260, 0, 0, 260]);
+  const rightX = useTransform(scrollYProgress, [0, 0.4, 0.75, 1], [260, 0, 0, -260]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.25, 0.8, 1], [0, 1, 1, 0]);
+  const rightOpacity = useTransform(scrollYProgress, [0, 0.25, 0.8, 1], [0, 1, 1, 0]);
+
+  return (
+    <div ref={containerRef} className="mb-20 overflow-hidden">
+      <div className="text-left mb-8 max-w-md">
+        <span className="font-mono text-[10px] text-[#8A8A8A] uppercase tracking-widest font-bold">Academic Core</span>
+        <h3 className="text-xl font-bold font-display text-white mt-1 uppercase">Academic Roadmap Timeline</h3>
+        <p className="text-xs font-mono text-[#8A8A8A] mt-1">Interactive timeline of academic milestones and certifications</p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Timeline list selector column - Left Card coming from left side */}
+        <motion.div 
+          style={{ x: leftX, opacity: leftOpacity }}
+          className="lg:col-span-5 flex flex-col gap-3"
+        >
+          {timelineData.map((milestone, idx) => {
+            const isActive = idx === timelineActiveIdx;
+            return (
+              <button
+                key={idx}
+                onClick={() => setTimelineActiveIdx(idx)}
+                className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex items-center justify-between gap-4 cursor-pointer ${
+                  isActive 
+                    ? "bg-[#262626] border-[#5C5C5C] text-white shadow-md"
+                    : "bg-[#0A0A0A] border-[#262626] text-[#8A8A8A] hover:text-white hover:bg-[#161616]"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    isActive ? "bg-white text-black" : "bg-[#000000] text-[#8A8A8A] border border-[#262626]"
+                  }`}>
+                    {milestone.iconType === "edu" ? <GraduationCap className="w-4 h-4" /> :
+                     milestone.iconType === "leadership" ? <Award className="w-4 h-4" /> :
+                     <Clock className="w-4 h-4" />}
+                  </div>
+                  <div>
+                    <div className="text-xs font-mono text-[#5C5C5C]">{milestone.year}</div>
+                    <div className="text-xs font-bold font-display uppercase tracking-wide truncate max-w-[180px] sm:max-w-xs">{milestone.title}</div>
+                  </div>
+                </div>
+                <ChevronRight className={`w-4 h-4 shrink-0 transition-transform ${isActive ? "rotate-90 text-white" : "text-[#5C5C5C]"}`} />
+              </button>
+            );
+          })}
+        </motion.div>
+
+        {/* Active Milestone detailed description card - Right Card coming from right side */}
+        <motion.div 
+          style={{ x: rightX, opacity: rightOpacity }}
+          className="lg:col-span-7 h-full"
+        >
+          <div className="p-6 md:p-8 rounded-2xl border border-[#262626] bg-[#0A0A0A] relative overflow-hidden text-left h-full flex flex-col justify-between hover:border-[#5C5C5C] transition-colors">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <span className="px-3 py-1 bg-[#000000] border border-[#262626] text-white font-mono text-[10px] uppercase tracking-wider rounded-full font-bold">
+                  {timelineData[timelineActiveIdx].year}
+                </span>
+                <span className="text-[10px] text-[#5C5C5C] uppercase font-mono tracking-widest">System Record verified</span>
+              </div>
+
+              <h4 className="text-xl font-bold font-display text-white mb-2 uppercase">
+                {timelineData[timelineActiveIdx].title}
+              </h4>
+              
+              <p className="text-xs font-mono text-[#8A8A8A] mb-4 uppercase tracking-wider">
 </svg>`;
