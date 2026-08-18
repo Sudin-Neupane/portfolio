@@ -1232,3 +1232,60 @@ function AnimatedGSAPCounter({ value, suffix = "", prefix = "", decimals = 0, cl
 
   return <span ref={countRef} className={className}>{prefix}0{suffix}</span>;
 }
+
+// 2. GSAP INFINITE TECH MARQUEE
+function GSAPInfiniteMarquee({ items, speed = 25 }: { items: { name: string; category: string }[]; speed?: number }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const totalWidth = track.scrollWidth / 3;
+
+    tweenRef.current = gsap.to(track, {
+      x: `-=${totalWidth}`,
+      duration: speed,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
+      },
+    });
+
+    return () => {
+      tweenRef.current?.kill();
+    };
+  }, [speed, items]);
+
+  const handleMouseEnter = () => tweenRef.current?.pause();
+  const handleMouseLeave = () => tweenRef.current?.play();
+
+  return (
+    <div 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="w-full overflow-hidden relative py-4 select-none my-6 rounded-2xl border border-white/5 bg-[#050508]/80 backdrop-blur-md"
+    >
+      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#030304] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#030304] to-transparent z-10 pointer-events-none" />
+      
+      <div ref={trackRef} className="flex items-center gap-4 whitespace-nowrap w-max">
+        {[...items, ...items, ...items].map((item, idx) => (
+          <div 
+            key={`${item.name}-${idx}`}
+            className="flex items-center gap-2.5 px-4 py-2 rounded-xl border border-[#262626] bg-[#0A0A0A] hover:bg-[#161616] hover:border-[#5C5C5C] transition-all cursor-pointer group"
+          >
+            <span className="w-2 h-2 rounded-full bg-white group-hover:bg-[#8A8A8A] transition-colors" />
+            <span className="text-xs font-mono font-bold text-[#EDEDED] group-hover:text-white">{item.name}</span>
+            <span className="text-[9px] font-mono uppercase tracking-widest text-[#5C5C5C] bg-[#000000] border border-[#262626] px-2 py-0.5 rounded-md">{item.category}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
