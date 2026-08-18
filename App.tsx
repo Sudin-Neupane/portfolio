@@ -1555,4 +1555,104 @@ function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white border border-[#262626] bg-[#000000] px-2.5 py-0.5 rounded-full font-bold">
+                    {card.tag}
+                  </span>
+                  <span className="text-xs font-mono text-[#5C5C5C]">{card.subtitle}</span>
+                </div>
+
+                {/* Certificate Preview PNG Thumbnail */}
+                <div className="w-full h-36 rounded-xl mb-4 overflow-hidden border border-[#333333] bg-[#050505] relative group-hover:border-white transition-all shadow-inner">
+                  <img 
+                    src={certImgUrl} 
+                    alt={`${card.title} Certificate Photo`} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/85 backdrop-blur-sm border border-white/20 text-[9px] font-mono text-emerald-400 font-bold flex items-center gap-1">
+                    <ImageIcon className="w-2.5 h-2.5 text-emerald-400" />
+                    <span>PNG Photo</span>
+                  </div>
+                </div>
+
+                <h4 className="text-lg font-bold font-display text-white mb-2 group-hover:text-[#EDEDED] transition-colors">
+                  {card.title}
+                </h4>
+                <p className="text-xs text-[#8A8A8A] leading-relaxed mb-6">
+                  {card.desc}
+                </p>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-[#262626] text-[10px] font-mono text-white font-bold uppercase tracking-wider">
+                <span className="flex items-center gap-1.5 text-emerald-400 group-hover:text-white transition-colors">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Verified Milestone
+                </span>
+                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Interactive Certificate PNG Photo Lightbox & Viewer Modal */}
+      <AnimatePresence>
+        {activeCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveCert(null)}
+            className="fixed inset-0 bg-[#000000]/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center p-3 sm:p-6 overflow-y-auto font-mono"
+          >
+            <motion.div
+              initial={{ scale: 0.94, y: 15, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.94, y: 15, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl bg-[#0A0A0A] border-2 border-[#262626] rounded-3xl p-4 sm:p-6 flex flex-col gap-4 text-left shadow-2xl my-auto"
+            >
+              {/* Header / Photo Viewer Toolbar */}
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#262626] pb-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    Verified Milestone Photo (PNG)
+                  </span>
+                  <span className="text-xs text-white font-bold font-display uppercase hidden sm:inline-block">
+                    {activeCert.certTitle || activeCert.title}
+                  </span>
+                </div>
+
+                {/* Toolbar Actions */}
+                <div className="flex items-center gap-2">
+                  {/* Download PNG */}
+                  <button
+                    onClick={() => downloadCertificatePng(activeCert)}
+                    className="px-3 py-1.5 rounded-lg border border-[#333333] hover:border-emerald-400 bg-[#141414] hover:bg-emerald-400 hover:text-black text-white text-[11px] font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    title="Download certificate photo as high-res PNG file"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download PNG</span>
+                  </button>
+
+                  {/* Close Modal */}
+                  <button
+                    onClick={() => setActiveCert(null)}
+                    className="px-3 py-1.5 text-xs uppercase text-[#8A8A8A] hover:text-white border border-[#262626] rounded-lg hover:bg-[#1A1A1A] transition-colors font-bold cursor-pointer"
+                  >
+                    [X] Close
+                  </button>
+                </div>
+              </div>
+
+              {/* Centerpiece: Full-Size Certificate Photo in PNG Form */}
+              <div className="w-full flex flex-col items-center justify-center rounded-2xl bg-[#000000] border-2 border-[#262626] p-2 sm:p-4 shadow-2xl relative group overflow-hidden">
+                <img
+                  src={getCurrentImageUrl(activeCert)}
+                  alt={`${activeCert.title} Official Certificate Photo`}
+                  className="w-full max-h-[68vh] sm:max-h-[72vh] object-contain rounded-xl shadow-2xl mx-auto"
+                />
+              </div>
+
 </svg>`;
