@@ -1320,4 +1320,27 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
     : is111Days 
     ? "CERTIFICATE OF SPRINT COMPLETION" 
     : "CERTIFICATE OF APPRECIATION & LEADERSHIP";
-    
+      const subHeader = isAsianHack
+    ? "PROFESSIONALISM & ARCHITECTURE AWARD"
+    : is111Days
+    ? "111 CONSECUTIVE DAYS OF TECHNICAL MASTERY"
+    : "CORE TECHNOLOGY TEAM & EVENT OPERATIONS";
+
+  const certLines = isAsianHack
+    ? [
+        "Presented to Sudin Neupane and Team PRIMORDIALS in recognition of extraordinary",
+        "code professionalism, modular architecture, and full-stack civic engineering",
+        "for CivicFlow at AsianHack 2026."
+      ]
+    : is111Days
+    ? [
+        "This credential certifies that Sudin Neupane has successfully completed the",
+        "111 Days of Learning for Change challenge by Code for Change, demonstrating",
+        "consistency, discipline, and practical technical skills through daily learning."
+      ]
+    : [
+        "Awarded to Sudin Neupane in sincere appreciation for exemplary contribution,",
+        "hackathon developer platform management, infrastructure coordination, and",
+        "technical operations for Codefest 2026 Provincial Phase."
+      ];
+      
