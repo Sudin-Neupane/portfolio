@@ -30,7 +30,7 @@ const aboutCardsData: AboutCard[] = [
     id: "intro",
     title: "Introduction",
     category: "personal",
-    description: "I’m a software developer building modern web applications while expanding into AI, with a focus on writing clean, reliable, and maintainable code.",
+    description: "Iâ€™m a software developer building modern web applications while expanding into AI, with a focus on writing clean, reliable, and maintainable code.",
     color: "coral",
     iconName: "Compass",
     badge: "Personal Bio"
@@ -270,16 +270,16 @@ function respond(int $status, string $message): void {
       "High-performance CSS transform animations"
     ],
     codeSnippet: `
-    // TypeScript / React — Frontend
+    // TypeScript / React â€” Frontend
 const ProjectCard = ({ title, stack }: ProjectProps) => (
     <article className="project">
         <h2>{title}</h2>
-        <p>{stack.join(" • ")}</p>
+        <p>{stack.join(" â€¢ ")}</p>
     </article>
 );
 
 
-// Node.js — API
+// Node.js â€” API
 app.get("/api/projects", async (req, res) => {
     const projects = await db.query(
         "SELECT * FROM projects ORDER BY created_at DESC"
@@ -289,7 +289,7 @@ app.get("/api/projects", async (req, res) => {
 });
 
 
-# Python — AI / Backend Service
+# Python â€” AI / Backend Service
 def analyze_project(description: str):
     return {
         "summary": generate_summary(description),
@@ -607,6 +607,7 @@ const timelineData: TimelineMilestone[] = [
     iconType: "edu",
     tags: ["NIST", "High School Computer Science", "Graduated"]
   },
+
   {
     year: "2025 - 2026",
     title: "College Representative",
@@ -615,7 +616,8 @@ const timelineData: TimelineMilestone[] = [
     iconType: "leadership",
     tags: ["Leadership", "Tech Networking", "Event Coordination"]
   },
-     {
+  
+   {
     year: "2026",
     title: "AsianHack 2026 : Professionalism Award",
     institution: "Team PRIMORDIALS",
@@ -623,8 +625,7 @@ const timelineData: TimelineMilestone[] = [
     iconType: "leadership",
     tags: ["AsianHack 2026", "PRIMORDIALS", "CivicFlow", "Professionalism Award", "Hackathon"]
   },
-  
-      {
+    {
     year: "2026",
     title: "Codefest 2026 Provincial Phase Organizer",
     institution: "Technology Team // Codefest 2026",
@@ -632,7 +633,7 @@ const timelineData: TimelineMilestone[] = [
     iconType: "leadership",
     tags: ["Codefest 2026", "Tech Team", "Provincial Phase", "Event Organizer"]
   },
-    {
+  {
     year: "2026",
     title: "111 Days of Learning Challenge (Certified)",
     institution: "Continuous Software Engineering Sprints",
@@ -642,11 +643,12 @@ const timelineData: TimelineMilestone[] = [
   },
  
 ];
+
 // Mock QA responses for our interactive chatbot
 const chatbotQA = [
   {
     question: "Are you available for internships or freelance work?",
-    answer: "I’m currently open to internships, freelance projects, and meaningful collaborations where I can contribute to real development work, learn from experienced teams, and keep growing as a developer. I’m especially interested in web development, React, backend integration, and software projects with practical impact. You can reach me through LinkedIn or the contact section of my portfolio"
+    answer: "Iâ€™m currently open to internships, freelance projects, and meaningful collaborations where I can contribute to real development work, learn from experienced teams, and keep growing as a developer. Iâ€™m especially interested in web development, React, backend integration, and software projects with practical impact. You can reach me through LinkedIn or the contact section of my portfolio"
   },
   {
     question: "What is your primary programming stack of choice?",
@@ -669,6 +671,7 @@ const chatbotQA = [
     answer: "My Finger Gesture Control project is a Python application powered by OpenCV and MediaPipe. It tracks real-time skeletal keypoints of fingertips in video frames, calculating spatial distances between the thumb and index finger to map dynamic gestures directly into desktop operating commands (e.g., triggering mouse clicks)."
   }
 ];
+
 // Robust smart fallback answer generator for the chatbot and terminal nodes
 const getSmartFallbackAnswer = (rawQuery: string): string => {
   const q = rawQuery.toLowerCase().trim();
@@ -692,6 +695,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin Neupane is a highly talented 20-year-old BSc.CSIT student, developer, and tech community leader from Kathmandu, Nepal. He is the official College Representative for Code for Change  (2025/2026) and specializes in building high-fidelity React, TypeScript, PHP, and Python systems.";
   }
+
   if (
     q.includes("who are you") ||
     q.includes("what are you") ||
@@ -699,9 +703,10 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("yourself") ||
     q.includes("who is you")
   ) {
-    return "I am Sudin AI — the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
+    return "I am Sudin AI â€” the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
   }
-    if (
+
+  if (
     q.includes("how were you made") ||
     q.includes("how did you made") ||
     q.includes("who made you") ||
@@ -712,7 +717,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "I was designed and engineered by Sudin Neupane himself using a full-stack React, TypeScript, and Express architecture, powered securely by Google's Gemini LLM.";
   }
-  
+
   // 3. Location / Address
   if (
     q.includes("live") ||
@@ -725,6 +730,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin resides in Raniban, Nagarjun, Kathmandu, Nepal.";
   }
+
   // 4. Age
   if (
     q.includes("age") ||
@@ -749,6 +755,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "You can contact Sudin Neupane directly via email at sudinneupane519@gmail.com, or explore his repositories and social links featured throughout this interactive dashboard!";
   }
+
   // 6. Education / College / Academic
   if (
     q.includes("college") ||
@@ -765,7 +772,8 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin is pursuing his BSc.CSIT (Computer Science and Information Technology) degree at Asian College of Management and Science, Kathmandu. He graduated with honors in +2 Computer Science from NIST (National Institute of Science and Technology) in 2024, and completed SEE at Tarun Ma.Vi in 2022.";
   }
-    // 7. Code for Change / CFC
+
+  // 7. Code for Change / CFC
   if (
     q.includes("code for change") ||
     q.includes("cfc") ||
@@ -775,7 +783,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin Neupane serves as the official College Representative for 'Code for Change Nepal' (2025/2026). In this role, he leads local IT bootcamps, runs programming workshops, and fosters student-developer peer networks in Kathmandu.";
   }
-  
+
   // 8. Projects / Finger Gesture / Python / OpenCV / MediaPipe
   if (
     q.includes("project") ||
@@ -792,7 +800,8 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin's key projects are:\n1. **Finger Gesture Control System** (Python, OpenCV, MediaPipe for virtual desktop mouse controls)\n2. **Hospital Management System** (Structured C Programming Patient directory)\n3. **Core PHP/MySQL CRUD System** (Stable database application)\n4. **WordPress SEO Layout setups** (Search engine index & crawl optimization)";
   }
-    // 9. Skills & Languages
+
+  // 9. Skills & Languages
   if (
     q.includes("skill") ||
     q.includes("experience") ||
@@ -820,13 +829,12 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("good morning") ||
     q.includes("good afternoon")
   ) {
-    return "Hello! I am Sudin AI — Sudin Neupane's interactive portfolio assistant and digital twin. Ask me anything about Sudin, his projects, or general coding questions!";
+    return "Hello! I am Sudin AI â€” Sudin Neupane's interactive portfolio assistant and digital twin. Ask me anything about Sudin, his projects, or general coding questions!";
   }
 
   // 11. General coding follow-up or other common topics
   return "I'm still studying that area, but I'd love to learn and adapt to any tech challenge you throw my way! Let's schedule a chat.";
 };
-
 
 // =========================================================
 // GSAP + LENIS REUSABLE KINETIC MOTION COMPONENTS
@@ -950,7 +958,6 @@ function CustomMagneticCursor() {
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-
     // Attach magnetic hover detection & pull to interactive elements
     const interactiveSelector = "a, button, input, textarea, [data-magnetic], .glass-card, [role='button']";
     const handleElementOver = (e: MouseEvent) => {
@@ -972,7 +979,7 @@ function CustomMagneticCursor() {
 
     document.addEventListener("mouseover", handleElementOver, { passive: true });
     document.addEventListener("mouseout", handleElementOut, { passive: true });
-    
+
     // Magnetic pull setup on buttons & magnetic tagged elements
     const magneticElements = document.querySelectorAll<HTMLElement>("button, a, [data-magnetic]");
     const magneticCleanups: (() => void)[] = [];
@@ -1115,7 +1122,6 @@ interface CounterProps {
   className?: string;
 }
 
-
 // 1. SCROLL-SCRUBBED SVG LINE DRAWING PROCEDURAL DIVIDER
 function SignatureProceduralDivider({ label, codeSnippet }: { label: string; codeSnippet?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1175,7 +1181,7 @@ function SignatureProceduralDivider({ label, codeSnippet }: { label: string; cod
           <circle ref={glowDotRef} r="4" fill="#FFFFFF" className="filter drop-shadow-[0_0_8px_rgba(255,255,255,0.9)] opacity-0" />
         </svg>
       </div>
-      
+
       <div className="signature-procedural-ribbon flex items-center justify-between px-6 py-2 text-[11px] text-[#8A8A8A] font-mono select-none border-y border-[#262626] bg-[#0A0A0A]/90 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-white opacity-90 animate-pulse" />
@@ -1320,7 +1326,8 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
     : is111Days 
     ? "CERTIFICATE OF SPRINT COMPLETION" 
     : "CERTIFICATE OF APPRECIATION & LEADERSHIP";
-      const subHeader = isAsianHack
+
+  const subHeader = isAsianHack
     ? "PROFESSIONALISM & ARCHITECTURE AWARD"
     : is111Days
     ? "111 CONSECUTIVE DAYS OF TECHNICAL MASTERY"
@@ -1343,7 +1350,7 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
         "hackathon developer platform management, infrastructure coordination, and",
         "technical operations for Codefest 2026 Provincial Phase."
       ];
-      
+
   const badgeText = isAsianHack ? "PROFESSIONALISM WINNER" : is111Days ? "111/111 DAYS VERIFIED" : "TECH TEAM";
   const serialNo = isAsianHack ? "VERIFIED-AHK-2026-SN01" : is111Days ? "VERIFIED-111D-2026-SN02" : "VERIFIED-CDF-2026-SN03";
   const orgName = card.certIssuer || (isAsianHack ? "AsianHack 2026 Jury" : is111Days ? "111 Days Learning Board" : "Codefest 2026 Tech Board");
@@ -1396,7 +1403,7 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
       ${subHeader}
     </text>
   </g>
-  
+
   <!-- Divider Ribbon -->
   <line x1="450" y1="310" x2="950" y2="310" stroke="${primaryAccent}" stroke-width="2" stroke-opacity="0.5" />
   <polygon points="700,305 710,310 700,315 690,310" fill="${primaryAccent}" />
@@ -1416,7 +1423,8 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
     <text x="0" y="28" font-weight="500">${certLines[1]}</text>
     <text x="0" y="56" font-weight="500">${certLines[2]}</text>
   </g>
-    <!-- Verification Seal & Badge -->
+
+  <!-- Verification Seal & Badge -->
   <g transform="translate(700, 675)" text-anchor="middle">
     <circle cx="0" cy="0" r="44" fill="#0D0D0D" stroke="${primaryAccent}" stroke-width="2" stroke-dasharray="4 2"/>
     <circle cx="0" cy="0" r="36" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
@@ -1447,7 +1455,4 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
   <!-- Serial Number & Stamp -->
   <g transform="translate(700, 885)" text-anchor="middle">
     <text x="0" y="0" font-size="11" font-weight="700" fill="#52525B" letter-spacing="3">
-      SERIAL: ${serialNo} • ISSUED: 2026 • STATUS: COMPLETED
-    </text>
-  </g>
 </svg>`;
