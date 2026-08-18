@@ -1455,4 +1455,104 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
   <!-- Serial Number & Stamp -->
   <g transform="translate(700, 885)" text-anchor="middle">
     <text x="0" y="0" font-size="11" font-weight="700" fill="#52525B" letter-spacing="3">
+      SERIAL: ${serialNo} â€¢ ISSUED: 2026 â€¢ STATUS: COMPLETED
+    </text>
+  </g>
+</svg>`;
+
+  try {
+    const base64 = typeof window !== "undefined" ? window.btoa(unescape(encodeURIComponent(svgContent.trim()))) : "";
+    return `data:image/svg+xml;base64,${base64}`;
+  } catch {
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgContent.trim())}`;
+  }
+}
+
+function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeCert, setActiveCert] = useState<HorizontalCard | null>(null);
+
+  const getCurrentImageUrl = (card: HorizontalCard) => {
+    return getOfficialCertificateSvgUri(card);
+  };
+
+  const downloadCertificatePng = (card: HorizontalCard) => {
+    const imgUrl = getCurrentImageUrl(card);
+    
+    // Convert SVG data URL to a high-res PNG canvas download
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1400;
+      canvas.height = 950;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.fillStyle = "#080808";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, 1400, 950);
+        const pngUrl = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.href = pngUrl;
+        link.download = `Sudin_Neupane_${card.id}_Certificate.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    };
+    img.src = imgUrl;
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const tween = gsap.fromTo(
+      track,
+      { x: -180 },
+      {
+        x: 140,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      }
+    );
+
+    return () => {
+      tween.kill();
+    };
+  }, [cards]);
+
+  return (
+    <div ref={containerRef} className="relative w-full py-8 overflow-hidden">
+      <div className="mb-6 text-left">
+        <span className="text-[10px] font-mono text-white uppercase tracking-widest px-3 py-1 rounded-full border border-[#262626] bg-[#0A0A0A] font-bold">
+          Academic Roadmap & Milestones
+        </span>
+        <h3 className="text-xl md:text-2xl font-bold font-display text-white mt-2 uppercase">
+          Academic Roadmap & Milestones
+        </h3>
+        <p className="text-xs font-mono text-[#8A8A8A] mt-1">Key educational stages, credentials, and verified milestone photos</p>
+      </div>
+
+      <div ref={trackRef} className="flex gap-5 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory will-change-transform">
+        {cards.map((card) => {
+          const certImgUrl = getCurrentImageUrl(card);
+          return (
+            <div 
+              key={card.id}
+              onClick={() => setActiveCert(card)}
+              className="w-[290px] sm:w-[330px] md:w-[360px] shrink-0 p-6 rounded-2xl border border-[#262626] hover:border-[#5C5C5C] bg-[#0A0A0A] flex flex-col justify-between group snap-start transition-all duration-200 cursor-pointer hover:-translate-y-1 shadow-lg"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
 </svg>`;
