@@ -1344,3 +1344,23 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
         "technical operations for Codefest 2026 Provincial Phase."
       ];
       
+  const badgeText = isAsianHack ? "PROFESSIONALISM WINNER" : is111Days ? "111/111 DAYS VERIFIED" : "TECH TEAM";
+  const serialNo = isAsianHack ? "VERIFIED-AHK-2026-SN01" : is111Days ? "VERIFIED-111D-2026-SN02" : "VERIFIED-CDF-2026-SN03";
+  const orgName = card.certIssuer || (isAsianHack ? "AsianHack 2026 Jury" : is111Days ? "111 Days Learning Board" : "Codefest 2026 Tech Board");
+
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 950" width="1400" height="950" style="background:#080808; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${bgGradStart}" />
+      <stop offset="50%" stop-color="#0A0A0A" />
+      <stop offset="100%" stop-color="#030303" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${primaryAccent}" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="${secondaryAccent}" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
