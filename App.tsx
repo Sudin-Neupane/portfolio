@@ -1416,3 +1416,38 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
     <text x="0" y="28" font-weight="500">${certLines[1]}</text>
     <text x="0" y="56" font-weight="500">${certLines[2]}</text>
   </g>
+    <!-- Verification Seal & Badge -->
+  <g transform="translate(700, 675)" text-anchor="middle">
+    <circle cx="0" cy="0" r="44" fill="#0D0D0D" stroke="${primaryAccent}" stroke-width="2" stroke-dasharray="4 2"/>
+    <circle cx="0" cy="0" r="36" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Ribbon tails -->
+    <path d="M-18 35 L-26 70 L0 55 L26 70 L18 35 Z" fill="${primaryAccent}" opacity="0.8"/>
+    <text x="0" y="-8" font-size="8" font-weight="800" fill="#FFFFFF" letter-spacing="1">OFFICIAL</text>
+    <text x="0" y="6" font-size="11" font-weight="900" fill="${primaryAccent}" letter-spacing="1">VERIFIED</text>
+    <text x="0" y="18" font-size="7" font-weight="800" fill="#AAAAAA" letter-spacing="1">CREDENTIAL</text>
+    <text x="0" y="90" font-size="12" font-weight="800" fill="${primaryAccent}" letter-spacing="2">${badgeText}</text>
+  </g>
+
+  <!-- Left Signature Block -->
+  <g transform="translate(260, 770)" text-anchor="left">
+    <line x1="0" y1="0" x2="260" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+    <path d="M 20 -20 Q 60 -45 100 -25 T 180 -35 T 230 -15" fill="none" stroke="${primaryAccent}" stroke-width="2" opacity="0.85"/>
+    <text x="0" y="24" font-size="13" font-weight="700" fill="#FFFFFF">${orgName}</text>
+    <text x="0" y="42" font-size="10" font-weight="600" fill="#71717A">EXECUTIVE COMMITTEE</text>
+  </g>
+
+  <!-- Right Signature Block -->
+  <g transform="translate(880, 770)" text-anchor="left">
+    <line x1="0" y1="0" x2="260" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+    <path d="M 20 -25 Q 70 -50 110 -20 T 190 -40 T 240 -15" fill="none" stroke="${secondaryAccent}" stroke-width="2" opacity="0.85"/>
+    <text x="0" y="24" font-size="13" font-weight="700" fill="#FFFFFF">Verification & Academic Jury</text>
+    <text x="0" y="42" font-size="10" font-weight="600" fill="#71717A">AUTHENTICATED CREDENTIAL</text>
+  </g>
+
+  <!-- Serial Number & Stamp -->
+  <g transform="translate(700, 885)" text-anchor="middle">
+    <text x="0" y="0" font-size="11" font-weight="700" fill="#52525B" letter-spacing="3">
+      SERIAL: ${serialNo} • ISSUED: 2026 • STATUS: COMPLETED
+    </text>
+  </g>
+</svg>`;
