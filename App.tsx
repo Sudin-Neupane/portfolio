@@ -2155,4 +2155,104 @@ function ThreeDSkillBatchRow({ batch, batchIdx }: { key?: React.Key; batch: Skil
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span className="text-sm font-semibold text-white tracking-wide">{skill.name}</span>
+                </div>
+                <span className="text-[10px] font-mono tracking-wider font-bold px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 flex items-center gap-1.5 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  {skill.status}
+                </span>
+              </div>
+
+              <p className="text-[11px] text-[#8A8A8A] mb-4 min-h-[2.5rem] line-clamp-2 leading-relaxed">
+                {skill.description}
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-3 border-t border-[#262626]">
+              <div className="flex items-center gap-1.5" title={`${skill.rating}/5 Mastery Rating`}>
+                {[1, 2, 3, 4, 5].map((seg) => (
+                  <div 
+                    key={seg} 
+                    className={`h-1.5 w-5 sm:w-6 rounded-full transition-all duration-300 ${
+                      seg <= skill.rating 
+                        ? "bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)]" 
+                        : "bg-[#222222]"
+                    }`} 
+                  />
+                ))}
+              </div>
+              <span className="text-[10px] font-mono uppercase text-[#A3A3A3] font-medium tracking-wider bg-[#000000] px-2.5 py-0.5 rounded-md border border-[#262626]">
+                {skill.tag}
+              </span>
+            </div>
+          </TiltCard>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// =========================================================
+// 3D SCROLL & HIGH-FIDELITY HUD OVERLAYS (Professional 3D)
+// =========================================================
+
+interface ThreeDScrollSectionProps {
+  children: React.ReactNode;
+  id: string;
+  className?: string;
+}
+
+function ThreeDScrollSection({ children, id, className = "" }: ThreeDScrollSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [transformStyle, setTransformStyle] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    let animId: number;
+
+    const update3DTransform = () => {
+      const container = containerRef.current;
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // Active perspective calculation zone
+        if (rect.bottom > -150 && rect.top < vh + 150) {
+          const centerOffset = (rect.top + rect.height / 2 - vh / 2) / (vh / 2);
+          const clampedOffset = Math.max(-1.2, Math.min(1.2, centerOffset));
+
+          // Rock-solid focal scale & opacity without wobbly 3D skew or rotate
+          const scale = 1 - Math.min(0.025, Math.pow(Math.abs(clampedOffset), 2) * 0.025);
+          const opacity = 1 - Math.min(0.12, Math.pow(Math.abs(clampedOffset), 1.8) * 0.18);
+
+          setTransformStyle({
+            transform: `scale(${scale.toFixed(3)})`,
+            opacity: Math.max(0.4, opacity).toFixed(2),
+            transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s linear",
+            willChange: "transform, opacity",
+          });
+        }
+      }
+      animId = requestAnimationFrame(update3DTransform);
+    };
+
+    animId = requestAnimationFrame(update3DTransform);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      id={id}
+      style={transformStyle}
+      className={`relative ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Boilerlab Floating Scroll Telemetry Controller Bar
+function BoilerlabScrollTelemetryBar({ 
+  activeSection, 
+  onNavigate 
+}: { 
 </svg>`;
