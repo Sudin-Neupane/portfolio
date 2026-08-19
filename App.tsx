@@ -2255,4 +2255,104 @@ function BoilerlabScrollTelemetryBar({
   activeSection, 
   onNavigate 
 }: { 
+  activeSection: string; 
+  onNavigate: (sectionId: string) => void; 
+}) {
+  const [velocity, setVelocity] = useState(0);
+  const [direction, setDirection] = useState<"UP" | "DOWN" | "IDLE">("IDLE");
+  const [progress, setProgress] = useState(0);
+  const lastScrollYRef = useRef(0);
+  const idleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = totalHeight > 0 ? Math.min(100, Math.max(0, (currentY / totalHeight) * 100)) : 0;
+      const diff = currentY - lastScrollYRef.current;
+      
+      setProgress(pct);
+      setVelocity(diff);
+
+      if (Math.abs(diff) > 0.5) {
+        setDirection(diff > 0 ? "DOWN" : "UP");
+        if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
+        idleTimeoutRef.current = setTimeout(() => {
+          setDirection("IDLE");
+          setVelocity(0);
+        }, 300);
+      }
+      lastScrollYRef.current = currentY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
+    };
+  }, []);
+
+  const sections = ["home", "about", "skills", "projects", "contact"];
+  const currentSecIndex = sections.indexOf(activeSection) + 1;
+
+  return (
+    <motion.div 
+      initial={{ y: 60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.4, duration: 0.5, type: "spring", stiffness: 280, damping: 24 }}
+      className="hidden md:flex fixed bottom-5 left-1/2 -translate-x-1/2 z-40 pointer-events-auto items-center gap-3 px-4 py-2.5 bg-[#0A0A0A] border border-[#262626] rounded-full font-mono text-[10px] select-none max-w-[95vw] overflow-x-auto"
+    >
+      {/* Scroll Direction Indicator & Pulse */}
+      <div className="flex items-center gap-2 shrink-0 pr-2 border-r border-[#262626]">
+        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+        <span className="font-bold tracking-wider uppercase text-[9px] text-[#EDEDED]">
+          {direction === "DOWN" && "â–¼ SCROLLING DOWN"}
+          {direction === "UP" && "â–² SCROLLING UP"}
+          {direction === "IDLE" && "â— INERTIA LOCKED"}
+        </span>
+      </div>
+
+      {/* Real-time Velocity Meter */}
+      <div className="hidden sm:flex items-center gap-1.5 shrink-0 px-2 border-r border-[#262626] text-[#8A8A8A]">
+        <Zap className="w-3 h-3 text-white" />
+        <span>VEL:</span>
+        <span className="font-bold text-white w-12 text-right">
+          {Math.abs(Math.round(velocity * 10))} PX/S
+        </span>
+      </div>
+
+      {/* Section Progress Counter */}
+      <div className="flex items-center gap-1.5 shrink-0 px-2 border-r border-[#262626]">
+        <span className="text-[#5C5C5C]">SEC</span>
+        <span className="text-white font-bold">[{currentSecIndex.toString().padStart(2, '0')}/05]</span>
+        <span className="text-[#EDEDED] font-semibold uppercase tracking-wider">{activeSection}</span>
+      </div>
+
+      {/* Interactive Micro Scroll Track */}
+      <div className="flex items-center gap-2 shrink-0 w-24 sm:w-32">
+        <div className="flex-1 h-1 bg-[#262626] rounded-full overflow-hidden relative">
+          <div 
+            className="h-full bg-white transition-all duration-75"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <span className="text-[9px] font-bold text-[#EDEDED] w-7 text-right">{Math.round(progress)}%</span>
+      </div>
+
+      {/* Scroll Navigation Arrows */}
+      <div className="flex items-center gap-1 shrink-0 pl-1 border-l border-[#262626]">
+        <button
+          onClick={() => {
+            const idx = sections.indexOf(activeSection);
+            if (idx > 0) onNavigate(sections[idx - 1]);
+          }}
+          className="p-1 text-[#8A8A8A] hover:text-white hover:bg-[#262626] rounded transition-colors cursor-pointer"
+          title="Scroll to previous section (Up)"
+        >
+          <ChevronDown className="w-3.5 h-3.5 rotate-180" />
+        </button>
+        <button
+          onClick={() => {
+            const idx = sections.indexOf(activeSection);
+            if (idx < sections.length - 1) onNavigate(sections[idx + 1]);
 </svg>`;
