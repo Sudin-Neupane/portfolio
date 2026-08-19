@@ -1855,4 +1855,104 @@ function ScrollDrivenRoadmapTimeline({
               </h4>
               
               <p className="text-xs font-mono text-[#8A8A8A] mb-4 uppercase tracking-wider">
+                {timelineData[timelineActiveIdx].institution}
+              </p>
+
+              <p className="text-[#8A8A8A] text-sm leading-relaxed mb-6">
+                {timelineData[timelineActiveIdx].description}
+              </p>
+            </div>
+
+            <div>
+              <h5 className="text-[10px] font-mono text-[#5C5C5C] uppercase mb-3 tracking-widest">Skills Core Applied</h5>
+              <div className="flex flex-wrap gap-1.5">
+                {timelineData[timelineActiveIdx].tags.map((tag: string) => (
+                  <span 
+                    key={tag}
+                    className="px-2.5 py-1 text-[10px] font-mono bg-[#000000] border border-[#262626] text-[#8A8A8A] rounded-md"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function ScrollProgressiveProfileCard() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 85%", "center 30%"]
+  });
+
+  const avatarScale = useTransform(scrollYProgress, [0, 0.3], [0.6, 1]);
+  const avatarOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
+  const nameY = useTransform(scrollYProgress, [0.2, 0.5], [25, 0]);
+  const nameOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+
+  const subY = useTransform(scrollYProgress, [0.35, 0.65], [20, 0]);
+  const subOpacity = useTransform(scrollYProgress, [0.35, 0.65], [0, 1]);
+
+  const quoteY = useTransform(scrollYProgress, [0.5, 0.8], [15, 0]);
+  const quoteOpacity = useTransform(scrollYProgress, [0.5, 0.8], [0, 1]);
+
+  const linksY = useTransform(scrollYProgress, [0.7, 1], [12, 0]);
+  const linksOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
+
+  return (
+    <div ref={cardRef} className="max-w-xl mx-auto my-12">
+      <div className="relative overflow-hidden rounded-3xl bg-[#0A0A0A] p-8 border-2 border-[#333333] hover:border-white transition-colors duration-300 shadow-2xl text-center">
+        <span className="absolute top-4 right-4 font-mono text-[9px] uppercase tracking-widest text-[#8A8A8A] border border-[#333333] bg-[#000000] px-3 py-1 rounded-full font-bold">
+          Student & Developer
+        </span>
+
+        <div className="flex flex-col items-center text-center mt-2">
+          {/* Avatar Ring Progressive Scale */}
+          <motion.div 
+            style={{ scale: avatarScale, opacity: avatarOpacity }}
+            className="relative w-32 h-32 rounded-full p-[3px] bg-gradient-to-tr from-white via-[#8A8A8A] to-[#262626] mb-4 shadow-xl"
+          >
+            <div className="w-full h-full rounded-full bg-[#000000] overflow-hidden flex items-center justify-center border border-[#262626]">
+              <img 
+                src="src/assets/images/developer_avatar_1784577138330.jpg" 
+                alt="Sudin Neupane Profile Portrait" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </motion.div>
+
+          {/* Name Title Progressive Slide */}
+          <motion.h4 
+            style={{ y: nameY, opacity: nameOpacity }}
+            className="text-2xl font-bold font-display text-white tracking-wide uppercase"
+          >
+            Sudin Neupane
+          </motion.h4>
+
+          {/* Subtitle / Age Badge Progressive Reveal */}
+          <motion.p 
+            style={{ y: subY, opacity: subOpacity }}
+            className="text-xs font-mono text-[#8A8A8A] uppercase tracking-wider mt-1 font-bold"
+          >
+            Age 20 // Kathmandu, Nepal // BSc.CSIT Scholar
+          </motion.p>
+
+          {/* Quote Paragraph Progressive Reveal */}
+          <motion.p 
+            style={{ y: quoteY, opacity: quoteOpacity }}
+            className="text-xs text-[#8A8A8A] mt-3 italic max-w-md leading-relaxed"
+          >
+            "Building practical web projects, exploring C++ & Python, and growing through hackathons, learning challenges, and tech communities."
+          </motion.p>
+        </div>
+
+        {/* Action Links Progressive Reveal */}
+        <motion.div 
 </svg>`;
