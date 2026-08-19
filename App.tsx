@@ -1955,4 +1955,104 @@ function ScrollProgressiveProfileCard() {
 
         {/* Action Links Progressive Reveal */}
         <motion.div 
+          style={{ y: linksY, opacity: linksOpacity }}
+          className="flex justify-center gap-6 border-t border-[#262626] pt-4 mt-6"
+        >
+          <a 
+            href="mailto:sudinneupane519@gmail.com" 
+            className="text-xs font-mono text-white hover:text-[#8A8A8A] uppercase transition-colors underline decoration-[#5C5C5C] font-bold"
+          >
+            Email Node
+          </a>
+          <span className="text-[#5C5C5C]">|</span>
+          <button 
+            onClick={() => {
+              const el = document.getElementById("contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="text-xs font-mono text-white hover:text-[#8A8A8A] uppercase transition-colors cursor-pointer underline decoration-[#5C5C5C] font-bold"
+          >
+            Connect Handshake
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+function ScrollSplitAttributeCards({ cards }: { cards: AboutCard[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 85%", "end 20%"]
+  });
+
+  // Left 3 cards move from left
+  const leftX = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [-180, 0, 0, -120]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.3, 0.85, 1], [0, 1, 1, 0]);
+
+  // Right 4 cards move from right
+  const rightX = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [180, 0, 0, 120]);
+  const rightOpacity = useTransform(scrollYProgress, [0, 0.3, 0.85, 1], [0, 1, 1, 0]);
+
+  const leftCards = cards.slice(0, 3);
+  const rightCards = cards.slice(3, 7);
+
+  return (
+    <div ref={containerRef} className="my-16 overflow-hidden text-left">
+      <div className="mb-8 max-w-md">
+        <span className="font-mono text-[10px] text-[#8A8A8A] uppercase tracking-widest font-bold">Core Attributes</span>
+        <h3 className="text-xl font-bold font-display text-white mt-1 uppercase">Personal & Technical Focus</h3>
+        <p className="text-xs font-mono text-[#8A8A8A] mt-1">Key strengths, development philosophies, and academic foundations</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        {/* Left Column (3 Cards) */}
+        <motion.div style={{ x: leftX, opacity: leftOpacity }} className="flex flex-col gap-6">
+          <div className="text-xs font-mono text-[#8A8A8A] font-bold uppercase tracking-widest border-b border-[#262626] pb-2 flex items-center justify-between">
+            <span>FOUNDATIONS & BIO</span>
+            <span className="text-[10px] text-[#5C5C5C]">PART I</span>
+          </div>
+          {leftCards.map((card) => (
+            <div key={card.id} className="relative overflow-hidden rounded-2xl bg-[#0A0A0A] p-6 border border-[#262626] hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+              <span className="absolute top-4 right-4 font-mono text-[9px] uppercase tracking-widest text-[#8A8A8A] border border-[#262626] px-2 py-0.5 rounded-full bg-[#000000]">
+                {card.badge}
+              </span>
+              <div className="w-10 h-10 rounded-xl bg-[#000000] border border-[#262626] flex items-center justify-center mb-4 text-white group-hover:border-[#5C5C5C]">
+                {card.iconName === "Compass" && <Compass className="w-5 h-5 text-white" />}
+                {card.iconName === "GraduationCap" && <GraduationCap className="w-5 h-5 text-white" />}
+                {card.iconName === "Code" && <Code className="w-5 h-5 text-white" />}
+              </div>
+              <h4 className="text-md font-bold font-display text-white mb-2">{card.title}</h4>
+              <p className="text-[#8A8A8A] text-xs sm:text-sm leading-relaxed">{card.description}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Right Column (4 Cards) */}
+        <motion.div style={{ x: rightX, opacity: rightOpacity }} className="flex flex-col gap-6">
+          <div className="text-xs font-mono text-[#8A8A8A] font-bold uppercase tracking-widest border-b border-[#262626] pb-2 flex items-center justify-between">
+            <span>EXPERTISE & GOALS</span>
+            <span className="text-[10px] text-[#5C5C5C]">PART II</span>
+          </div>
+          {rightCards.map((card) => (
+            <div key={card.id} className="relative overflow-hidden rounded-2xl bg-[#0A0A0A] p-6 border border-[#262626] hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+              <span className="absolute top-4 right-4 font-mono text-[9px] uppercase tracking-widest text-[#8A8A8A] border border-[#262626] px-2 py-0.5 rounded-full bg-[#000000]">
+                {card.badge}
+              </span>
+              <div className="w-10 h-10 rounded-xl bg-[#000000] border border-[#262626] flex items-center justify-center mb-4 text-white group-hover:border-[#5C5C5C]">
+                {card.iconName === "Zap" && <Zap className="w-5 h-5 text-white" />}
+                {card.iconName === "Award" && <Award className="w-5 h-5 text-white" />}
+                {card.iconName === "BookOpen" && <BookOpen className="w-5 h-5 text-white" />}
+                {card.iconName === "Brain" && <Brain className="w-5 h-5 text-white" />}
+              </div>
+              <h4 className="text-md font-bold font-display text-white mb-2">{card.title}</h4>
+              <p className="text-[#8A8A8A] text-xs sm:text-sm leading-relaxed">{card.description}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 </svg>`;
