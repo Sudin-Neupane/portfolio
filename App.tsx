@@ -2055,4 +2055,104 @@ function ScrollSplitAttributeCards({ cards }: { cards: AboutCard[] }) {
     </div>
   );
 }
+
+function ScrollMergeTechnicalHeader() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start 90%", "center 45%"]
+  });
+
+  const wordLeftX = useTransform(scrollYProgress, [0, 0.85], [-280, 0]);
+  const wordRightX = useTransform(scrollYProgress, [0, 0.85], [280, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+
+  return (
+    <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-16 overflow-hidden py-4">
+      <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8A8A8A] mb-2 block">Skill Matrix</span>
+      
+      <div className="flex items-center justify-center gap-3 md:gap-5 text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight my-2">
+        {/* TECHNICAL coming from left */}
+        <motion.span 
+          style={{ x: wordLeftX, opacity: headerOpacity }}
+          className="text-white uppercase inline-block font-extrabold"
+        >
+          TECHNICAL
+        </motion.span>
+
+        {/* ABILITIES coming from right */}
+        <motion.span 
+          style={{ x: wordRightX, opacity: headerOpacity }}
+          className="text-[#8A8A8A] uppercase inline-block font-extrabold"
+        >
+          ABILITIES
+        </motion.span>
+      </div>
+
+      <div className="w-16 h-1 bg-white mx-auto rounded-full mt-4 mb-4" />
+      
+      <p className="text-[#8A8A8A] text-sm leading-relaxed max-w-lg mx-auto">
+        Refining backend procedural scripts, WordPress theme designs, content copywriting indices, and community operations.
+      </p>
+    </div>
+  );
+}
+
+function ThreeDBatchSkillsGrid({ skills }: { skills: Skill[] }) {
+  const batches = useMemo(() => {
+    const result: Skill[][] = [];
+    for (let i = 0; i < skills.length; i += 4) {
+      result.push(skills.slice(i, i + 4));
+    }
+    return result;
+  }, [skills]);
+
+  return (
+    <div className="flex flex-col gap-8">
+      {batches.map((batch, batchIdx) => (
+        <ThreeDSkillBatchRow key={batchIdx} batch={batch} batchIdx={batchIdx} />
+      ))}
+    </div>
+  );
+}
+
+function ThreeDSkillBatchRow({ batch, batchIdx }: { key?: React.Key; batch: Skill[]; batchIdx: number }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start 88%", "center 45%"]
+  });
+
+  const rotateX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [batchIdx % 2 === 0 ? 40 : -40, 0]
+  );
+  const rotateY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [batchIdx % 3 === 0 ? -25 : batchIdx % 3 === 1 ? 25 : 0, 0]
+  );
+  const scale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+
+  return (
+    <div ref={rowRef} className="[perspective:1200px]">
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          scale,
+          opacity,
+          transformStyle: "preserve-3d"
+        }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+      >
+        {batch.map((skill) => (
+          <TiltCard key={skill.name} className="p-5 rounded-2xl glass-card hover:border-white relative group flex flex-col justify-between shadow-xl">
+            <div>
+              <div className="flex items-center justify-between mb-2 font-mono gap-2 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-sm font-semibold text-white tracking-wide">{skill.name}</span>
 </svg>`;
