@@ -2755,4 +2755,104 @@ function HUDBottomRight({ scrollY, velocity }: { scrollY: number; velocity: numb
   }, [scrollY, velocity]);
 
   return (
+    <div className="flex items-center gap-3 bg-[#0A0A0A] p-3.5 rounded-2xl border border-[#262626] transition-all duration-300 hover:border-[#5C5C5C]">
+      <div className="flex flex-col text-[9px] font-mono text-[#8A8A8A] items-end">
+        <div className="text-[10px] text-white/90 font-bold tracking-widest uppercase">3D_ORBIT_CUBE</div>
+        <div className="text-white font-semibold uppercase tracking-wider mt-0.5">SCROLL_DRIVE_TORQUE</div>
+        <div className="mt-1 flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <span>TORQUE: {Math.max(1, (Math.abs(velocity) / 8)).toFixed(1)}x</span>
+        </div>
+      </div>
+      <canvas ref={canvasRef} className="w-[60px] h-[60px] cursor-pointer" />
+    </div>
+  );
+}
+
+// Fullscreen Pop-Up HUD diagnostic controller
+function HUDDiagnosticsModal({ activeSection, onClose }: { activeSection: string; onClose: () => void }) {
+  const [scrollYValue, setScrollYValue] = useState(0);
+  const [scrollVelocity, setScrollVelocity] = useState(0);
+  const [scrollPercent, setScrollPercent] = useState(0);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let lastTime = performance.now();
+    let animFrame: number;
+
+    const trackScroll = () => {
+      const currentScrollY = window.scrollY;
+      const currentTime = performance.now();
+      const dt = currentTime - lastTime;
+      
+      const dy = currentScrollY - lastScrollY;
+      const velocity = dt > 0 ? (dy / dt) * 1000 : 0; // px/second
+
+      setScrollVelocity(prev => prev + (velocity - prev) * 0.12);
+      setScrollYValue(currentScrollY);
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
+      setScrollPercent(percent);
+
+      lastScrollY = currentScrollY;
+      lastTime = currentTime;
+      
+      animFrame = requestAnimationFrame(trackScroll);
+    };
+
+    animFrame = requestAnimationFrame(trackScroll);
+    return () => cancelAnimationFrame(animFrame);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 bg-[#000000]/90 backdrop-blur-xl z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto font-mono">
+      <div className="relative w-full max-w-3xl bg-[#0A0A0A] border-2 border-[#262626] rounded-3xl p-6 md:p-8 flex flex-col gap-6 text-left my-auto">
+        
+        {/* Top Bar */}
+        <div className="flex items-center justify-between border-b border-[#262626] pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-white animate-pulse" />
+            <h3 className="text-base font-bold text-white uppercase tracking-widest">SUDIN_AI_HUD_MONITOR::ONLINE</h3>
+          </div>
+          <button 
+            onClick={onClose}
+            className="px-3 py-1.5 rounded-lg border border-[#262626] text-white hover:bg-[#262626] hover:text-[#EDEDED] transition-all text-[11px] uppercase tracking-wider font-bold cursor-pointer"
+          >
+            [X] Close System
+          </button>
+        </div>
+
+        {/* Info Box */}
+        <div className="p-4 rounded-xl border border-[#262626] bg-[#000000] text-xs text-[#8A8A8A] leading-relaxed">
+          <span className="font-bold text-white mr-2">SYSTEM SPECS:</span> 
+          This real-time telemetry panel monitors active coordinates, virtual browser scroll speed, 3D render queues, and local heap registers. Drag your page up/down to see coordinates update instantly!
+        </div>
+
+        {/* 2x2 Grid of 3D Modules */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch justify-items-center">
+          <div className="w-full flex justify-center">
+            <HUDTopLeft scrollY={scrollYValue} velocity={scrollVelocity} />
+          </div>
+          <div className="w-full flex justify-center">
+            <HUDTopRight scrollY={scrollYValue} velocity={scrollVelocity} />
+          </div>
+          <div className="w-full flex justify-center">
+            <HUDBottomLeft 
+              scrollY={scrollYValue} 
+              velocity={scrollVelocity} 
+              percent={scrollPercent} 
+              activeSection={activeSection} 
+            />
+          </div>
+          <div className="w-full flex justify-center">
+            <HUDBottomRight scrollY={scrollYValue} velocity={scrollVelocity} />
+          </div>
+        </div>
+
+        {/* Grid Stats Footer */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#262626] pt-4 text-[10px] text-[#5C5C5C]">
+          <div>BUS_NODE: <span className="text-[#EDEDED] font-bold">ACMS_KTM_NEPAL</span></div>
+          <div>CPU_ALLOC: <span className="text-[#EDEDED] font-bold">18.42%</span></div>
+          <div>MEM_HEAP: <span className="text-white font-bold">ACTIVE_OK (1.4MB)</span></div>
 </svg>`;
