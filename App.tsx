@@ -2655,4 +2655,104 @@ function HUDBottomRight({ scrollY, velocity }: { scrollY: number; velocity: numb
 
     let animFrame: number;
     let width = (canvas.width = 130);
+    let height = (canvas.height = 130);
+
+    // Cube vertices
+    const vertices = [
+      { x: -1, y: -1, z: -1 },
+      { x: 1, y: -1, z: -1 },
+      { x: 1, y: 1, z: -1 },
+      { x: -1, y: 1, z: -1 },
+      { x: -1, y: -1, z: 1 },
+      { x: 1, y: -1, z: 1 },
+      { x: 1, y: 1, z: 1 },
+      { x: -1, y: 1, z: 1 }
+    ];
+
+    // Connect edges
+    const edges = [
+      [0, 1], [1, 2], [2, 3], [3, 0], // Back Face
+      [4, 5], [5, 6], [6, 7], [7, 4], // Front Face
+      [0, 4], [1, 5], [2, 6], [3, 7]  // Connectors
+    ];
+
+    const rotatePoint = (pt: { x: number; y: number; z: number }, ax: number, ay: number, az: number) => {
+      // Rotation around X axis
+      let y1 = pt.y * Math.cos(ax) - pt.z * Math.sin(ax);
+      let z1 = pt.y * Math.sin(ax) + pt.z * Math.cos(ax);
+
+      // Rotation around Y axis
+      let x2 = pt.x * Math.cos(ay) + z1 * Math.sin(ay);
+      let z2 = -pt.x * Math.sin(ay) + z1 * Math.cos(ay);
+
+      // Rotation around Z axis
+      let x3 = x2 * Math.cos(az) - y1 * Math.sin(az);
+      let y3 = x2 * Math.sin(az) + y1 * Math.cos(az);
+
+      return { x: x3, y: y3, z: z2 };
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const cubeSize = 24; // Side length scale factor
+
+      // Torque effect from page scroll velocity
+      const scrollTorque = Math.abs(velocity) * 0.0035;
+      angles.current.x += 0.008 + scrollTorque * 0.35;
+      angles.current.y += 0.012 + scrollTorque * 0.25;
+      angles.current.z += 0.005;
+
+      const projected: { x: number; y: number }[] = [];
+
+      // Perspective projection
+      vertices.forEach(v => {
+        const r = rotatePoint(v, angles.current.x, angles.current.y, angles.current.z);
+        const distance = 2.8;
+        const perspective = distance / (distance + r.z);
+        const px = cx + r.x * cubeSize * perspective;
+        const py = cy + r.y * cubeSize * perspective;
+        projected.push({ x: px, y: py });
+      });
+
+      // Draw wireframe edges
+      edges.forEach(([p1, p2]) => {
+        const pt1 = projected[p1];
+        const pt2 = projected[p2];
+
+        ctx.beginPath();
+        ctx.moveTo(pt1.x, pt1.y);
+        ctx.lineTo(pt2.x, pt2.y);
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+        ctx.stroke();
+      });
+
+      // Draw vertices
+      projected.forEach(pt => {
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+        ctx.stroke();
+      });
+
+      // Floating dynamic tag
+      ctx.font = "8px monospace";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
+      ctx.textAlign = "center";
+      ctx.fillText(`AX_XYZ:OK`, cx, cy + 42);
+
+      animFrame = requestAnimationFrame(draw);
+    };
+
+    draw();
+    return () => cancelAnimationFrame(animFrame);
+  }, [scrollY, velocity]);
+
+  return (
 </svg>`;
