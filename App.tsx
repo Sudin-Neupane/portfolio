@@ -2555,4 +2555,104 @@ function HUDTopRight({ scrollY, velocity }: { scrollY: number; velocity: number 
     const initialLogs = Array.from({ length: 5 }, () => generateHexLog());
     setLogs(initialLogs);
   }, []);
+
+  // Accelerate data log scrolling when the user scrolls the page
+  useEffect(() => {
+    if (Math.abs(velocity) > 8) {
+      setLogs(prev => {
+        const next = [...prev.slice(1), generateHexLog()];
+        return next;
+      });
+    }
+  }, [scrollY, velocity]);
+
+  // Gentle idle cycle updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLogs(prev => {
+        const next = [...prev.slice(1), generateHexLog()];
+        return next;
+      });
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const generateHexLog = () => {
+    const addr = "0x" + Math.floor(Math.random() * 65535).toString(16).toUpperCase().padStart(4, "0");
+    const val = Math.floor(Math.random() * 255).toString(16).toUpperCase().padStart(2, "0");
+    const nodes = ["WEB", "CSIT", "CFC", "PRJ", "CON", "AI"];
+    const node = nodes[Math.floor(Math.random() * nodes.length)];
+    return `${addr} ${node}::[${val}] STREAM_OK`;
+  };
+
+  return (
+    <div className="flex flex-col gap-1 bg-[#0A0A0A] p-3.5 rounded-2xl border border-[#262626] w-full max-w-[200px] font-mono text-[9px] text-[#8A8A8A] transition-all duration-300 hover:border-[#5C5C5C]">
+      <div className="flex items-center justify-between border-b border-[#262626] pb-1.5 mb-1.5">
+        <span className="text-white/80 font-bold tracking-wider text-left">3D_BUS_CONTROLLER</span>
+        <span className="text-white font-bold uppercase">REG:F3</span>
+      </div>
+      {logs.map((log, idx) => (
+        <div key={idx} className={`flex justify-between ${idx === logs.length - 1 ? "text-white font-semibold" : ""}`}>
+          <span>{log.split(" ")[0]}</span>
+          <span className="text-[#5C5C5C] font-semibold">{log.split(" ")[1]}</span>
+          <span className="text-[#8A8A8A]">{log.split(" ")[2]}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// 3. BOTTOM-LEFT HUD: Real-time Coordinate Telemetry
+function HUDBottomLeft({ scrollY, velocity, percent, activeSection }: { scrollY: number; velocity: number; percent: number; activeSection: string }) {
+  return (
+    <div className="flex flex-col gap-1.5 bg-[#0A0A0A] p-3.5 rounded-2xl border border-[#262626] w-full max-w-[200px] font-mono text-[9px] text-[#8A8A8A] transition-all duration-300 hover:border-[#5C5C5C]">
+      <div className="flex items-center justify-between border-b border-[#262626] pb-1.5 mb-1.5">
+        <span className="text-white/80 font-bold tracking-wider text-left">XYZ_COORDINATES</span>
+        <span className="text-white font-semibold uppercase">{activeSection}</span>
+      </div>
+      <div className="grid grid-cols-2 gap-y-1 gap-x-4 text-left">
+        <div className="flex justify-between">
+          <span>Y_COOR:</span>
+          <span className="text-white font-semibold">{scrollY.toFixed(0)}px</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Y_VELO:</span>
+          <span className="text-white font-semibold">{velocity.toFixed(0)}px/s</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Z_PERS:</span>
+          <span className="text-white font-semibold">-{Math.min(130, Math.abs(velocity) * 0.12).toFixed(1)}px</span>
+        </div>
+        <div className="flex justify-between">
+          <span>SCR_PCT:</span>
+          <span className="text-white font-semibold">{percent.toFixed(1)}%</span>
+        </div>
+        <div className="flex justify-between col-span-2 border-t border-[#262626] pt-1 mt-1">
+          <span>PITCH_X:</span>
+          <span className="text-[#EDEDED] font-semibold">{(Math.sin(scrollY * 0.0018) * 14).toFixed(2)}Â°</span>
+        </div>
+      </div>
+      <div className="h-1 w-full bg-[#262626] rounded-full overflow-hidden mt-1.5 relative">
+        <div 
+          className="h-full bg-white transition-all duration-300"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// 4. BOTTOM-RIGHT HUD: 3D Orbiting Wireframe Cube Canvas
+function HUDBottomRight({ scrollY, velocity }: { scrollY: number; velocity: number }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const angles = useRef({ x: 0.25, y: 0.35, z: 0.15 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animFrame: number;
+    let width = (canvas.width = 130);
 </svg>`;
