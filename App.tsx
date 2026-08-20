@@ -2455,4 +2455,104 @@ function HUDTopLeft({ scrollY, velocity }: { scrollY: number; velocity: number }
     let width = (canvas.width = 130);
     let height = (canvas.height = 130);
 
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const maxRadius = 40;
+
+      // Smooth spin velocity driven by scroll momentum
+      const scrollInfluence = Math.abs(velocity) * 0.003;
+      rotationRef.current += 0.012 + scrollInfluence;
+
+      // Draw crosshairs
+      ctx.beginPath();
+      ctx.moveTo(cx - 4, cy);
+      ctx.lineTo(cx + 4, cy);
+      ctx.moveTo(cx, cy - 4);
+      ctx.lineTo(cx, cy + 4);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      ctx.stroke();
+
+      // Outer tech dial
+      ctx.beginPath();
+      ctx.arc(cx, cy, maxRadius, 0, Math.PI * 2);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+      ctx.stroke();
+
+      // Dashed interior ring
+      ctx.beginPath();
+      ctx.arc(cx, cy, maxRadius - 8, 0, Math.PI * 2);
+      ctx.setLineDash([2, 5]);
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+      ctx.stroke();
+      ctx.setLineDash([]); // Reset
+
+      // Directional Tick Marks
+      for (let i = 0; i < 360; i += 30) {
+        const angle = (i * Math.PI) / 180 + rotationRef.current * 0.25;
+        const x1 = cx + Math.cos(angle) * (maxRadius - 3);
+        const y1 = cy + Math.sin(angle) * (maxRadius - 3);
+        const x2 = cx + Math.cos(angle) * maxRadius;
+        const y2 = cy + Math.sin(angle) * maxRadius;
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.lineWidth = i % 90 === 0 ? 1.5 : 0.8;
+        ctx.strokeStyle = i % 90 === 0 ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.25)";
+        ctx.stroke();
+      }
+
+      // Radar beam scan line
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      const beamAngle = rotationRef.current;
+      const rx = cx + Math.cos(beamAngle) * maxRadius;
+      const ry = cy + Math.sin(beamAngle) * maxRadius;
+      ctx.lineTo(rx, ry);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+      ctx.stroke();
+
+      // Compass text coordinate indicator
+      ctx.font = "8px monospace";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
+      ctx.textAlign = "center";
+      ctx.fillText(`ROT_H:${((scrollY * 0.15) % 360).toFixed(0)}Â°`, cx, cy + maxRadius + 14);
+
+      animFrame = requestAnimationFrame(draw);
+    };
+
+    draw();
+    return () => cancelAnimationFrame(animFrame);
+  }, [scrollY, velocity]);
+
+  return (
+    <div className="flex items-center gap-3 bg-[#0A0A0A] p-3.5 rounded-2xl border border-[#262626] transition-all duration-300 hover:border-[#5C5C5C]">
+      <canvas ref={canvasRef} className="w-[60px] h-[60px] cursor-pointer" />
+      <div className="flex flex-col text-[9px] font-mono text-[#8A8A8A] text-left">
+        <div className="text-[10px] text-white/90 font-bold tracking-widest uppercase">SUDIN_AI_3D</div>
+        <div className="text-white font-semibold uppercase tracking-wider mt-0.5">3D ENGINE RUNNING</div>
+        <div className="mt-1 flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span>FPS_STABLE: 60.0</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 2. TOP-RIGHT HUD: Dynamic Memory Stream Logs
+function HUDTopRight({ scrollY, velocity }: { scrollY: number; velocity: number }) {
+  const [logs, setLogs] = useState<string[]>([]);
+
+  useEffect(() => {
+    const initialLogs = Array.from({ length: 5 }, () => generateHexLog());
+    setLogs(initialLogs);
+  }, []);
 </svg>`;
