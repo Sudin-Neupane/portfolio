@@ -2355,4 +2355,104 @@ function BoilerlabScrollTelemetryBar({
           onClick={() => {
             const idx = sections.indexOf(activeSection);
             if (idx < sections.length - 1) onNavigate(sections[idx + 1]);
+          }}
+          className="p-1 text-[#8A8A8A] hover:text-white hover:bg-[#262626] rounded transition-colors cursor-pointer"
+          title="Scroll to next section (Down)"
+        >
+          <ChevronDown className="w-3.5 h-3.5" />
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+// Boilerlab Custom Interactive Kinetic Cursor
+function BoilerlabCursor() {
+  const [pos, setPos] = useState({ x: -100, y: -100 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPos({ x: e.clientX, y: e.clientY });
+      if (!isVisible) setIsVisible(true);
+
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "BUTTON" ||
+          target.tagName === "A" ||
+          target.tagName === "INPUT" ||
+          target.closest("button") ||
+          target.closest("a") ||
+          target.closest(".glass-card") ||
+          target.closest(".tilt-card") ||
+          target.getAttribute("role") === "button")
+      ) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
+    };
+
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseLeave = () => setIsVisible(false);
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    document.body.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+      document.body.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [isVisible]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden md:block">
+      {/* Outer Ring */}
+      <div
+        className="fixed top-0 left-0 rounded-full border border-white/60 bg-white/5 -translate-x-1/2 -translate-y-1/2 transition-all duration-150 ease-out"
+        style={{
+          left: `${pos.x}px`,
+          top: `${pos.y}px`,
+          width: isHovered ? "48px" : isClicking ? "24px" : "32px",
+          height: isHovered ? "48px" : isClicking ? "24px" : "32px",
+          borderColor: isHovered ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)",
+        }}
+      />
+      {/* Center Dot */}
+      <div
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"
+        style={{
+          left: `${pos.x}px`,
+          top: `${pos.y}px`,
+        }}
+      />
+    </div>
+  );
+}
+
+// 1. TOP-LEFT HUD: 3D Compass & Vector Radar Widget
+function HUDTopLeft({ scrollY, velocity }: { scrollY: number; velocity: number }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rotationRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animFrame: number;
+    let width = (canvas.width = 130);
+    let height = (canvas.height = 130);
+
 </svg>`;
