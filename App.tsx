@@ -2955,4 +2955,104 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
         // Table 3
         { from: 16, to: 17 }, { from: 17, to: 18 }, { from: 18, to: 19 }, { from: 19, to: 16 },
         { from: 20, to: 21 }, { from: 21, to: 22 }, { from: 22, to: 23 }, { from: 23, to: 20 },
+        { from: 16, to: 20 }, { from: 17, to: 21 }, { from: 18, to: 22 }, { from: 19, to: 23 },
+
+        // Foreign Key Relationships (connecting table nodes)
+        {from: 11, to: 0, color: "#EDEDED"}, // post.post_user_id -> users.user_id
+        {from: 16, to: 1, color: "#8A8A8A"}  // logs.log_id -> users.user_name
+      ];
+    } else if (project.category === "ai" || project.id === "gesture") {
+      // 3D HAND SKELETON (representing Python Hand gesture trackers)
+      vertices = [
+        { x: 0, y: 1.0, z: 0, label: "Wrist Node" }, // Wrist (0)
+        
+        // Thumb (1, 2, 3)
+        { x: -0.4, y: 0.5, z: 0.1 },
+        { x: -0.7, y: 0.2, z: 0.1 },
+        { x: -0.9, y: -0.1, z: 0.1, label: "Thumb Tip" },
+
+        // Index Finger (4, 5, 6)
+        { x: -0.2, y: 0.2, z: -0.1 },
+        { x: -0.3, y: -0.3, z: -0.1 },
+        { x: -0.35, y: -0.8, z: -0.1, label: "Index Tip" },
+
+        // Middle Finger (7, 8, 9)
+        { x: 0, y: 0.15, z: -0.2 },
+        { x: 0, y: -0.4, z: -0.2 },
+        { x: 0, y: -0.95, z: -0.2, label: "Middle Tip" },
+
+        // Ring Finger (10, 11, 12)
+        { x: 0.2, y: 0.2, z: -0.1 },
+        { x: 0.25, y: -0.3, z: -0.1 },
+        { x: 0.28, y: -0.85, z: -0.1, label: "Ring Tip" },
+
+        // Pinky Finger (13, 14, 15)
+        { x: 0.4, y: 0.35, z: 0 },
+        { x: 0.5, y: -0.1, z: 0 },
+        { x: 0.55, y: -0.55, z: 0, label: "Pinky Tip" }
+      ];
+
+      edges = [
+        // Palm connection bases
+        { from: 0, to: 1 }, { from: 0, to: 4 }, { from: 0, to: 7 }, { from: 0, to: 10 }, { from: 0, to: 13 },
+        // Connectors across knuckles
+        { from: 1, to: 4 }, { from: 4, to: 7 }, { from: 7, to: 10 }, { from: 10, to: 13 },
+        // Thumb line
+        { from: 1, to: 2 }, { from: 2, to: 3 },
+        // Index line
+        { from: 4, to: 5 }, { from: 5, to: 6 },
+        // Middle line
+        { from: 7, to: 8 }, { from: 8, to: 9 },
+        // Ring line
+        { from: 10, to: 11 }, { from: 11, to: 12 },
+        // Pinky line
+        { from: 13, to: 14 }, { from: 14, to: 15 }
+      ];
+    } else if (project.category === "c") {
+      // 3D DOUBLE HELIX SPIRAL (low level procedural data registers)
+      const segments = 16;
+      for (let i = 0; i < segments; i++) {
+        const theta = (i / segments) * Math.PI * 4;
+        const y = -1.2 + (i / segments) * 2.4;
+        
+        // Strand 1
+        vertices.push({
+          x: Math.cos(theta) * 0.7,
+          y: y,
+          z: Math.sin(theta) * 0.7,
+          label: i % 4 === 0 ? `REG_0x${i.toString(16).toUpperCase()}` : undefined
+        });
+
+        // Strand 2 (180deg out of phase)
+        vertices.push({
+          x: Math.cos(theta + Math.PI) * 0.7,
+          y: y,
+          z: Math.sin(theta + Math.PI) * 0.7
+        });
+
+        // Add backbone helices
+        if (i > 0) {
+          edges.push({ from: (i - 1) * 2, to: i * 2, color: "#EDEDED" });
+          edges.push({ from: (i - 1) * 2 + 1, to: i * 2 + 1, color: "#8A8A8A" });
+        }
+
+        // Add crossbars
+        edges.push({ from: i * 2, to: i * 2 + 1, color: "rgba(255, 255, 255, 0.45)" });
+      }
+    } else {
+      // CORE LEADERSHIP/GENERAL CONSTELLATION NODE MESH
+      vertices = [
+        { x: 0, y: 0, z: 0, label: "Core Node" }, // Central node
+        { x: -1.0, y: -0.6, z: -0.5, label: "Tech Sprints" },
+        { x: 1.0, y: -0.6, z: -0.5, label: "Bootcamps" },
+        { x: 0.8, y: 0.8, z: -0.4, label: "Nepal CFC" },
+        { x: -0.8, y: 0.8, z: -0.4, label: "ACMS Synergies" },
+        { x: 0, y: -1.1, z: 0.8, label: "Student Rep" },
+        { x: 0, y: 1.1, z: 0.8, label: "Open-Source" }
+      ];
+
+      edges = [
+        { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 }, { from: 0, to: 5 }, { from: 0, to: 6 },
+        { from: 1, to: 4 }, { from: 4, to: 6 }, { from: 6, to: 3 }, { from: 3, to: 2 }, { from: 2, to: 5 }, { from: 5, to: 1 }
+      ];
 </svg>`;
