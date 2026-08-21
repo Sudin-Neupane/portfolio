@@ -3155,4 +3155,104 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
         const rotated = rotatePoint(v, angles.current.x, angles.current.y);
         const distance = 3.5;
         const perspective = distance / (distance + rotated.z);
+        const px = cx + rotated.x * zoomScale * perspective;
+        const py = cy + rotated.y * zoomScale * perspective;
+        projected.push({ x: px, y: py, z: rotated.z, label: v.label });
+      });
+
+      // Draw edges
+      if (visualMode !== "atomic") {
+        edges.forEach(e => {
+          const pt1 = projected[e.from];
+          const pt2 = projected[e.to];
+
+          ctx.beginPath();
+          ctx.moveTo(pt1.x, pt1.y);
+          ctx.lineTo(pt2.x, pt2.y);
+          
+          // Edges are thicker when closer
+          const avgZ = (pt1.z + pt2.z) / 2;
+          const alpha = Math.max(0.08, 0.55 - avgZ * 0.25);
+          ctx.lineWidth = Math.max(0.8, 1.6 - avgZ * 0.4);
+          ctx.strokeStyle = e.color || `rgba(255, 255, 255, ${alpha})`;
+          ctx.stroke();
+        });
+      }
+
+      // Draw vertices
+      projected.forEach(pt => {
+        const alpha = Math.max(0.2, 0.95 - pt.z * 0.35);
+        const radius = Math.max(2.5, 5 - pt.z * 1.5);
+
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, radius, 0, Math.PI * 2);
+        
+        // Highlight active labelled nodes
+        if (pt.label) {
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, radius + 3, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          // Label text
+          ctx.font = "8px monospace";
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.textAlign = "left";
+          ctx.fillText(pt.label, pt.x + 8, pt.y + 3);
+        } else {
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fill();
+        }
+      });
+
+      // Overlay matrix grid laser scans in center of hologram scope
+      if (visualMode === "laser") {
+        const laserY = cy + Math.sin(Date.now() * 0.0035) * (zoomScale * 1.2);
+        ctx.beginPath();
+        ctx.moveTo(cx - zoomScale * 1.4, laserY);
+        ctx.lineTo(cx + zoomScale * 1.4, laserY);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+        ctx.stroke();
+      }
+
+      animFrame = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animFrame);
+    };
+  }, [project, orbitSpeed, zoomScale, visualMode, particleCount]);
+
+  // Handle Drag-to-rotate interaction
+  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    isDragging.current = true;
+    previousMousePosition.current = {
+      x: e.clientX,
+      y: e.clientY
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDragging.current) return;
+    const deltaX = e.clientX - previousMousePosition.current.x;
+    const deltaY = e.clientY - previousMousePosition.current.y;
+
+    angles.current.y += deltaX * 0.012;
+    angles.current.x += deltaY * 0.012;
+
+    // Limit pitch angle to prevent flipping
+    angles.current.x = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, angles.current.x));
+
+    previousMousePosition.current = {
+      x: e.clientX,
+      y: e.clientY
+    };
+
+    logDragEvent(angles.current.x, angles.current.y);
 </svg>`;
