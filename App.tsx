@@ -3255,4 +3255,104 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
     };
 
     logDragEvent(angles.current.x, angles.current.y);
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="fixed inset-0 bg-[#000000]/90 backdrop-blur-xl z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 overflow-y-auto font-mono"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 30, rotateX: 12, opacity: 0 }}
+        animate={{ scale: 1, y: 0, rotateX: 0, opacity: 1 }}
+        exit={{ scale: 0.92, y: 20, rotateX: -6, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 350, damping: 28, mass: 1 }}
+        style={{ transformPerspective: 1200 }}
+        className="relative w-full max-w-5xl bg-[#0A0A0A] border border-[#262626] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-stretch my-auto"
+      >
+        
+        {/* LEFT COMPARTMENT: Live 3D Canvas Rendering Screen */}
+        <motion.div
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
+          className="flex-1 min-h-[350px] lg:min-h-[460px] bg-[#000000] relative flex flex-col justify-between p-6 border-b lg:border-b-0 lg:border-r border-[#262626]"
+        >
+          
+          {/* Canvas Tech Header */}
+          <div className="flex items-center justify-between z-20">
+            <div className="flex flex-col text-left">
+              <span className="text-[10px] uppercase text-white font-bold tracking-[0.2em]">3D Hologram projection</span>
+              <h2 className="text-xl font-bold text-white tracking-wide font-display mt-0.5 uppercase">
+                {project.name}
+              </h2>
+            </div>
+            
+            {/* Status light */}
+            <div className="flex items-center gap-2 bg-[#0A0A0A] border border-[#262626] px-2.5 py-1 rounded-full text-[9px] text-white font-bold uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+              <span>STABLE_MESH</span>
+            </div>
+          </div>
+
+          {/* Core Interactive Canvas */}
+          <canvas
+            ref={canvasRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className="w-full h-full min-h-[260px] cursor-grab active:cursor-grabbing max-h-[360px]"
+          />
+
+          {/* Canvas Instructions footer line */}
+          <div className="flex items-center justify-between text-[9px] text-[#8A8A8A] z-10 select-none">
+            <span>[DRAG_CANVAS_TO_ROTATE_MESH]</span>
+            <span>RAT_DEPTH: 3.5x</span>
+          </div>
+        </motion.div>
+
+        {/* RIGHT COMPARTMENT: Controls, Specs, Diagnostics Terminal */}
+        <motion.div
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
+          className="w-full lg:w-[380px] p-6 bg-[#0A0A0A] flex flex-col justify-between gap-6"
+        >
+          
+          {/* Top Info Section & Close button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
+            className="flex flex-col gap-4 text-left"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase text-[#8A8A8A] font-bold tracking-widest">CONTROL DOCK</span>
+              <button 
+                onClick={onClose}
+                className="px-2.5 py-1 text-[10px] uppercase text-white border border-[#262626] rounded hover:bg-[#262626] transition-colors font-bold cursor-pointer"
+              >
+                [X] Close Inspect
+              </button>
+            </div>
+
+            {/* Spec bullets */}
+            <div className="flex flex-col gap-2">
+              <div className="text-xs text-white/90 font-bold">CORE HIGHLIGHTS:</div>
+              <ul className="text-[11px] text-[#8A8A8A] flex flex-col gap-1.5 list-none">
+                {project.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-1.5">
+                    <span className="text-white font-bold shrink-0">&gt;&gt;</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
 </svg>`;
