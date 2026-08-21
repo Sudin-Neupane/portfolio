@@ -2855,4 +2855,104 @@ function HUDDiagnosticsModal({ activeSection, onClose }: { activeSection: string
           <div>BUS_NODE: <span className="text-[#EDEDED] font-bold">ACMS_KTM_NEPAL</span></div>
           <div>CPU_ALLOC: <span className="text-[#EDEDED] font-bold">18.42%</span></div>
           <div>MEM_HEAP: <span className="text-white font-bold">ACTIVE_OK (1.4MB)</span></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------
+// 3D HOLOGRAM PROJECT INSPECTOR MODAL (Pop-Up / Pop-Out)
+// ---------------------------------------------------------
+
+interface HologramInspectorProps {
+  project: Project;
+  onClose: () => void;
+}
+
+function HologramInspector({ project, onClose }: HologramInspectorProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [orbitSpeed, setOrbitSpeed] = useState<number>(3); // 1 to 10
+  const [zoomScale, setZoomScale] = useState<number>(100); // 50 to 150
+  const [visualMode, setVisualMode] = useState<"laser" | "atomic" | "mesh">("mesh");
+  const [particleCount, setParticleCount] = useState<number>(25);
+
+  const angles = useRef({ x: 0.3, y: 0.4 });
+  const isDragging = useRef(false);
+  const previousMousePosition = useRef({ x: 0, y: 0 });
+
+  // Real-time drag metrics for HUD panel
+  const [dragLogs, setDragLogs] = useState<string[]>([]);
+
+  // Push telemetry logs on drag
+  const logDragEvent = (px: number, py: number) => {
+    const timestamp = new Date().toLocaleTimeString();
+    const formatted = `[${timestamp}] PITCH: ${(px * 180 / Math.PI).toFixed(1)}Â° | YAW: ${(py * 180 / Math.PI).toFixed(1)}Â°`;
+    setDragLogs(prev => [formatted, ...prev.slice(0, 3)]);
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animFrame: number;
+    let width = (canvas.width = 460);
+    let height = (canvas.height = 360);
+
+    // Dynamic 3D Objects Setup based on project types
+    // Vertices coordinates (X, Y, Z)
+    let vertices: { x: number; y: number; z: number; label?: string }[] = [];
+    let edges: { from: number; to: number; color?: string }[] = [];
+
+    if (project.id === "crud") {
+      // RELATIONAL DATABASE GRAPH (4 Tables floating as cuboids)
+      // Table 1: Users (Top Left)
+      vertices = [
+        { x: -1.2, y: -0.8, z: -0.5, label: "user_id" },
+        { x: -0.4, y: -0.8, z: -0.5, label: "user_name" },
+        { x: -0.4, y: -0.2, z: -0.5 },
+        { x: -1.2, y: -0.2, z: -0.5, label: "user_email" },
+        { x: -1.2, y: -0.8, z: 0.1 },
+        { x: -0.4, y: -0.8, z: 0.1 },
+        { x: -0.4, y: -0.2, z: 0.1 },
+        { x: -1.2, y: -0.2, z: 0.1 },
+
+        // Table 2: Posts (Top Right)
+        { x: 0.4, y: -0.8, z: -0.5, label: "post_id" },
+        { x: 1.2, y: -0.8, z: -0.5, label: "title" },
+        { x: 1.2, y: -0.2, z: -0.5 },
+        { x: 0.4, y: -0.2, z: -0.5, label: "post_user_id" },
+        { x: 0.4, y: -0.8, z: 0.1 },
+        { x: 1.2, y: -0.8, z: 0.1 },
+        { x: 1.2, y: -0.2, z: 0.1 },
+        { x: 0.4, y: -0.2, z: 0.1 },
+
+        // Table 3: Logs (Bottom)
+        { x: -0.4, y: 0.4, z: -0.3, label: "log_id" },
+        { x: 0.4, y: 0.4, z: -0.3, label: "timestamp" },
+        { x: 0.4, y: 1.0, z: -0.3 },
+        { x: -0.4, y: 1.0, z: -0.3, label: "action" },
+        { x: -0.4, y: 0.4, z: 0.3 },
+        { x: 0.4, y: 0.4, z: 0.3 },
+        { x: 0.4, y: 1.0, z: 0.3 },
+        { x: -0.4, y: 1.0, z: 0.3 }
+      ];
+
+      // Edges connecting Cuboids
+      edges = [
+        // Table 1
+        { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 },
+        { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 }, { from: 7, to: 4 },
+        { from: 0, to: 4 }, { from: 1, to: 5 }, { from: 2, to: 6 }, { from: 3, to: 7 },
+        
+        // Table 2
+        { from: 8, to: 9 }, { from: 9, to: 10 }, { from: 10, to: 11 }, { from: 11, to: 8 },
+        { from: 12, to: 13 }, { from: 13, to: 14 }, { from: 14, to: 15 }, { from: 15, to: 12 },
+        { from: 8, to: 12 }, { from: 9, to: 13 }, { from: 10, to: 14 }, { from: 11, to: 15 },
+
+        // Table 3
+        { from: 16, to: 17 }, { from: 17, to: 18 }, { from: 18, to: 19 }, { from: 19, to: 16 },
+        { from: 20, to: 21 }, { from: 21, to: 22 }, { from: 22, to: 23 }, { from: 23, to: 20 },
 </svg>`;
