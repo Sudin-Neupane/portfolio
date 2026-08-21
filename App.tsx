@@ -3055,4 +3055,104 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
         { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 }, { from: 0, to: 4 }, { from: 0, to: 5 }, { from: 0, to: 6 },
         { from: 1, to: 4 }, { from: 4, to: 6 }, { from: 6, to: 3 }, { from: 3, to: 2 }, { from: 2, to: 5 }, { from: 5, to: 1 }
       ];
+    }
+
+    // Interactive floating ambient background particle array
+    const ambientParticles: { x: number; y: number; z: number; speed: number }[] = [];
+    for (let i = 0; i < 40; i++) {
+      ambientParticles.push({
+        x: (Math.random() - 0.5) * 3,
+        y: (Math.random() - 0.5) * 3,
+        z: (Math.random() - 0.5) * 3,
+        speed: 0.005 + Math.random() * 0.012
+      });
+    }
+
+    const rotatePoint = (pt: { x: number; y: number; z: number }, ax: number, ay: number) => {
+      // Rotate around X-axis
+      let y1 = pt.y * Math.cos(ax) - pt.z * Math.sin(ax);
+      let z1 = pt.y * Math.sin(ax) + pt.z * Math.cos(ax);
+
+      // Rotate around Y-axis
+      let x2 = pt.x * Math.cos(ay) + z1 * Math.sin(ay);
+      let z2 = -pt.x * Math.sin(ay) + z1 * Math.cos(ay);
+
+      return { x: x2, y: y1, z: z2 };
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+
+      // Handle Resize dynamically
+      if (canvas.width !== canvas.clientWidth) {
+        width = canvas.width = canvas.clientWidth;
+        height = canvas.height = canvas.clientHeight;
+      }
+
+      // Rotate automated orbit if not dragging
+      if (!isDragging.current) {
+        angles.current.y += (orbitSpeed * 0.002);
+      }
+
+      // Live hand bending animation if gesture project is active
+      let animatedVertices = vertices;
+      if (project.category === "ai" || project.id === "gesture") {
+        const time = Date.now() * 0.0025;
+        animatedVertices = vertices.map((v, idx) => {
+          // If it is a tip of finger (labels match tip)
+          if (v.label && v.label.includes("Tip")) {
+            return {
+              ...v,
+              y: v.y + Math.sin(time + idx) * 0.12,
+              z: v.z + Math.cos(time + idx) * 0.08
+            };
+          }
+          return v;
+        });
+      }
+
+      // Draw circular scope markings in background
+      ctx.beginPath();
+      ctx.arc(cx, cy, (zoomScale * 1.5), 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, (zoomScale * 0.8), 0, Math.PI * 2);
+      ctx.setLineDash([2, 10]);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.stroke();
+      ctx.setLineDash([]); // Reset
+
+      // Project and draw ambient particles
+      ambientParticles.forEach(p => {
+        p.y += p.speed; // Drift upwards
+        if (p.y > 1.5) p.y = -1.5;
+
+        const rotated = rotatePoint(p, angles.current.x, angles.current.y);
+        const distance = 3.5;
+        const perspective = distance / (distance + rotated.z);
+        
+        const px = cx + rotated.x * zoomScale * perspective;
+        const py = cy + rotated.y * zoomScale * perspective;
+
+        if (px > 0 && px < width && py > 0 && py < height && rotated.z < 1.5) {
+          ctx.beginPath();
+          ctx.arc(px, py, 1.2 * perspective, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.1, 0.45 * perspective)})`;
+          ctx.fill();
+        }
+      });
+
+      const projected: { x: number; y: number; z: number; label?: string }[] = [];
+
+      // Project vertices to 2D
+      animatedVertices.forEach(v => {
+        const rotated = rotatePoint(v, angles.current.x, angles.current.y);
+        const distance = 3.5;
+        const perspective = distance / (distance + rotated.z);
 </svg>`;
