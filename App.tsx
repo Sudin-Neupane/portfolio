@@ -3555,4 +3555,104 @@ export default function App() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   
+  // Hero dynamic changing roles & stats
+  const [heroRoleIdx, setHeroRoleIdx] = useState(0);
+  const [heroStatsIdx, setHeroStatsIdx] = useState(0);
+
+  useEffect(() => {
+    const roleInterval = setInterval(() => {
+      setHeroRoleIdx((prev) => (prev + 1) % heroRolesData.length);
+    }, 3800);
+
+    const statsInterval = setInterval(() => {
+      setHeroStatsIdx((prev) => (prev + 1) % heroStatsSets.length);
+    }, 4500);
+
+    return () => {
+      clearInterval(roleInterval);
+      clearInterval(statsInterval);
+    };
+  }, []);
+  
+  // Navbar scroll reactivity states
+  const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Custom states
+  const [skillCategory, setSkillCategory] = useState<"all" | "frontend" | "backend" | "seo_management" | "core">("all");
+  const [projectFilter, setProjectFilter] = useState<"all" | "web" | "c" | "ai" | "py">("all");
+  const [activeProjectIdx, setActiveProjectIdx] = useState(0);
+  const [terminalHistory, setTerminalHistory] = useState<string[]>([
+    "System Node initialized. Type 'help' to audit commands.",
+    "Guest Connection: ESTABLISHED // Location: Nagarjun, KTM"
+  ]);
+  const [terminalInput, setTerminalInput] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [timelineActiveIdx, setTimelineActiveIdx] = useState(0);
+  const [copysuccess, setCopysuccess] = useState(false);
+  const [terminalMatrixActive, setTerminalMatrixActive] = useState(false);
+  const [hoveredCommit, setHoveredCommit] = useState<{ date: string; count: number } | null>(null);
+  const [selectedHologramProject, setSelectedHologramProject] = useState<Project | null>(null);
+  
+  // Interactive Chatbot Assistant State
+  const [chatLog, setChatLog] = useState<{ sender: "user" | "bot"; text: string }[]>([
+    { sender: "bot", text: "Greetings! I'm Sudin's interactive portfolio assistant. Select a prompt below or ask me any question!" }
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const [isBotThinking, setIsBotThinking] = useState(false);
+
+  // Form input states
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formMessage, setFormMessage] = useState("");
+  const [charCount, setCharCount] = useState(0);
+  const [formStatus, setFormStatus] = useState<{ type: "success" | "error" | null; text: string }>({ type: null, text: "" });
+
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const terminalLogsContainerRef = useRef<HTMLDivElement | null>(null);
+  const chatLogsContainerRef = useRef<HTMLDivElement | null>(null);
+  const lenisRef = useRef<Lenis | null>(null);
+
+  // 1. Lenis Smooth Scroll Engine + GSAP Ticker Sync
+  useEffect(() => {
+    if (loading) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    });
+
+    lenisRef.current = lenis;
+
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
+    });
+
+    const updateTicker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(updateTicker);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, [loading]);
+
+  // 2. GSAP Hero Entrance, Parallax Depth, Scrubbed Typing & GitHub Graph Wave
+  useEffect(() => {
+    if (loading) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 </svg>`;
