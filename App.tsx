@@ -3455,4 +3455,104 @@ interface TiltCardProps {
   id?: string;
   key?: React.Key;
 }
+
+function TiltCard({ children, className = "", id = "" }: TiltCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth < 768) return;
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    // Maximum 4 degrees rotation for a subtle, smooth natural feel
+    const rotateX = ((centerY - y) / centerY) * 4;
+    const rotateY = ((x - centerX) / centerX) * 4;
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`,
+      transition: "transform 0.12s ease-out",
+      willChange: "transform"
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg)",
+      transition: "transform 0.4s ease-out",
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={tiltStyle}
+      className={className}
+      id={id}
+    >
+      {children}
+    </div>
+  );
+}
+
+const heroRolesData = [
+  {
+    tag: "WEB DEVELOPER",
+    subtitle: "> Web Developer & Creative UI Craftsman",
+    paragraph: "I build clean, accessible React & TypeScript web applications with fluid responsive layouts, micro-interactions, and pixel-perfect design standards."
+  },
+  {
+    tag: "TECH ENTHUSIAST",
+    subtitle: "> Computer Science & IT Scholar",
+    paragraph: "Building a strong foundation in programming, software development, databases, and problem-solving through academic learning and practical projects."
+  },
+  {
+    tag: "COLLEGE REPRESENTATIVE",
+    subtitle: "> Code for Change  (2025/2026 Tenure)",
+    paragraph: "Coordinating inter-college student tech workshops, hosting local programming bootcamps,Organizating hackathons and bridging developer squads across Nepal's student ecosystem."
+  },
+  {
+    tag: "PROGRAMMER",
+    subtitle: "> C++ & Python Learner",
+    paragraph: "Strengthening programming fundamentals through problem-solving, object-oriented programming, data handling, and practical coding projects in C++ and Python."
+},
+{
+    tag: "LEARNING IN PUBLIC",
+    subtitle: "> 111 Days of Learning Challenge",
+    paragraph: "Completed a 111-day learning challenge by consistently documenting my technical learning, experiments, projects, and progress throughout the journey."
+},
+
+ 
+];
+
+const heroStatsSets = [
+  [
+    { value: 20, suffix: "", label: "Years Old", isDecimal: false },
+    { value: 12, suffix: "+", label: "Skills Listed", isDecimal: false },
+    { value: 7, suffix: "+", label: "Projects Built", isDecimal: false }
+  ],
+  [
+    { value: 3.8, suffix: "", label: "BSc.CSIT GPA", isDecimal: true },
+    { value: 1480, suffix: "+", label: "Git Commits", isDecimal: false },
+    { value: 2025, suffix: "/26", label: "CFC Representative", isDecimal: false }
+  ],
+  [
+    { value: 100, suffix: "%", label: "Responsive Layouts", isDecimal: false },
+    { value: 5, suffix: "+", label: "Bootcamps Run", isDecimal: false },
+    { value: 4, suffix: "+", label: "Years Coding", isDecimal: false }
+  ]
+];
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [loadingTextIndex, setLoadingTextIndex] = useState(0);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
+  
 </svg>`;
