@@ -3655,4 +3655,104 @@ export default function App() {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const ctx = gsap.context(() => {
+      if (!prefersReducedMotion) {
+        // Hero Entrance Timeline
+        const heroTl = gsap.timeline();
+        heroTl
+          .fromTo(
+            ".gsap-hero-badge",
+            { opacity: 0, y: -20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+          )
+          .fromTo(
+            ".gsap-hero-title",
+            { opacity: 0, y: 35 },
+            { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+            "-=0.3"
+          )
+          .fromTo(
+            ".gsap-hero-sub",
+            { opacity: 0, y: 25 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.5"
+          )
+          .fromTo(
+            ".gsap-hero-desc",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.5"
+          )
+          .fromTo(
+            ".gsap-hero-stats",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.4"
+          )
+          .fromTo(
+            ".gsap-hero-cta",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.4"
+          );
+
+        // 3-Layer Parallax Depth
+        document.querySelectorAll<HTMLElement>("[data-parallax-depth]").forEach((el) => {
+          const depth = parseFloat(el.getAttribute("data-parallax-depth") || "0.5");
+          const yDist = -100 * depth;
+          gsap.to(el, {
+            y: yDist,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el.parentElement || el,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        // Scrubbed Terminal Typing Effect
+        document.querySelectorAll<HTMLElement>("[data-terminal-scroll-type]").forEach((container) => {
+          const textEl = container.querySelector<HTMLElement>("[data-type-target]");
+          if (!textEl) return;
+          const fullText = textEl.getAttribute("data-full-text") || textEl.innerText;
+          textEl.innerText = "";
+          
+          gsap.to(textEl, {
+            scrollTrigger: {
+              trigger: container,
+              start: "top 85%",
+              end: "bottom 35%",
+              scrub: 0.5,
+            },
+            onUpdate: function () {
+              const progress = this.progress();
+              const charLen = Math.floor(progress * fullText.length);
+              textEl.innerText = fullText.slice(0, charLen);
+            },
+          });
+        });
+
+        // GitHub Contribution Graph Sequential Wave Animation (~15ms per cell)
+        document.querySelectorAll<HTMLElement>("[data-github-graph]").forEach((container) => {
+          const cells = container.querySelectorAll<HTMLElement>("[data-graph-cell]");
+          if (!cells.length) return;
+
+          gsap.fromTo(
+            cells,
+            { opacity: 0, scale: 0.2 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 0.25,
+              stagger: 0.015,
+              ease: "back.out(1.4)",
+              scrollTrigger: {
+                trigger: container,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
 </svg>`;
