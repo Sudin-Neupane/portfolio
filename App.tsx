@@ -3355,4 +3355,104 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
                   </li>
                 ))}
               </ul>
+            </div>
+          </motion.div>
+
+          {/* Sliders and Configurations */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.3 }}
+            className="flex flex-col gap-4 text-left border-y border-[#262626] py-4"
+          >
+            
+            {/* Speed slider */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between text-[10px] text-[#8A8A8A] font-bold font-mono">
+                <span>ORBIT SPEED</span>
+                <span className="text-white font-semibold">{orbitSpeed}Hz</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                step="1"
+                value={orbitSpeed}
+                onChange={(e) => setOrbitSpeed(Number(e.target.value))}
+                className="w-full h-1 bg-[#000000] rounded-lg appearance-none cursor-pointer accent-white border border-[#262626]"
+              />
+            </div>
+
+            {/* Zoom slider */}
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between text-[10px] text-[#8A8A8A] font-bold font-mono">
+                <span>PROJECTION ZOOM</span>
+                <span className="text-white font-semibold">{zoomScale}%</span>
+              </div>
+              <input
+                type="range"
+                min="50"
+                max="150"
+                step="5"
+                value={zoomScale}
+                onChange={(e) => setZoomScale(Number(e.target.value))}
+                className="w-full h-1 bg-[#000000] rounded-lg appearance-none cursor-pointer accent-white border border-[#262626]"
+              />
+            </div>
+
+            {/* Visual themes select */}
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[10px] text-[#8A8A8A] font-bold">VISUALIZATION THEME</span>
+              <div className="grid grid-cols-3 gap-1.5">
+                {[
+                  { id: "mesh", label: "Core Mesh" },
+                  { id: "laser", label: "Laser scan" },
+                  { id: "atomic", label: "Nodes" }
+                ].map((mode) => (
+                  <button
+                    key={mode.id}
+                    onClick={() => setVisualMode(mode.id as any)}
+                    className={`py-1 rounded text-[9px] font-mono border transition-all cursor-pointer ${
+                      visualMode === mode.id
+                        ? "bg-white text-black font-bold border-white"
+                        : "bg-[#000000] border-[#262626] text-[#8A8A8A] hover:text-white"
+                    }`}
+                  >
+                    {mode.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Real-time scanning telemetry console */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45, duration: 0.3 }}
+            className="flex flex-col gap-2 text-left"
+          >
+            <span className="text-[10px] uppercase text-[#8A8A8A] font-bold tracking-widest">DRAG MATRIX TELEMETRY</span>
+            <div className="h-20 rounded-xl border border-[#262626] bg-[#000000] p-3 overflow-y-auto font-mono text-[9px] text-[#8A8A8A] leading-relaxed flex flex-col gap-1 select-none">
+              {dragLogs.length > 0 ? (
+                dragLogs.map((log, idx) => <div key={idx} className="text-white">{log}</div>)
+              ) : (
+                <div className="text-[#5C5C5C] animate-pulse">Waiting for drag coordinates...</div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// Reusable 3D Tilt Hover component (Boilerlab inspired, zero dependencies)
+interface TiltCardProps {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  key?: React.Key;
+}
 </svg>`;
