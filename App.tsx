@@ -3755,4 +3755,104 @@ export default function App() {
               },
             }
           );
+        });
+      }
+
+      // Hero Scroll Indicator Fade Out past ~10% viewport height
+      ScrollTrigger.create({
+        trigger: "#home",
+        start: "top top",
+        end: "bottom 80%",
+        onLeave: () => {
+          gsap.to(".gsap-scroll-indicator", { opacity: 0, duration: 0.3 });
+        },
+        onEnterBack: () => {
+          gsap.to(".gsap-scroll-indicator", { opacity: 1, duration: 0.3 });
+        },
+      });
+
+      // 1. DIRECTION-AWARE TEXT SPLIT REVEAL & EXITS (NO BLUR, TRANSFORM/OPACITY ONLY)
+      document.querySelectorAll<HTMLElement>("[data-pop-words]").forEach((el) => {
+        if (!el.getAttribute("data-original-text")) {
+          el.setAttribute("data-original-text", el.innerText);
+        }
+        const originalText = el.getAttribute("data-original-text") || "";
+        const words = originalText.trim().split(/\s+/);
+        
+        el.innerHTML = words
+          .map(
+            (w) => `<span class="inline-block overflow-hidden py-1 leading-snug align-bottom"><span class="inline-block transition-transform duration-300 transform-gpu mr-[0.24em] pop-word-item will-change-[transform,opacity]">${w}</span></span>`
+          )
+          .join("");
+
+        const wordSpans = el.querySelectorAll<HTMLElement>(".pop-word-item");
+        if (!wordSpans.length) return;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 85%",
+          end: "bottom top",
+          once: false,
+          onEnter: () => {
+            gsap.fromTo(
+              wordSpans,
+              { opacity: 0, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.04,
+                ease: "power3.out",
+                overwrite: "auto",
+              }
+            );
+          },
+          onLeave: () => {
+            // Exit behavior: fade opacity 1->0.5, scale 1->0.98 on scroll down
+            gsap.to(wordSpans, {
+              opacity: 0.5,
+              scale: 0.98,
+              duration: 0.4,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(wordSpans, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          },
+        });
+      });
+
+      // 2. STAGGERED CARD REVEALS (ALTERNATING TIMINGS: 0.7s/30px & 0.8s/40px)
+      document.querySelectorAll<HTMLElement>("[data-stagger-cards]").forEach((container, idx) => {
+        const cards = container.querySelectorAll<HTMLElement>(".gsap-card-item, .glass-card, [data-card-item], :scope > div, :scope > article");
+        if (!cards.length) return;
+
+        const duration = idx % 2 === 0 ? 0.7 : 0.8;
+        const translateY = idx % 2 === 0 ? 30 : 40;
+
+        ScrollTrigger.create({
+          trigger: container,
+          start: "top 80%",
+          end: "bottom top",
+          onEnter: () => {
+            gsap.fromTo(
+              cards,
+              { opacity: 0, y: translateY },
+              {
+                opacity: 1,
+                y: 0,
+                duration,
+                stagger: 0.1,
+                ease: "power3.out",
+                overwrite: "auto",
+              }
+            );
 </svg>`;
