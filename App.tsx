@@ -3955,4 +3955,104 @@ export default function App() {
           return 100;
         }
         return prev + 4;
+      });
+    }, 70);
+
+    return () => {
+      clearInterval(progressTimer);
+      clearInterval(textTimer);
+    };
+  }, []);
+
+  // Back-to-top indicator, section tracking & navbar scroll reactivity
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 40);
+
+      // Smart navbar hide on scroll down, reveal on scroll up
+      if (currentY > 220) {
+        if (currentY > lastScrollY.current + 6) {
+          setNavVisible(false);
+        } else if (currentY < lastScrollY.current - 6) {
+          setNavVisible(true);
+        }
+      } else {
+        setNavVisible(true);
+      }
+      lastScrollY.current = currentY;
+
+      const scrollPosition = currentY + 250;
+      const sections = ["home", "about", "skills", "projects", "contact"];
+      
+      for (const sec of sections) {
+        const element = document.getElementById(sec);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sec);
+            break;
+          }
+        }
+      }
+      setShowScrollTop(currentY > 500);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Particle background engine (Interactive Boilerlab.ai design)
+  useEffect(() => {
+    if (loading) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animFrame: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particlePool: { x: number; y: number; vx: number; vy: number; radius: number; opacity: number }[] = [];
+    const poolCount = Math.min(80, Math.floor(width / 18));
+
+    for (let i = 0; i < poolCount; i++) {
+      particlePool.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.15
+      });
+    }
+
+    let pointer = { x: -2000, y: -2000 };
+    let lastScrollY = window.scrollY;
+    let speedFactor = 0;
+
+    const mouseMoveHandler = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+    };
+
+    const mouseLeaveHandler = () => {
+      pointer.x = -2000;
+      pointer.y = -2000;
+    };
+
+    const resizeHandler = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener("mousemove", mouseMoveHandler);
+    window.addEventListener("resize", resizeHandler);
+    document.body.addEventListener("mouseleave", mouseLeaveHandler);
+
+    const render = () => {
 </svg>`;
