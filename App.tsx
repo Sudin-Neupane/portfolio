@@ -3855,4 +3855,104 @@ export default function App() {
                 overwrite: "auto",
               }
             );
+          },
+          onLeave: () => {
+            // Exit behavior: fade opacity 1->0.5, scale 1->0.98 on scroll down
+            gsap.to(cards, {
+              opacity: 0.5,
+              scale: 0.98,
+              duration: 0.4,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(cards, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          },
+        });
+      });
+
+      // 3. GLOBAL SECTION REVEALS WITH TIMING VARIATIONS & NO BLUR
+      const revealElements = document.querySelectorAll(".gsap-reveal");
+      revealElements.forEach((el, idx) => {
+        const duration = idx % 2 === 0 ? 0.75 : 0.8;
+        const translateY = idx % 2 === 0 ? 30 : 40;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 80%",
+          end: "bottom top",
+          onEnter: () => {
+            gsap.fromTo(
+              el,
+              { opacity: 0, y: translateY },
+              {
+                opacity: 1,
+                y: 0,
+                duration,
+                ease: "power3.out",
+                overwrite: "auto",
+              }
+            );
+          },
+          onLeave: () => {
+            // Exit behavior: fade opacity 1->0.5, scale 1->0.98 on scroll down
+            gsap.to(el, {
+              opacity: 0.5,
+              scale: 0.98,
+              duration: 0.4,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(el, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          },
+        });
+      });
+
+    });
+
+    return () => ctx.revert();
+  }, [loading]);
+
+  // Loader texts for high fidelity compilation feel
+  const loaderTexts = [
+    "Compiling CSIT academic modules...",
+    "Initializing dark ambient grid matrix...",
+    "Mapping Code for Change representative nodes...",
+    "Integrating Framer Motion animation engines...",
+    "Compiling client-side database cache pools...",
+    "Launching responsive portfolio console..."
+  ];
+
+  // Dynamic Loader Progress
+  useEffect(() => {
+    const textTimer = setInterval(() => {
+      setLoadingTextIndex((prev) => (prev + 1) % loaderTexts.length);
+    }, 800);
+
+    const progressTimer = setInterval(() => {
+      setLoadingProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressTimer);
+          clearInterval(textTimer);
+          setTimeout(() => setLoading(false), 300);
+          return 100;
+        }
+        return prev + 4;
 </svg>`;
