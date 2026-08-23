@@ -4055,4 +4055,104 @@ export default function App() {
     document.body.addEventListener("mouseleave", mouseLeaveHandler);
 
     const render = () => {
+      ctx.clearRect(0, 0, width, height);
+      
+      const currentScrollY = window.scrollY;
+      const velocity = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      // Eased velocity tracking for visual decay
+      speedFactor += (velocity - speedFactor) * 0.12;
+
+      // Draw a highly stylized, dark ambient background radial cursor glow
+      if (pointer.x > -1000) {
+        const radGlow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 200);
+        radGlow.addColorStop(0, "rgba(100, 181, 246, 0.04)");
+        radGlow.addColorStop(0.5, "rgba(255, 107, 107, 0.01)");
+        radGlow.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = radGlow;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Draw and connect nodes
+      particlePool.forEach((p, idx) => {
+        // Parallax drift based on depth layers (radius proxy) and scroll speed
+        p.x += p.vx;
+        p.y += p.vy - speedFactor * 0.15 * p.radius;
+
+        // Wrap around boundaries smoothly
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        // Subtle mouse pull
+        if (pointer.x > -1000) {
+          const dx = p.x - pointer.x;
+          const dy = p.y - pointer.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < 130) {
+            const dragForce = (130 - distance) / 130;
+            p.x += (dx / distance) * dragForce * 1.2;
+            p.y += (dy / distance) * dragForce * 1.2;
+          }
+        }
+
+        // 3D vertical stretching line during scroll-warp speed thresholds
+        const stretchHeight = speedFactor * 0.45;
+        if (Math.abs(stretchHeight) > 1.2) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x, p.y - stretchHeight * p.radius * 0.7);
+          ctx.lineWidth = p.radius * 1.1;
+          ctx.strokeStyle = `rgba(100, 181, 246, ${p.opacity * 0.75})`;
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+          ctx.fill();
+        }
+
+        // Draw connection webs only during stable scroll velocities for neatness
+        if (Math.abs(speedFactor) < 12) {
+          for (let j = idx + 1; j < particlePool.length; j++) {
+            const p2 = particlePool[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.lineWidth = ((100 - dist) / 100) * 0.45;
+              ctx.strokeStyle = `rgba(100, 181, 246, ${((100 - dist) / 100) * 0.06})`;
+              ctx.stroke();
+            }
+          }
+        }
+      });
+
+      animFrame = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMoveHandler);
+      window.removeEventListener("resize", resizeHandler);
+      document.body.removeEventListener("mouseleave", mouseLeaveHandler);
+      cancelAnimationFrame(animFrame);
+    };
+  }, [loading]);
+
+  // Scroll smooth trigger helper with Lenis integration
+  const scrollSection = (id: string) => {
+    setMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(element, { duration: 1.2, offset: -80 });
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
 </svg>`;
