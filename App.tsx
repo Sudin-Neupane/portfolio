@@ -4155,4 +4155,104 @@ export default function App() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
+  };
+
+  // ---------------------------------------------------------
+  // DEVELOPER TERMINAL COMMAND PROCESSING ENGINE
+  // ---------------------------------------------------------
+  const processTerminalCommand = (commandRaw: string) => {
+    const tokens = commandRaw.trim().split(" ");
+    const primaryCmd = tokens[0].toLowerCase();
+    const args = tokens.slice(1).join(" ");
+
+    let response: string[] = [];
+
+    switch (primaryCmd) {
+      case "help":
+        response = [
+          `> ${commandRaw}`,
+          "Auditing active command registry:",
+          "  help           - Displays available interactive shell commands",
+          "  neofetch       - Prints custom ASCII visual portfolio specifications",
+          "  about          - Summarizes Sudin's academic and dev background",
+          "  skills         - Audits core language competencies",
+          "  projects       - Lists all 7 active open-source repositories",
+          "  view <id>      - View code snippet of a project (e.g., 'view crud')",
+          "  experience     - Audits industrial experience and roles",
+          "  stats          - Displays real-time GitHub/Commit metrics",
+          "  chat <msg>     - Asks the AI assistant a custom question from shell",
+          "  matrix         - Installs visual green/cyan binary digital rain flow",
+          "  contact        - Outputs email coordinates and address links",
+          "  socials        - Prints direct hyperlinks to social network nodes",
+          "  sudo <cmd>     - Elevates user node access privileges",
+          "  clear          - Flushes shell memory and output console log"
+        ];
+        break;
+      case "neofetch":
+        response = [
+          `> ${commandRaw}`,
+          "      _       sudin@neupane-portfolio",
+          "    /   \\     -----------------------",
+          "   |  S  |    OS: Ubuntu 24.04 (WSL) / React 19 Engine",
+          "    \\ _ /     Host: Asian ASMT College Web Node (Kathmandu)",
+          "              CSIT Kernel: Core v1.20.06 (BSc.CSIT student)",
+          "              Shell: bash / zsh / custom-compiled-terminal",
+          "              Uptime: Live Tech Pursuit Since SEE 2022",
+          "              Representative: Code for Change  (25/26)",
+          "              Memory Allocation: Web frontend (80%) / Database (50%)",
+          "              Aesthetic Theme: Pure Midnight Boilerlab Core"
+        ];
+        break;
+      case "about":
+        response = [
+          `> ${commandRaw}`,
+          "About Sudin Neupane:",
+          "  Age: 20 Years Old | Location: Raniban, Nagarjun, Kathmandu, Nepal",
+          "  Affiliation: BSc.CSIT student at Asian School of Management and Technology",
+          "  Tenure: Representative at Code for Change (2025/2026)",
+          "  Passions: Dynamic UI alignment, modern web architectures, local campus tech outreach."
+        ];
+        break;
+      case "skills":
+        response = [
+          `> ${commandRaw}`,
+          "Audit Technical Competency Ledger:",
+          "  HTML & CSS             [ PRODUCTION READY ]  Node: Responsive Layouts",
+          "  PHP Scripting          [ PRODUCTION READY ]  Node: Procedural Engine",
+          "  MySQL Database         [ PRODUCTION READY ]  Node: Relational Schema",
+          "  WordPress Design       [   DAILY DRIVER   ]  Node: Custom CMS Systems",
+          "  JavaScript Foundation  [    CORE STACK    ]  Node: DOM & Async Web API",
+          "  Content & SEO          [    SPECIALIST    ]  Node: Schema & High-Reach Copy",
+          "  Leadership & Pitching  [  CORE STRENGTH   ]  Node: Technical Operations"
+        ];
+        break;
+      case "projects":
+        response = [
+          `> ${commandRaw}`,
+          "Featured Open Source Repositories (7 Built):",
+          "  1. crud       - CRUD Operations App (PHP, MySQL)",
+          "  2. simple_site - Simple Website (HTML, CSS Layout)",
+          "  3. hospital   - Hospital Management System (C Language Binary)",
+          "  4. c_repo     - C Programming Repository (Recursions, DS)",
+          "  5. gesture    - Finger Gesture Control (OpenCV, MediaPipe CV)",
+          "  6. recreate   - Recreate Pages (Pixel-perfect Grid replicas)",
+          "  7. learn_py   - Learning Python System (OOP sandboxes, sorter)",
+          "Type 'view <id>' to dump code snippet (e.g. 'view gesture') or scroll to Projects section."
+        ];
+        break;
+      case "view":
+        const targetId = args.trim().toLowerCase();
+        if (!targetId) {
+          response = [
+            `> ${commandRaw}`,
+            "ERROR: Please specify a project ID. Usage: 'view <project-id>'.",
+            "Example: 'view crud', 'view hospital', 'view gesture'."
+          ];
+        } else {
+          const project = projectsData.find(p => p.id === targetId || p.id.replace("_", "").includes(targetId));
+          if (project) {
+            response = [
+              `> ${commandRaw}`,
+              `[DUMPING FILE CONTENT FOR ${project.filename.toUpperCase()}]`,
+              "--------------------------------------------------",
 </svg>`;
