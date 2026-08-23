@@ -4255,4 +4255,104 @@ export default function App() {
               `> ${commandRaw}`,
               `[DUMPING FILE CONTENT FOR ${project.filename.toUpperCase()}]`,
               "--------------------------------------------------",
+              project.codeSnippet,
+              "--------------------------------------------------",
+              `File summary: ${project.highlights.join(" // ")}`
+            ];
+          } else {
+            response = [
+              `> ${commandRaw}`,
+              `ERROR: Project '${targetId}' not detected in active repository index.`,
+              "Type 'projects' to review valid project ID codes."
+            ];
+          }
+        }
+        break;
+      case "experience":
+        response = [
+          `> ${commandRaw}`,
+          "Professional History Logs:",
+          "  1. Code for Change (2025 - 2026 Tenure)",
+          "     Role: Official College  Representative",
+          "     Focus: Tech meetups, student networking, hackathons.",
+          "  2. Freelance React & Web Development (2024 - Active)",
+          "     Role: Front-End React Developer & Custom WordPress layout setup",
+          "     Focus: Coded UI components, performance optimizations, custom responsive templates."
+        ];
+        break;
+      case "stats":
+        response = [
+          `> ${commandRaw}`,
+          "Fetching System Contribution Indices...",
+          "  Academic Commits (2024-2026): 847 Logs",
+          "  Active Sprint Status:        BSc.CSIT Core Kernel",
+          "  Current Contribution Streak: 18 consecutive days",
+          "  Yearly Density Quotient:     1,482 commits across active nodes",
+          "  Community Outreach Index:    Code for Change  Lead Coordinator",
+          "All contribution arrays verified green."
+        ];
+        break;
+      case "chat":
+        const query = args.trim();
+        if (!query) {
+          response = [
+            `> ${commandRaw}`,
+            "ERROR: Custom message required. Usage: 'chat <your-question>'."
+          ];
+        } else {
+          const answer = getSmartFallbackAnswer(query);
+          response = [
+            `> ${commandRaw}`,
+            `[Sudin AI Assistant Handshake]`,
+            `  ${answer}`
+          ];
+        }
+        break;
+      case "matrix":
+        setTerminalMatrixActive(true);
+        response = [
+          `> ${commandRaw}`,
+          "Initiating digital rain protocol...",
+          "System Node matrix sequence: EXECUTED.",
+          "Type 'exit' or 'clear' to flush digital rain loop overlay."
+        ];
+        break;
+      case "exit":
+        if (terminalMatrixActive) {
+          setTerminalMatrixActive(false);
+          response = [
+            `> ${commandRaw}`,
+            "Matrix Digital rain system deactivated. Returning to baseline Ubuntu shell."
+          ];
+        } else {
+          response = [
+            `> ${commandRaw}`,
+            "Baseline shell has no active sub-loops. Sudo 'matrix' to load sequence."
+          ];
+        }
+        break;
+      case "sudo":
+        response = [
+          `> ${commandRaw}`,
+          "Elevating user node access privileges...",
+          "  [ACCESS LEVEL: SUPERUSER GRANTED]",
+          "  Welcome back, master Sudin. Running full node diagnosis: ALL GREEN.",
+          "  Kernel status: Operational | Buffer: Clean | Power: Peak"
+        ];
+        break;
+      case "contact":
+        response = [
+          `> ${commandRaw}`,
+          "Contact Coordinates:",
+          "  Mail: sudinneupane519@gmail.com",
+          "  Loc: Raniban, Nagarjun, Kathmandu, Nepal",
+          "  Tel: +977-9865###### (Kathmandu core cell)",
+          "  Pitch Form: Bottom of this single-page dashboard"
+        ];
+        break;
+      case "socials":
+        response = [
+          `> ${commandRaw}`,
+          "Launching active social nodes:",
+          "  GitHub:    github.com/Sudin-Neupane",
 </svg>`;
