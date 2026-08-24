@@ -4355,4 +4355,104 @@ export default function App() {
           `> ${commandRaw}`,
           "Launching active social nodes:",
           "  GitHub:    github.com/Sudin-Neupane",
+          "  LinkedIn:  linkedin.com/in/sudin-neupane-84a30a260",
+          "  Twitter:   x.com/sudinneupane2",
+          "  Facebook:  facebook.com/asdffzs",
+          "  Instagram: instagram.com/sudin_neupane"
+        ];
+        break;
+      case "clear":
+        setTerminalHistory([]);
+        setTerminalInput("");
+        setTerminalMatrixActive(false);
+        return;
+      default:
+        response = [
+          `> ${commandRaw}`,
+          `Command not detected: '${primaryCmd}'. Type 'help' to review directory.`
+        ];
+    }
+
+    setTerminalHistory((prev) => [...prev, ...response]);
+    setTerminalInput("");
+
+    // Scroll ONLY the terminal inner container, NOT the whole browser window
+    setTimeout(() => {
+      if (terminalLogsContainerRef.current) {
+        terminalLogsContainerRef.current.scrollTop = terminalLogsContainerRef.current.scrollHeight;
+      }
+    }, 30);
+  };
+
+  const handleTerminalSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const commandRaw = terminalInput.trim();
+    if (!commandRaw) return;
+    processTerminalCommand(commandRaw);
+  };
+
+  const executeShortcutCommand = (cmd: string) => {
+    processTerminalCommand(cmd);
+  };
+
+  // ---------------------------------------------------------
+  // INTERACTIVE CHATBOT BOT ENGINE
+  // ---------------------------------------------------------
+  const renderMessageText = (text: string) => {
+    // Splits text by triple-backticks to separate code blocks from prose
+    const parts = text.split(/(```[\s\S]*?```)/g);
+    
+    return parts.map((part, idx) => {
+      if (part.startsWith("```") && part.endsWith("```")) {
+        const lines = part.slice(3, -3).trim().split("\n");
+        let language = "code";
+        let code = part.slice(3, -3).trim();
+        
+        // Detect language prefix if available
+        if (lines.length > 1 && /^[a-zA-Z0-9+#-]+$/.test(lines[0])) {
+          language = lines[0];
+          code = lines.slice(1).join("\n");
+        }
+        
+        return (
+          <div key={idx} className="my-2.5 font-mono text-[10px] sm:text-xs text-left">
+            <div className="bg-[#0A0A0A] border-t border-x border-[#262626] rounded-t-lg px-3 py-1.5 flex justify-between items-center text-[#8A8A8A] font-bold uppercase tracking-wider text-[9px]">
+              <span>{language}</span>
+              <span className="text-white font-normal">Active Script</span>
+            </div>
+            <pre className="bg-[#000000] border-b border-x border-[#262626] p-3 rounded-b-lg overflow-x-auto text-[#EDEDED] leading-normal scrollbar-thin max-h-[250px]">
+              <code>{code}</code>
+            </pre>
+          </div>
+        );
+      }
+      
+      // Split by single backticks for inline code styling
+      const inlineParts = part.split(/(`[^`]+`)/g);
+      const inlineParsed = inlineParts.map((subPart, subIdx) => {
+        if (subPart.startsWith("`") && subPart.endsWith("`")) {
+          return (
+            <code key={subIdx} className="bg-[#0A0A0A] border border-[#262626] px-1.5 py-0.5 rounded text-white font-mono font-bold text-[10px]">
+              {subPart.slice(1, -1)}
+            </code>
+          );
+        }
+        
+        // Split by double-asterisks for strong bold markup
+        const boldParts = subPart.split(/(\*\*[^*]+\*\*)/g);
+        return boldParts.map((boldPart, boldIdx) => {
+          if (boldPart.startsWith("**") && boldPart.endsWith("**")) {
+            return (
+              <strong key={boldIdx} className="text-white font-bold">
+                {boldPart.slice(2, -2)}
+              </strong>
+            );
+          }
+          return boldPart;
+        });
+      });
+
+      return <span key={idx} className="whitespace-pre-line leading-relaxed">{inlineParsed}</span>;
+    });
+  };
 </svg>`;
