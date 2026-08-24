@@ -4755,4 +4755,104 @@ export default function App() {
             >
               <span>Explore GitHub Repos</span>
               <ExternalLink className="w-4 h-4" />
+            </a>
+          </motion.div>
+        )}
+      </motion.header>
+
+      {/* 3. HERO EXPLORE CONTAINER (Interactive Particles background & Developer Command Terminal) */}
+      <ThreeDScrollSection id="home" className="relative pt-36 pb-24 md:py-40 min-h-screen flex items-center justify-center">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left bio presentation card */}
+            <div className="lg:col-span-6 flex flex-col text-left">
+              {/* Dynamic Coordinate badge & Role Indicator Dots */}
+              <div className="flex items-center justify-between gap-3 mb-6 max-w-lg">
+                <div className="gsap-hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#262626] bg-[#0A0A0A] text-[#8A8A8A] font-mono text-xs w-fit">
+                  <span className="relative flex h-2 w-2">
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 animate-ping"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                  </span>
+                  <span className="text-white font-bold">{heroRolesData[heroRoleIdx].tag}</span>
+                </div>
+
+                {/* Manual Role Selector Dots */}
+                <div className="flex items-center gap-1.5 bg-[#0A0A0A] px-2.5 py-1 rounded-full border border-[#262626]">
+                  {heroRolesData.map((r, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setHeroRoleIdx(idx)}
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        idx === heroRoleIdx ? "bg-white w-5" : "bg-[#262626] hover:bg-[#5C5C5C] w-2"
+                      }`}
+                      title={`Switch view to ${r.tag}`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Huge Display Name */}
+              <h1 className="gsap-hero-title text-5xl md:text-7xl font-bold font-display tracking-tight text-[#FFFFFF] mb-4 leading-[1.05]">
+                SUDIN <span className="text-[#8A8A8A]">NEUPANE</span>
+              </h1>
+
+              {/* Dynamic Subtitle & Paragraph changing in sync */}
+              <div className="min-h-[150px] mb-4">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={heroRoleIdx}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <p className="gsap-hero-sub text-base md:text-lg font-mono text-white font-semibold mb-3">
+                      {heroRolesData[heroRoleIdx].subtitle}
+                    </p>
+
+                    <p className="gsap-hero-desc text-[#8A8A8A] text-sm md:text-base leading-relaxed mb-4 max-w-lg">
+                      {heroRolesData[heroRoleIdx].paragraph}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Bento statistical grid indicators with cycling stat sets */}
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-2 max-w-md">
+                  <span className="text-[10px] font-mono text-[#5C5C5C] uppercase tracking-wider font-bold">TELEMETRY STATS MATRIX</span>
+                  <div className="flex items-center gap-1">
+                    {heroStatsSets.map((_, sIdx) => (
+                      <button
+                        key={sIdx}
+                        onClick={() => setHeroStatsIdx(sIdx)}
+                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                          sIdx === heroStatsIdx ? "bg-white w-4" : "bg-[#262626] w-1.5"
+                        }`}
+                        title={`View Stat Set ${sIdx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={heroStatsIdx}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="grid grid-cols-3 gap-4 max-w-md"
+                  >
+                    {heroStatsSets[heroStatsIdx].map((st, i) => (
+                      <div key={i} className="p-3.5 rounded-xl border border-[#262626] bg-[#0A0A0A] hover:border-[#5C5C5C] transition-all font-mono">
+                        <div className="text-[#FFFFFF] text-xl font-bold">
+                          <AnimatedGSAPCounter value={st.value} suffix={st.suffix} decimals={st.isDecimal ? 1 : 0} />
+                        </div>
+                        <div className="text-[#5C5C5C] text-[10px] uppercase tracking-wider mt-0.5 truncate">{st.label}</div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
 </svg>`;
