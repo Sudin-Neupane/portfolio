@@ -4455,4 +4455,104 @@ export default function App() {
       return <span key={idx} className="whitespace-pre-line leading-relaxed">{inlineParsed}</span>;
     });
   };
+
+  const handleChatQuestion = async (text: string) => {
+    if (isBotThinking) return;
+    
+    // Add User message
+    const userMessage = { sender: "user", text } as const;
+    setChatLog((prev) => [...prev, userMessage]);
+    setIsBotThinking(true);
+
+    // Scroll ONLY the chat container, NOT the whole browser window
+    setTimeout(() => {
+      if (chatLogsContainerRef.current) {
+        chatLogsContainerRef.current.scrollTop = chatLogsContainerRef.current.scrollHeight;
+      }
+    }, 30);
+
+    try {
+      // Query our server-side secure Gemini AI proxy
+      const response = await fetch("/api/gemini", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          messages: [...chatLog, userMessage]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Service returned an unsuccessful response status.");
+      }
+
+      const data = await response.json();
+      const botReply = data.text || "I processed your request, but returned an empty response. Let's try again.";
+
+      setChatLog((prev) => [...prev, { sender: "bot", text: botReply }]);
+    } catch (err) {
+      console.warn("Gemini service handshake offline, routing query through fallback NLP matcher:", err);
+      
+      // Robust client-side fallback system using centralized matcher
+      const matchingAnswer = getSmartFallbackAnswer(text);
+
+      // Simulate a brief natural delay for the fallback
+      await new Promise(resolve => setTimeout(resolve, 800));
+      setChatLog((prev) => [...prev, { sender: "bot", text: matchingAnswer }]);
+    } finally {
+      setIsBotThinking(false);
+      setTimeout(() => {
+        if (chatLogsContainerRef.current) {
+          chatLogsContainerRef.current.scrollTop = chatLogsContainerRef.current.scrollHeight;
+        }
+      }, 30);
+    }
+  };
+
+  const handleCustomChatSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+    const text = chatInput.trim();
+    setChatInput("");
+    handleChatQuestion(text);
+  };
+
+  // ---------------------------------------------------------
+  // EMAIL DISPATCH FORM CONTROLS
+  // ---------------------------------------------------------
+  const handleContactSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!formName.trim() || !formEmail.trim() || !formMessage.trim()) {
+      setFormStatus({ type: "error", text: "Please populate all fields before dispatching mail." });
+      return;
+    }
+
+    if (!formEmail.includes("@") || !formEmail.includes(".")) {
+      setFormStatus({ type: "error", text: "Verified email format required for contact handshake." });
+      return;
+    }
+
+    const subjectLine = encodeURIComponent(`Portfolio Handshake Pitch from ${formName}`);
+    const bodyContent = encodeURIComponent(
+      `Hello Sudin,\n\nI visited your portfolio website and would like to reach out regarding a tech opportunity / collaboration.\n\nSender Name: ${formName}\nSender Email: ${formEmail}\n\nMessage Details:\n${formMessage}\n\nBest regards,\n${formName}`
+    );
+
+    const mailtoUrl = `mailto:sudinneupane519@gmail.com?subject=${subjectLine}&body=${bodyContent}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=sudinneupane519@gmail.com&su=${subjectLine}&body=${bodyContent}`;
+
+    // Try opening Gmail Web Compose in new tab first for reliable web client delivery
+    try {
+      const win = window.open(gmailUrl, "_blank");
+      if (!win) {
+        window.location.href = mailtoUrl;
+      }
+    } catch {
+      window.location.href = mailtoUrl;
+    }
+
+    setFormStatus({ 
+      type: "success", 
+      text: `Dispatching email directly to sudinneupane519@gmail.com... If your mail client didn't open automatically, click below.` 
+    });
 </svg>`;
