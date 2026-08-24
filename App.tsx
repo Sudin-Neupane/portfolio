@@ -4655,4 +4655,104 @@ export default function App() {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <nav className={`flex items-center justify-between transition-all duration-300 ${
+          scrolled 
+            ? "px-5 py-2.5 rounded-full border border-[#333333] bg-[#0A0A0A]/85 backdrop-blur-2xl shadow-[0_10px_38px_rgba(0,0,0,0.8)]"
+            : "px-6 py-3.5 rounded-2xl border border-[#262626] bg-[#000000]/90 backdrop-blur-xl"
+        }`}>
+          {/* Brand Identity */}
+          <div 
+            onClick={() => scrollSection("home")}
+            className="flex items-center gap-2.5 cursor-pointer group"
+          >
+            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-sm">
+              <span className="text-xs font-bold font-mono text-black">SN</span>
+            </div>
+            <span className="text-sm font-bold tracking-wide text-white group-hover:text-[#A78BFA] transition-colors">
+              Sudin Neupane
+            </span>
+            <span className="hidden sm:inline-block w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse ml-1" title="Online Node" />
+          </div>
+
+          {/* Desktop Links with Active Animated Pill */}
+          <ul className="hidden md:flex items-center gap-1 bg-[#121212]/90 p-1.5 rounded-full border border-[#262626]">
+            {["home", "about", "skills", "projects", "contact"].map((sec) => {
+              const isActive = activeSection === sec;
+              return (
+                <li key={sec} className="relative">
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-nav-pill"
+                      className="absolute inset-0 bg-white rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <button
+                    onClick={() => scrollSection(sec)}
+                    className={`relative z-10 px-4 py-1.5 text-[11px] uppercase tracking-widest font-mono transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? "text-black font-bold"
+                        : "text-[#8A8A8A] hover:text-white"
+                    }`}
+                  >
+                    {sec}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Social node trigger quick action */}
+          <div className="hidden md:flex">
+            <a 
+              href="https://github.com/Sudin-Neupane" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-4 py-1.5 text-[10px] uppercase tracking-widest font-mono font-bold rounded-full border border-[#333333] hover:border-white bg-[#151515] hover:bg-white hover:text-black text-white transition-all duration-300 group cursor-pointer shadow-sm"
+            >
+              <span>GitHub</span>
+              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+            </a>
+          </div>
+
+          {/* Hamburger trigger for mobile devices */}
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 text-[#8A8A8A] hover:text-white transition-colors"
+            aria-label="Toggle Navigation Screen"
+          >
+            {menuOpen ? <X className="w-5.5 h-5.5" /> : <Menu className="w-5.5 h-5.5" />}
+          </button>
+        </nav>
+
+        {/* Mobile Navigation Dropdown */}
+        {menuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="absolute top-16 left-0 right-0 p-4 rounded-2xl border border-[#333333] bg-[#0A0A0A]/95 backdrop-blur-2xl shadow-2xl flex flex-col gap-1.5 mt-2 md:hidden"
+          >
+            {["home", "about", "skills", "projects", "contact"].map((sec) => (
+              <button
+                key={sec}
+                onClick={() => {
+                  scrollSection(sec);
+                  setMenuOpen(false);
+                }}
+                className={`w-full py-3 px-4 text-left text-xs uppercase tracking-widest font-mono rounded-xl transition-all ${
+                  activeSection === sec
+                    ? "text-black bg-white font-bold"
+                    : "text-[#8A8A8A] hover:text-white hover:bg-[#161616]"
+                }`}
+              >
+                {sec}
+              </button>
+            ))}
+            <a 
+              href="https://github.com/Sudin-Neupane" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-between py-3 px-4 text-xs uppercase tracking-widest font-mono text-white border border-[#333333] rounded-xl bg-[#151515] mt-2 underline"
+            >
+              <span>Explore GitHub Repos</span>
+              <ExternalLink className="w-4 h-4" />
 </svg>`;
