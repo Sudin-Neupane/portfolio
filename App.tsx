@@ -4555,4 +4555,104 @@ export default function App() {
       type: "success", 
       text: `Dispatching email directly to sudinneupane519@gmail.com... If your mail client didn't open automatically, click below.` 
     });
+
+    setTimeout(() => {
+      setFormName("");
+      setFormEmail("");
+      setFormMessage("");
+      setCharCount(0);
+    }, 6000);
+  };
+
+  const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
+    setFormMessage(text);
+    setCharCount(text.length);
+  };
+
+  // Copy code utility for the Mock IDE
+  const handleCopyCode = (snippet: string) => {
+    navigator.clipboard.writeText(snippet);
+    setCopysuccess(true);
+    setTimeout(() => setCopysuccess(false), 2000);
+  };
+
+  // Filter skills and projects
+  const filteredSkills = useMemo(() => {
+    if (skillCategory === "all") return skillsData;
+    return skillsData.filter((s) => s.category === skillCategory);
+  }, [skillCategory]);
+
+  const filteredProjects = useMemo(() => {
+    if (projectFilter === "all") return projectsData;
+    return projectsData.filter((p) => p.category === projectFilter);
+  }, [projectFilter]);
+
+  // Adjust selected index if filtering changes active project index bounds
+  const currentProjects = filteredProjects;
+  const safeProjectIdx = activeProjectIdx >= currentProjects.length ? 0 : activeProjectIdx;
+  const activeProject = currentProjects[safeProjectIdx];
+
+  return (
+    <div className="relative min-h-screen bg-[#000000] text-[#EDEDED] font-sans overflow-x-hidden selection:bg-[#EDEDED] selection:text-[#000000]">
+      
+      {/* Dynamic Background Layout Canvas */}
+      <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-10" />
+
+      {/* Interactive 3D Hologram Inspector Popup Modal */}
+      <AnimatePresence mode="wait">
+        {selectedHologramProject && (
+          <HologramInspector 
+            project={selectedHologramProject} 
+            onClose={() => setSelectedHologramProject(null)} 
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Grid overlay */}
+      <div className="fixed inset-0 pointer-events-none grid-overlay z-0 opacity-[0.2]" />
+
+      {/* 1. HIGH-TECH INITIAL COMPILATION SCREEN */}
+      {loading && (
+        <div className="fixed inset-0 bg-[#000000] z-50 flex flex-col items-center justify-center font-mono p-6">
+          <div className="relative flex flex-col items-center max-w-sm w-full text-center">
+            {/* Visual Loader Shell */}
+            <div className="w-16 h-16 rounded-2xl border border-[#262626] bg-[#0A0A0A] flex items-center justify-center animate-pulse mb-8">
+              <span className="text-2xl font-bold font-display text-white">S</span>
+            </div>
+            
+            <h1 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/95 mb-1 font-display">SUDIN NEUPANE</h1>
+            <p className="text-[10px] text-[#8A8A8A] uppercase tracking-widest font-semibold mb-8">PORTFOLIO COMPILER</p>
+
+            {/* Dynamic Message Tracker */}
+            <p className="text-[10px] text-[#8A8A8A] h-6 mb-4 select-none">
+              &gt; {loaderTexts[loadingTextIndex]}
+            </p>
+
+            {/* Micro progress bar */}
+            <div className="w-full h-1 bg-[#0A0A0A] rounded-full overflow-hidden border border-[#262626] relative">
+              <div 
+                className="h-full bg-white transition-all duration-150 ease-out"
+                style={{ width: `${loadingProgress}%` }}
+              />
+            </div>
+            
+            <div className="flex justify-between items-center w-full mt-2 text-[10px] text-[#8A8A8A] font-mono">
+              <span>STATUS: BOOTING</span>
+              <span>{loadingProgress}%</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. STICKY FROSTED FIXED NAVIGATION MENU WITH SCROLL REACTIVITY */}
+      <motion.header 
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300"
+        animate={{
+          y: navVisible ? 0 : -100,
+          opacity: navVisible ? 1 : 0
+        }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <nav className={`flex items-center justify-between transition-all duration-300 ${
 </svg>`;
