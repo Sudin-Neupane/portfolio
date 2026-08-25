@@ -5055,4 +5055,104 @@ export default function App() {
               {
                 id: "111_days_learning",
                 title: "111 Days of Learning Challenge",
+                subtitle: "111 Days Challenge",
+                desc: "Completed the 111 Days of Learning for Change challenge by Code for Change, building consistency, discipline, and practical technical skills through daily learning and public progress sharing.",
+                tag: "Certification",
+                certTitle: "Certificate of Completion â€” 111 Days of Learning",
+                certIssuer: "111 Days of Learning Technical Initiative",
+                certDate: "2026",
+                certBadge: "Verified Challenge Achiever",
+                certDetails: [
+                  "Continuous Daily Technical Posts & Deep Dives on LinkedIn",
+                  "Covered Core CS, Full-Stack Architecture, and System Design",
+                  "Awarded Verified Certificate of Completion",
+                  "111/111 Days Continuous Milestone Completion"
+                ]
+              },
+              {
+                id: "codefest_2026",
+                title: "Codefest 2026 Provincial Phase",
+                subtitle: "Codefest 2026",
+                desc: "Organized Codefest 2026 Provincial Phase as a core member of the Technology Team, managing developer competition platforms, event logistics, and technical operations.",
+                tag: "Tech Team Organizer",
+                certTitle: "Codefest 2026 Provincial Phase Organizer Certificate",
+                certIssuer: "Codefest 2026 Technical Committee",
+                certDate: "2026",
+                certBadge: "Technology Team Lead Organizer",
+                certDetails: [
+                  "Provincial Phase Technical Operations & Platform Setup",
+                  "Developer Competition Management & Judging Portal",
+                  "Student Tech Community Engagement & Coordination",
+                  "Official Recognition as Technology Team Member"
+                ]
+              }
+            ]} />
+          </div>
+
+          {/* Single - Mid Profile Node with Progressive Scroll Reveal */}
+          <ScrollProgressiveProfileCard />
+
+          {/* Split 7 About Cards (3 Cards Left, 4 Cards Right on Scroll) */}
+          <ScrollSplitAttributeCards cards={aboutCardsData} />
+
+        </div>
+      </ClipPathMaskSection>
+
+      {/* 5. SKILLS MATRIX SECTION (Detail Tooltips, Filters & Intel Roshi Travels Experience Spot) */}
+      <ClipPathMaskSection id="skills" maskType="radial" className="py-24 border-t border-white/5 bg-[#000000]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          
+          {/* Section Heading - TECHNICAL from left, ABILITIES from right to center */}
+          <ScrollMergeTechnicalHeader />
+
+          {/* Grid category toggle controls */}
+          <div className="flex flex-wrap justify-center gap-1.5 mb-12">
+            {[
+              { id: "all", label: "All Skills" },
+              { id: "frontend", label: "Front-End Dev" },
+              { id: "backend", label: "Backend & SQL" },
+              { id: "seo_management", label: "SEO & Content Optimization" },
+              { id: "core", label: "Core Competencies" }
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSkillCategory(cat.id as any)}
+                className={`px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-200 cursor-pointer ${
+                  skillCategory === cat.id
+                    ? "bg-white border-white text-black font-bold"
+                    : "bg-[#0A0A0A] border-[#262626] text-[#8A8A8A] hover:text-white hover:border-[#5C5C5C]"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Skills Grid Cards - First 4 in 3D wave, then next 4, then next 4 */}
+          <ThreeDBatchSkillsGrid skills={filteredSkills} />
+
+          {/* Community Leadership & Dev Spotlight (Code for Change Nepal Showcase) */}
+          <div className="mt-12 p-6 rounded-2xl border border-[#262626] bg-[#0A0A0A] flex flex-col lg:flex-row items-center justify-between gap-8 text-left hover:border-[#5C5C5C] transition-colors">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-[#000000] border border-[#262626] flex items-center justify-center text-white shrink-0">
+                <Users className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-[#FFFFFF] border border-[#262626] px-2 py-0.5 rounded-full font-bold">Community Outreach Spotlight</span>
+                <h4 className="text-base font-bold font-display text-white mt-2">College Representative // Code for Change Nepal</h4>
+                <p className="text-xs text-[#8A8A8A] leading-relaxed mt-1.5 max-w-xl">
+                  Coordinating student IT workshops, establishing active peer developer networks across Asian College, and promoting open-source technical collaboration in Kathmandu. Successfully empowering student engineering squads.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 shrink-0 w-full lg:w-auto justify-end border-t border-[#262626] lg:border-none pt-4 lg:pt-0">
+              <div className="text-right font-mono text-[10px] text-[#5C5C5C] leading-tight">
+                <div className="text-white font-bold">2025 - 2026 tenure</div>
+                <div>CFC Official Representative</div>
+              </div>
+              <button 
+                onClick={() => scrollSection("contact")}
+                className="flex items-center gap-1.5 px-5 py-3 rounded-xl border border-[#262626] hover:border-white text-xs font-mono uppercase tracking-widest bg-white text-black hover:bg-[#E8E6E1] transition-all cursor-pointer font-bold"
+              >
 </svg>`;
