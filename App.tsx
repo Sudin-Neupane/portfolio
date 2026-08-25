@@ -4955,4 +4955,104 @@ export default function App() {
                         }`}
                       >
                         {line}
+                      </div>
+                    );
+                  })}
+                  {/* Terminal history feed contents */}
+                </div>
+
+                {/* Interactive command inputs */}
+                <form onSubmit={handleTerminalSubmit} className="flex items-center border-t border-[#262626] bg-[#0A0A0A] relative z-40 px-3 py-1">
+                  <span className="text-[#4ADE80] font-bold text-xs select-none pr-2">&gt;&gt;</span>
+                  <input
+                    type="text"
+                    placeholder="Type 'help' or select shortcuts..."
+                    value={terminalInput}
+                    onChange={(e) => setTerminalInput(e.target.value)}
+                    className="flex-1 px-1 py-2 text-xs bg-transparent text-[#4ADE80] font-mono outline-none placeholder:text-[#5C5C5C] focus:outline-none"
+                    aria-label="Developer Shell command input"
+                  />
+                  <span className="inline-block w-2 h-4 bg-[#4ADE80] animate-cursor-blink mr-2" />
+                  <button 
+                    type="submit" 
+                    className="px-3 py-1.5 text-white hover:text-[#4ADE80] hover:bg-[#161616] transition-all border-l border-[#262626] rounded-r-md cursor-pointer"
+                    aria-label="Execute command"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
+                </form>
+
+                {/* Micro Command Preset Chips */}
+                <div className="px-4 py-2 bg-[#050505] border-t border-[#262626] flex flex-wrap gap-1.5 items-center">
+                  <span className="text-[9px] uppercase text-[#5C5C5C] tracking-wider font-bold">Shortcuts:</span>
+                  {["neofetch", "skills", "experience", "socials", "clear"].map((cmd) => (
+                    <button
+                      key={cmd}
+                      type="button"
+                      onClick={() => executeShortcutCommand(cmd)}
+                      className="px-2.5 py-1 text-[10px] bg-[#0A0A0A] hover:bg-[#161616] border border-[#262626] text-[#4ADE80] hover:text-white rounded-md transition-all cursor-pointer font-mono"
+                    >
+                      {cmd}
+                    </button>
+                  ))}
+                </div>
+
+              </TiltCard>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Bouncing down navigation indicator with GSAP scroll handler */}
+        <div 
+          onClick={() => scrollSection("about")}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer opacity-80 gsap-scroll-indicator z-30 group"
+        >
+          <span className="text-[10px] uppercase tracking-[0.25em] font-mono text-[#8A8A8A] group-hover:text-white transition-colors">SCROLL TO AUDIT</span>
+          <ChevronDown className="w-4 h-4 text-white animate-bounce" />
+        </div>
+      </ThreeDScrollSection>
+
+      <SignatureProceduralDivider 
+        label="SECTION 02 // ACADEMIC & OUTREACH MATRIX" 
+        codeSnippet="struct Developer { char *name; int age; char *college; };" 
+      />
+
+      {/* 4. ABOUT SECTION & INTERACTIVE ACADEMIC TIMELINE ROADMAP */}
+      <ClipPathMaskSection id="about" maskType="curtain" className="py-24 border-t border-[#262626] bg-[#000000]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          
+          {/* Chapter II Title Banner - Turns page like next chapter */}
+          <BookChapterPageTurn />
+
+          {/* Interactive Educational Timeline Roadmap with Left & Right scroll-driven motion */}
+          <ScrollDrivenRoadmapTimeline 
+            timelineData={timelineData}
+            timelineActiveIdx={timelineActiveIdx}
+            setTimelineActiveIdx={setTimelineActiveIdx}
+          />
+
+          {/* Academic Roadmap Milestones & Verified Credentials */}
+          <div className="mb-12">
+            <GSAPHorizontalScrollRow cards={[
+              {
+                id: "asianhack_2026",
+                title: "AsianHack 2026 // CivicFlow",
+                subtitle: "AsianHack 2026",
+                desc: 'Participated in AsianHack 2026 with team "PRIMORDIALS", developing "CivicFlow" :a comprehensive civic tech platform that won the prestigious Professionalism Award.',
+                tag: "Hackathon Award",
+                certTitle: "AsianHack 2026 Professionalism Award",
+                certIssuer: "AsianHack 2026 Organizing Committee",
+                certDate: "2026",
+                certBadge: "Professionalism Award Winner",
+                certDetails: [
+                  'Team: PRIMORDIALS',
+                  'Project: CivicFlow (Full-Stack Web App)',
+                  'Award: Professionalism & Architectural Excellence',
+                  'Category: Civic Tech & Municipal Digital Platform'
+                ]
+              },
+              {
+                id: "111_days_learning",
+                title: "111 Days of Learning Challenge",
 </svg>`;
