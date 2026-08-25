@@ -4855,4 +4855,104 @@ export default function App() {
                     ))}
                   </motion.div>
                 </AnimatePresence>
+              </div>
+
+              {/* Trigger CTAs */}
+              <div className="gsap-hero-cta flex flex-wrap gap-4 items-center">
+                <button 
+                  onClick={() => scrollSection("projects")}
+                  className="px-6 py-3.5 rounded-xl font-mono text-xs uppercase tracking-wider font-bold bg-[#FFFFFF] hover:bg-[#E8E6E1] text-[#000000] transition-all duration-200 cursor-pointer"
+                >
+                  Verify Projects
+                </button>
+                <button 
+                  onClick={() => scrollSection("contact")}
+                  className="px-6 py-3.5 rounded-xl font-mono text-xs uppercase tracking-wider font-bold border border-[#262626] hover:border-[#5C5C5C] bg-[#0A0A0A] hover:bg-[#161616] text-[#FFFFFF] transition-all duration-200 cursor-pointer underline decoration-[#5C5C5C] underline-offset-4"
+                >
+                  Contact Handshake
+                </button>
+              </div>
+            </div>
+
+            {/* Right column: ACTIVE DEVS TERMINAL WIDGET */}
+            <div className="lg:col-span-6 flex flex-col w-full relative" data-velocity-reactive data-parallax-depth="0.6">
+              {/* Developer Shell terminal casing */}
+              <TiltCard className="w-full rounded-2xl border border-[#262626] bg-[#050505] shadow-none overflow-hidden font-mono text-left relative terminal-container">
+                
+                {/* Bar Controls */}
+                <div className="flex items-center justify-between px-4 py-3 bg-[#0A0A0A] border-b border-[#262626] relative z-40">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-[#262626]" />
+                    <span className="w-3 h-3 rounded-full bg-[#5C5C5C]" />
+                    <span className="w-3 h-3 rounded-full bg-[#8A8A8A]" />
+                  </div>
+                  <div className="flex items-center gap-2 text-[10px] text-[#8A8A8A] uppercase tracking-widest">
+                    <Terminal className="w-3.5 h-3.5 text-[#4ADE80]" />
+                    <span className="text-white font-bold">sudin@neupane:~</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse" />
+                    <span className="text-[10px] text-[#4ADE80] font-bold tracking-widest">ONLINE</span>
+                  </div>
+                </div>
+
+                {/* Scrubbed Scroll Typing Command Bar */}
+                <div data-terminal-scroll-type className="px-4 py-2 bg-[#0A0A0A] border-b border-[#262626] font-mono text-[11px] flex items-center gap-2 select-none">
+                  <span className="text-[#4ADE80] font-bold">sudin@neupane:~$</span>
+                  <span data-type-target data-full-text="sudin --run portfolio-compiler --mode=production --optimize=true" className="text-[#4ADE80] font-mono"></span>
+                  <span className="inline-block w-2 h-3.5 bg-[#4ADE80] animate-cursor-blink ml-0.5 align-middle" />
+                </div>
+
+                {/* Matrix Rain Overlay */}
+                {terminalMatrixActive && (
+                  <div className="absolute inset-x-0 top-[70px] bottom-0 bg-[#050505]/95 z-30 font-mono text-[#4ADE80] p-4 overflow-hidden text-[9px] select-none opacity-95 pointer-events-none">
+                    <div className="flex justify-around h-full opacity-30">
+                      {Array.from({ length: 15 }).map((_, i) => {
+                        const delay = (i % 5) * 0.4;
+                        return (
+                          <div 
+                            key={i} 
+                            className="flex flex-col gap-1 h-fit"
+                            style={{
+                              animation: `slideDown ${2 + (i % 3)}s infinite linear`,
+                              animationDelay: `${delay}s`
+                            }}
+                          >
+                            {Array.from({ length: 25 }).map((_, j) => (
+                              <span key={j}>{(i + j) % 2 === 0 ? "1" : "0"}</span>
+                            ))}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {/* Absolute center escape label */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/80">
+                      <div className="px-3 py-1.5 rounded-lg border border-[#262626] bg-[#050505] text-[#4ADE80] font-bold uppercase tracking-wider text-[10px]">
+                        Matrix active // type 'exit' or 'clear'
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Shell History Feed */}
+                <div ref={terminalLogsContainerRef} className="p-5 h-60 overflow-y-auto text-xs flex flex-col gap-2.5 relative z-20 bg-[#050505]">
+                  {terminalHistory.map((line, idx) => {
+                    const isPromptLine = line.startsWith(">");
+                    const isErrorLine = line.includes("ERROR:");
+                    return (
+                      <div 
+                        key={idx} 
+                        className={`whitespace-pre-wrap leading-relaxed font-mono ${
+                          isPromptLine 
+                            ? "text-[#4ADE80] font-semibold" 
+                            : isErrorLine 
+                            ? "bg-[#1A1010] text-[#F87171] border border-[#F87171]/30 p-2 rounded-lg font-bold" 
+                            : line.includes("[ACCESS LEVEL:")
+                            ? "text-[#8A8A8A]"
+                            : line.includes("[DUMPING FILE")
+                            ? "text-white font-semibold"
+                            : "text-[#8A8A8A]"
+                        }`}
+                      >
+                        {line}
 </svg>`;
