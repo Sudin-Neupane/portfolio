@@ -5155,4 +5155,104 @@ export default function App() {
                 onClick={() => scrollSection("contact")}
                 className="flex items-center gap-1.5 px-5 py-3 rounded-xl border border-[#262626] hover:border-white text-xs font-mono uppercase tracking-widest bg-white text-black hover:bg-[#E8E6E1] transition-all cursor-pointer font-bold"
               >
+                <span>Coordinate Bootcamp</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* GSAP Infinite Partner / Tech Skills Marquee */}
+          <div className="mt-12 gsap-reveal">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block text-center mb-2">
+              Continuous Motion Skill & Technology Index
+            </span>
+            <GSAPInfiniteMarquee items={skillsData.map(s => ({ name: s.name, category: s.category }))} />
+          </div>
+
+        </div>
+      </ClipPathMaskSection>
+
+      {/* Section Divider */}
+
+      <SignatureProceduralDivider 
+        label="SECTION 04 // FEATURED REPOSITORIES & IDE WORKSPACE" 
+        codeSnippet="git commit -m 'feat: custom procedural compiler engine v2.0'" 
+      />
+
+      {/* 6. INTERACTIVE IDE WORKSPACE & FEATURED REPOSITORIES */}
+      <ClipPathMaskSection id="projects" maskType="diagonal" className="py-24 border-t border-[#262626] bg-[#000000]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          
+          {/* Section Heading */}
+          <div className="text-center max-w-xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8A8A8A] mb-2 block">Craftsman Hub</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4" data-pop-words>
+              FEATURED <span className="text-[#8A8A8A]">PROJECTS</span>
+            </h2>
+            <div className="w-12 h-1 bg-[#262626] mx-auto rounded-full mb-4" />
+            <p className="text-[#8A8A8A] text-sm leading-relaxed">
+              Explore my academic software scripts, low-level binary compilers, OpenCV coordinates, and PHP operations inside an interactive IDE.
+            </p>
+          </div>
+
+          {/* Project Filtering selectors */}
+          <div className="flex flex-wrap justify-center gap-1.5 mb-12">
+            {[
+              { id: "all", label: "All Repos (7)" },
+              { id: "web", label: "Web Applications" },
+              { id: "c", label: "C Programming" },
+              { id: "ai", label: "Computer Vision" },
+              { id: "py", label: "Python Core" }
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setProjectFilter(cat.id as any);
+                  setActiveProjectIdx(0);
+                }}
+                className={`px-4.5 py-2 rounded-xl text-xs uppercase tracking-widest font-mono border transition-all duration-200 cursor-pointer ${
+                  projectFilter === cat.id
+                    ? "bg-white border-white text-black font-bold"
+                    : "bg-[#0A0A0A] border-[#262626] text-[#8A8A8A] hover:text-white hover:border-[#5C5C5C]"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* IDE Workspace Shell Wrapper */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start text-left" data-stagger-cards>
+            
+            {/* Sidebar list: Selected categories projects list */}
+            <div className="lg:col-span-4 flex flex-col gap-2.5 w-full">
+              <div className="p-3.5 bg-[#000000] border border-[#262626] rounded-t-xl text-[10px] font-mono text-[#8A8A8A] uppercase tracking-wider flex items-center justify-between">
+                <span>Repository Directory</span>
+                <span>{currentProjects.length} isolated files</span>
+              </div>
+              
+              <div className="flex flex-col gap-2.5 max-h-[460px] overflow-y-auto pr-1">
+                {currentProjects.map((project, idx) => {
+                  const isActive = idx === safeProjectIdx;
+                  return (
+                    <button
+                      key={project.id}
+                      onClick={() => setActiveProjectIdx(idx)}
+                      className={`w-full text-left p-4 rounded-xl border transition-all duration-200 relative overflow-hidden flex flex-col justify-between h-32 cursor-pointer ${
+                        isActive
+                          ? "bg-[#262626] border-[#5C5C5C] text-white"
+                          : "bg-[#0A0A0A] border-[#262626] text-[#8A8A8A] hover:text-white hover:bg-[#161616]"
+                      }`}
+                    >
+                      <div>
+                        {/* File extension indicator tag */}
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-[#5C5C5C]">
+                            {project.category === "web" ? "web.stack" :
+                             project.category === "c" ? "procedural.c" :
+                             project.category === "ai" ? "neural.py" : "core.py"}
+                          </span>
+                          {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                        </div>
+
 </svg>`;
