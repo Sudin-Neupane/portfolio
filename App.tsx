@@ -5655,4 +5655,104 @@ export default function App() {
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8A8A8A] mb-2 block">Connect Gateway</span>
             <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4" data-pop-words>
               GET IN <span className="text-[#8A8A8A]">TOUCH</span>
+            </h2>
+            <div className="w-12 h-1 bg-[#262626] mx-auto rounded-full mb-4" />
+            <p className="text-[#8A8A8A] text-sm leading-relaxed">
+              Initiate email dialogue regarding web engineering, local campus bootcamps, or WordPress SEO optimization tasks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" data-stagger-cards>
+            
+            {/* Left Info coordinates */}
+            <motion.div 
+              className="lg:col-span-5 flex flex-col gap-6"
+              initial={{ opacity: 0, x: -35, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 270, damping: 23 }}
+            >
+              
+              <div className="p-6 rounded-2xl border border-[#262626] bg-[#0A0A0A] hover:border-[#5C5C5C] transition-colors text-left">
+                <h3 className="text-md font-bold font-display text-white mb-6 uppercase tracking-widest">Connect Coordinates</h3>
+                
+                <div className="flex flex-col gap-5">
+                  <div className="flex items-center gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-[#000000] flex items-center justify-center text-white shrink-0 border border-[#262626]">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[10px] font-mono uppercase text-[#5C5C5C] font-bold">Location Address</h4>
+                      <p className="text-xs text-[#EDEDED] mt-0.5">Raniban, Nagarjun, Kathmandu, Nepal</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-[#000000] flex items-center justify-center text-white shrink-0 border border-[#262626]">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[10px] font-mono uppercase text-[#5C5C5C] font-bold">Email Address</h4>
+                      <a href="mailto:sudinneupane519@gmail.com" className="text-xs text-white underline decoration-[#5C5C5C] hover:text-[#8A8A8A] mt-0.5 block font-mono">
+                        sudinneupane519@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 text-left">
+                    <div className="w-10 h-10 rounded-xl bg-[#000000] flex items-center justify-center text-white shrink-0 border border-[#262626]">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[10px] font-mono uppercase text-[#5C5C5C] font-bold">Telephone Core</h4>
+                      <p className="text-xs text-[#EDEDED] mt-0.5 font-mono">+977-9865######</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Launch Grid matrix */}
+                <div className="mt-8 pt-6 border-t border-[#262626] text-left">
+                  <h4 className="text-[10px] font-mono uppercase text-[#5C5C5C] mb-4 font-bold">Launch Social Nodes</h4>
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    {[
+                      { href: "https://www.facebook.com/asdffzs", icon: <Facebook className="w-4 h-4" />, label: "Facebook" },
+                      { href: "https://www.instagram.com/sudin_neupane/", icon: <Instagram className="w-4 h-4" />, label: "Instagram" },
+                      { href: "https://x.com/sudinneupane2", icon: <Twitter className="w-4 h-4" />, label: "Twitter" },
+                      { href: "https://www.linkedin.com/in/sudin-neupane-84a30a260/", icon: <Linkedin className="w-4 h-4" />, label: "LinkedIn" },
+                      { href: "https://github.com/Sudin-Neupane", icon: <Github className="w-4 h-4" />, label: "GitHub" }
+                    ].map((sock) => (
+                      <a
+                        key={sock.label}
+                        href={sock.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={sock.label}
+                        className="w-10 h-10 rounded-xl border border-[#262626] bg-[#000000] flex items-center justify-center text-white hover:border-white hover:bg-[#161616] transition-all hover:scale-105 duration-200"
+                      >
+                        {sock.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Embedded original color google map focused on Raniban, Nagarjun Kathmandu */}
+              <div className="rounded-2xl overflow-hidden border border-[#262626] bg-[#000000] h-64 relative group shadow-lg">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.153979299922!2d85.27665841506147!3d27.733568482782168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198d1779ef59%3A0x7f2ad4fa9602dd99!2sRaniban%2C%20Nagarjun%2044600%2C%20Nepal!5e0!3m2!1sen!2snp!4v1696077566615!5m2!1sen!2snp"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Raniban, Nagarjun Kathmandu Location Map Coordinate"
+                />
+              </div>
+
+            </motion.div>
+
+            {/* Right column: connect direct email form */}
+            <motion.div 
 </svg>`;
