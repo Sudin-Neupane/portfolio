@@ -5455,4 +5455,104 @@ export default function App() {
                       >
                         {/* Avatar */}
                         <div className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] shrink-0 font-bold ${
+                          isBot ? "bg-[#A78BFA]/20 text-[#A78BFA] border border-[#A78BFA]/40" : "bg-[#262626] text-white border border-[#5C5C5C]"
+                        }`}>
+                          {isBot ? "AI" : "ME"}
+                        </div>
+                        
+                        <div className={`p-3 rounded-xl border leading-relaxed ${
+                          isBot 
+                            ? "bg-[#131320] border-[#A78BFA]/30 text-[#E0E0FF]"
+                            : "bg-[#151515] border-[#262626] text-white"
+                        }`}>
+                          {renderMessageText(chat.text)}
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  {/* Thinking Status Indicator */}
+                  {isBotThinking && (
+                    <div className="flex gap-2 max-w-[85%] self-start text-left">
+                      <div className="w-6 h-6 rounded-md bg-[#A78BFA]/20 text-[#A78BFA] border border-[#A78BFA]/40 flex items-center justify-center text-[10px] shrink-0 font-bold animate-pulse">
+                        AI
+                      </div>
+                      <div className="p-3 rounded-xl border bg-[#131320] border-[#A78BFA]/30 text-[#A78BFA] italic">
+                        Sudin AI thinking...
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Chat history feed contents */}
+                </div>
+
+                {/* Preset Prompt suggestion chips */}
+                <div className="p-3 bg-[#0F0F14] border-t border-[#A78BFA]/20 flex flex-wrap gap-1.5 items-center">
+                  <span className="text-[9px] uppercase text-[#A78BFA]/70 tracking-wider font-bold">Preset Queries:</span>
+                  {chatbotQA.map((qa, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleChatQuestion(qa.question)}
+                      className="px-2 py-1 text-[10px] bg-[#0F0F14] hover:bg-[#131320] border border-[#A78BFA]/25 hover:border-[#A78BFA] text-[#8A8A8A] hover:text-[#A78BFA] rounded-md transition-all cursor-pointer font-mono text-left truncate max-w-[200px]"
+                    >
+                      {qa.question}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Custom chat text input */}
+                <form onSubmit={handleCustomChatSubmit} className="flex border-t border-[#A78BFA]/20 bg-[#0F0F14]">
+                  <input
+                    type="text"
+                    placeholder="Ask any custom question about my background or stack..."
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    className="flex-1 px-4 py-3.5 text-xs bg-transparent text-[#E0E0FF] font-mono outline-none placeholder:text-[#8A8A8A]/60 focus:outline-none"
+                    aria-label="Ask custom question to chatbot"
+                  />
+                  <button 
+                    type="submit" 
+                    className="px-5 text-[#A78BFA] hover:text-white transition-all border-l border-[#A78BFA]/20 hover:bg-[#131320]"
+                    aria-label="Send message to bot"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </form>
+
+              </div>
+            </div>
+
+            {/* Right Column: Code Commit Graph (GitHub Real 5-Step Scale) */}
+            <div className="lg:col-span-5 flex flex-col h-full text-left justify-between" data-velocity-reactive data-parallax-depth="0.6">
+              <div>
+                <div className="mb-6">
+                  <span className="font-mono text-[10px] text-[#8A8A8A] uppercase tracking-widest font-bold">Operational Status</span>
+                  <h3 className="text-xl font-bold font-display text-white mt-1 uppercase">Active Developer Sprint</h3>
+                  <p className="text-xs text-[#8A8A8A] mt-1">Live tracking loops of compiler sessions and open-source contributions.</p>
+                </div>
+
+                {/* Commit Matrix card wrapped in TiltCard */}
+                <TiltCard className="p-5 rounded-2xl border border-[#262626] bg-[#151515] text-left">
+                  <div className="flex items-center justify-between mb-4 font-mono text-xs">
+                    <span className="text-white font-semibold">GitHub Commits Track</span>
+                    <span className="text-[#39D353] font-bold">1,824 Logs / Year</span>
+                  </div>
+
+                  {/* Real-time Hover Metric Panel */}
+                  <div className="h-10 flex items-center justify-between border border-[#262626] bg-[#0A0A0A] px-3.5 rounded-lg mb-3 font-mono text-[10px]">
+                    {hoveredCommit ? (
+                      <div className="flex justify-between w-full text-white font-bold">
+                        <span>NODE: {hoveredCommit.date}</span>
+                        <span className="text-[#39D353]">INTEGRITY: {hoveredCommit.count} COMMITS</span>
+                      </div>
+                    ) : (
+                      <div className="flex justify-between w-full text-[#8A8A8A]">
+                        <span>HOVER GRID TO DECODE METRICS</span>
+                        <span>NODE IDLE // NO SCAN</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Grid squares represent active code sprints with GitHub real 5-step scale & sequential wave animation */}
 </svg>`;
