@@ -5755,4 +5755,104 @@ export default function App() {
 
             {/* Right column: connect direct email form */}
             <motion.div 
+              className="lg:col-span-7"
+              initial={{ opacity: 0, x: 35, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ type: "spring", stiffness: 270, damping: 23 }}
+            >
+              <div className="p-6 md:p-8 rounded-2xl border border-[#262626] bg-[#0A0A0A] hover:border-[#5C5C5C] transition-colors text-left">
+                <h3 className="text-md font-bold font-display text-white mb-2 uppercase tracking-widest">Connect Gateway Form</h3>
+                <p className="text-xs text-[#8A8A8A] mb-6">Request project audits, campus community networking, or freelance contracts.</p>
+
+                <form onSubmit={handleContactSubmit} className="flex flex-col gap-4">
+                  
+                  {/* Name Input */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="form_name" className="text-[10px] font-mono uppercase tracking-wider text-[#8A8A8A] font-bold">Your Name</label>
+                    <input
+                      id="form_name"
+                      type="text"
+                      placeholder="e.g. Alexis Carter"
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      required
+                      className="px-4 py-3 text-xs md:text-sm rounded-xl border border-[#262626] bg-[#000000] focus:border-[#FFFFFF] text-white outline-none transition-all duration-200"
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="form_email" className="text-[10px] font-mono uppercase tracking-wider text-[#8A8A8A] font-bold">Your Email Address</label>
+                    <input
+                      id="form_email"
+                      type="email"
+                      placeholder="e.g. alexis@example.com"
+                      value={formEmail}
+                      onChange={(e) => setFormEmail(e.target.value)}
+                      required
+                      className="px-4 py-3 text-xs md:text-sm rounded-xl border border-[#262626] bg-[#000000] focus:border-[#FFFFFF] text-white outline-none transition-all duration-200"
+                    />
+                  </div>
+
+                  {/* Message Input */}
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="form_message" className="text-[10px] font-mono uppercase tracking-wider text-[#8A8A8A] font-bold">Your Message details</label>
+                      <span className={`text-[9px] font-mono ${charCount > 500 ? "text-white font-bold" : "text-[#5C5C5C]"}`}>{charCount} / 500 chars</span>
+                    </div>
+                    <textarea
+                      id="form_message"
+                      rows={5}
+                      maxLength={500}
+                      placeholder="Share project specifications, timelines, or collaboration details..."
+                      value={formMessage}
+                      onChange={handleMessageChange}
+                      required
+                      className="px-4 py-3 text-xs md:text-sm rounded-xl border border-[#262626] bg-[#000000] focus:border-[#FFFFFF] text-white outline-none transition-all duration-200 resize-none"
+                    />
+                  </div>
+
+                  {/* Status Indicator */}
+                  {formStatus.type && (
+                    <div className={`p-4 rounded-xl text-xs font-mono border flex flex-col gap-2.5 ${
+                      formStatus.type === "error" 
+                        ? "bg-[#1A0A0A] border-[#EF4444]/40 text-[#FCA5A5]" 
+                        : "bg-[#0A1A0A] border-[#22C55E]/40 text-[#86EFAC]"
+                    }`}>
+                      <p>{formStatus.text}</p>
+                      {formStatus.type === "success" && (
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          <a
+                            href={`https://mail.google.com/mail/?view=cm&fs=1&to=sudinneupane519@gmail.com&su=${encodeURIComponent(`Portfolio Pitch from ${formName || "Visitor"}`)}&body=${encodeURIComponent(formMessage || "")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3 py-1.5 rounded-lg bg-[#22C55E] text-black font-bold hover:bg-[#4ADE80] transition-colors text-[11px] flex items-center gap-1 cursor-pointer"
+                          >
+                            Open in Gmail Web
+                          </a>
+                          <a
+                            href={`mailto:sudinneupane519@gmail.com?subject=${encodeURIComponent(`Portfolio Pitch from ${formName || "Visitor"}`)}&body=${encodeURIComponent(formMessage || "")}`}
+                            className="px-3 py-1.5 rounded-lg bg-[#1D281D] text-[#86EFAC] border border-[#22C55E]/30 hover:bg-[#283828] transition-colors text-[11px] flex items-center gap-1 cursor-pointer"
+                          >
+                            Open Default Mail App
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Submit Action Button */}
+                  <button
+                    type="submit"
+                    className="mt-2 w-full py-3.5 rounded-xl font-mono text-xs uppercase tracking-wider font-bold bg-white text-black hover:bg-[#E8E6E1] transition-all cursor-pointer"
+                  >
+                    Submit Handshake Pitch
+                  </button>
+                </form>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
 </svg>`;
