@@ -5355,4 +5355,104 @@ export default function App() {
                     <div className="text-left">
                       <span className="text-[10px] text-[#5C5C5C] uppercase block font-bold">Project Coordinates</span>
                       <span className="text-white font-semibold">{activeProject.name}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeProject.tags.map((tag) => (
+                        <span key={tag} className="px-2 py-0.5 text-[9px] bg-[#000000] border border-[#262626] text-[#8A8A8A] rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              ) : (
+                <div className="p-12 text-center border border-[#262626] rounded-xl bg-[#0A0A0A]">
+                  <p className="text-[#8A8A8A] font-mono text-xs">Pick an active repository in the sidebar file directory tree.</p>
+                </div>
+              )}
+            </motion.div>
+
+          </div>
+
+          {/* GitHub dynamic Open-Source call-out section */}
+          <div className="mt-16 relative overflow-hidden rounded-3xl border border-[#262626] bg-[#0A0A0A] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+            <div className="max-w-lg z-10 relative">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#FFFFFF] mb-2 block font-bold">Open-Source Ledger</span>
+              <h3 className="text-2xl font-bold font-display text-white mb-2 uppercase tracking-wide">Browse All Code Repositories</h3>
+              <p className="text-xs text-[#8A8A8A] leading-relaxed">
+                All algorithmic data, low-level compilers, and content systems are kept inside my public repositories. Review code, fork, or inspect the systems directly on GitHub.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3.5 z-10 relative shrink-0">
+              <a
+                href="https://github.com/Sudin-Neupane"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl font-mono text-xs uppercase tracking-wider font-bold bg-white text-black hover:bg-[#E8E6E1] transition-all"
+              >
+                <Github className="w-4 h-4 shrink-0" />
+                <span>@Sudin-Neupane</span>
+              </a>
+              <a
+                href="https://github.com/Sudin-Neupane?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl font-mono text-xs uppercase tracking-wider font-semibold border border-[#262626] hover:border-[#5C5C5C] bg-[#000000] text-white transition-all duration-200 underline decoration-[#5C5C5C]"
+              >
+                <span>Browse Directory</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </ClipPathMaskSection>
+
+      <SignatureProceduralDivider 
+        label="SECTION 05 // DEVELOPER ACTIVITY & AI CHATBOT" 
+        codeSnippet="SELECT * FROM activity_logs WHERE status = 'COMPILED';" 
+      />
+
+      {/* 7. DEVELOPER ACTIVITY GRAPH & INTERACTIVE "ASK SUDIN AI" CHATBOT */}
+      <ThreeDScrollSection id="activities" className="relative py-24 border-t border-[#262626] bg-[#0A0A0A]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" data-stagger-cards>
+            
+            {/* Left Column: Interactive Chatbot Assistant "Ask Sudin AI" */}
+            <div className="lg:col-span-7 flex flex-col h-full text-left" data-velocity-reactive data-parallax-depth="0.6">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#A78BFA]/10 border border-[#A78BFA]/30 text-[#A78BFA] font-mono text-[10px] uppercase font-bold tracking-wider mb-2">
+                  <Sparkles className="w-3 h-3 text-[#A78BFA]" />
+                  <span>AI FEATURE // NLP ENGINE</span>
+                </div>
+                <h3 className="text-xl font-bold font-display text-white uppercase" data-pop-words>Ask <span className="text-[#A78BFA]">Sudin AI</span></h3>
+                <p className="text-xs text-[#8A8A8A] mt-1">Get instant answers regarding my stack, availability, or CSIT studies.</p>
+              </div>
+
+              {/* Chat bubble widget frame - AI ASSISTANT FUNCTIONAL CASE ONLY */}
+              <div className="flex-1 rounded-2xl ai-assistant-container overflow-hidden flex flex-col justify-between min-h-[420px]">
+                
+                {/* Chat top header banner */}
+                <div className="px-4 py-3 bg-[#0F0F14] border-b border-[#A78BFA]/20 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#A78BFA] animate-pulse" />
+                    <span className="text-[11px] font-mono text-[#A78BFA] uppercase tracking-wider font-bold">Sudin AI Assistant</span>
+                  </div>
+                  <span className="text-[10px] text-[#A78BFA]/70 font-mono">Gemini-Powered Client v2.0</span>
+                </div>
+
+                {/* Bubble scroll section */}
+                <div ref={chatLogsContainerRef} className="p-4 flex-1 overflow-y-auto max-h-[290px] flex flex-col gap-3 font-mono text-xs bg-[#0F0F14]">
+                  {chatLog.map((chat, idx) => {
+                    const isBot = chat.sender === "bot";
+                    return (
+                      <div 
+                        key={idx}
+                        className={`flex gap-2 max-w-[88%] ${isBot ? "self-start text-left" : "self-end text-right flex-row-reverse"}`}
+                      >
+                        {/* Avatar */}
+                        <div className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] shrink-0 font-bold ${
 </svg>`;
