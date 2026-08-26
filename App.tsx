@@ -5555,4 +5555,104 @@ export default function App() {
                   </div>
 
                   {/* Grid squares represent active code sprints with GitHub real 5-step scale & sequential wave animation */}
+                  <div data-github-graph className="flex flex-col gap-2 bg-[#0A0A0A] p-3 rounded-xl border border-[#262626]">
+                    <div className="grid grid-cols-12 sm:grid-cols-16 gap-1">
+                      {Array.from({ length: 64 }).map((_, idx) => {
+                        const commitDate = new Date();
+                        commitDate.setDate(commitDate.getDate() - (63 - idx));
+                        const dateString = commitDate.toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric"
+                        });
+                        
+                        const hash = (idx * 17) % 19;
+                        const count = hash === 0 ? 0 : hash % 5 === 0 ? 2 : hash % 3 === 0 ? 5 : hash % 7 === 0 ? 8 : 12;
+
+                        // GitHub Real 5-Step Color Scale
+                        let colorClass = "bg-[#161616] border border-[#262626]";
+                        if (count > 0 && count <= 3) colorClass = "bg-[#0E4429] border border-[#0E4429]";
+                        if (count > 3 && count <= 6) colorClass = "bg-[#006D32] border border-[#006D32]";
+                        if (count > 6 && count <= 9) colorClass = "bg-[#26A641] border border-[#26A641]";
+                        if (count > 9) colorClass = "bg-[#39D353] border border-[#39D353]";
+
+                        return (
+                          <div 
+                            key={idx}
+                            data-graph-cell
+                            onMouseEnter={() => setHoveredCommit({ date: dateString, count })}
+                            onMouseLeave={() => setHoveredCommit(null)}
+                            className={`aspect-square rounded-[2px] transition-all duration-200 hover:scale-135 cursor-crosshair ${colorClass}`}
+                            title={`${count} commits on ${dateString}`}
+                          />
+                        );
+                      })}
+                    </div>
+
+                    {/* Scale Legend */}
+                    <div className="flex items-center justify-between mt-2 font-mono text-[9px] text-[#8A8A8A] uppercase">
+                      <span>NIST 2025 SPRINT</span>
+                      <div className="flex items-center gap-1">
+                        <span>Less</span>
+                        <span className="w-2.5 h-2.5 rounded-[1px] bg-[#161616] border border-[#262626]" />
+                        <span className="w-2.5 h-2.5 rounded-[1px] bg-[#0E4429]" />
+                        <span className="w-2.5 h-2.5 rounded-[1px] bg-[#006D32]" />
+                        <span className="w-2.5 h-2.5 rounded-[1px] bg-[#26A641]" />
+                        <span className="w-2.5 h-2.5 rounded-[1px] bg-[#39D353]" />
+                        <span>More</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status highlights ledger */}
+                  <div className="flex flex-col gap-3.5 mt-6 font-mono text-xs">
+                    <div className="flex gap-2 text-left">
+                      <GitBranch className="w-4 h-4 text-[#39D353] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-white font-bold text-[11px] uppercase tracking-wide">Main Repo: sudin-neupane-main</div>
+                        <div className="text-[#8A8A8A] text-[10px] mt-0.5">Tracking core engineering iterations in Kathmandu, Nepal.</div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 text-left">
+                      <Award className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-white font-bold text-[11px] uppercase tracking-wide">React & TS Web Systems</div>
+                        <div className="text-[#8A8A8A] text-[10px] mt-0.5">Developing scalable, high-performance UI components and systems.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </TiltCard>
+              </div>
+
+              {/* Minimalist interactive coordinate display block */}
+              <div className="mt-6 p-4 rounded-xl border border-[#262626] bg-[#151515] flex items-center gap-3">
+                <Info className="w-5 h-5 text-white shrink-0" />
+                <p className="text-[11px] text-[#8A8A8A] leading-normal font-mono uppercase">
+                  Terminal state compiles dynamically & flushes immediately on tab exit.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </ThreeDScrollSection>
+
+      <SignatureProceduralDivider 
+        label="SECTION 06 // CONTACT HANDSHAKE & COORDINATES" 
+        codeSnippet="connect(socket, (struct sockaddr *)&server, sizeof(server));" 
+      />
+
+      {/* 8. CONTACT SECTION (Form, Coordinates & Google Embed Map) */}
+      <ThreeDScrollSection id="contact" className="relative py-24 border-t border-[#262626] bg-[#000000]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20">
+          
+          {/* Section Heading */}
+          <div className="text-center max-w-xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8A8A8A] mb-2 block">Connect Gateway</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4" data-pop-words>
+              GET IN <span className="text-[#8A8A8A]">TOUCH</span>
 </svg>`;
