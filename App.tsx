@@ -5855,4 +5855,45 @@ export default function App() {
 
           </div>
         </div>
-</svg>`;
+      </ThreeDScrollSection>
+
+      {/* FOOTER */}
+      <footer className="relative py-12 border-t border-[#262626] bg-[#000000]">
+        <div className="container mx-auto px-6 max-w-6xl relative z-20 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-lg bg-white border border-[#262626] flex items-center justify-center font-display text-xs text-black font-bold">
+              SN
+            </div>
+            <span className="text-xs font-mono tracking-wider text-[#8A8A8A]">
+              &copy; {new Date().getFullYear()} Sudin Neupane. All Rights Reserved.
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-4 items-center">
+            <span className="text-[10px] font-mono text-[#5C5C5C] uppercase">crafted with strict monochrome precision</span>
+            <span className="text-[10px] font-mono text-[#5C5C5C]">//</span>
+            <span className="text-[10px] font-mono text-[#5C5C5C] uppercase">zero hue palette</span>
+          </div>
+        </div>
+      </footer>
+
+      {/* Scroll Telemetry Controller Capsule */}
+      <BoilerlabScrollTelemetryBar 
+        activeSection={activeSection} 
+        onNavigate={scrollSection} 
+      />
+
+      {/* Floating Scroll back to top Indicator Button */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 p-3.5 rounded-xl border border-[#262626] hover:border-white bg-[#0A0A0A] hover:bg-white hover:text-black text-white transition-all duration-200 z-40 cursor-pointer"
+          aria-label="Scroll back to top of page"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
+      )}
+
+    </div>
+  );
+}
