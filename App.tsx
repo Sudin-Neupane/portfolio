@@ -30,7 +30,7 @@ const aboutCardsData: AboutCard[] = [
     id: "intro",
     title: "Introduction",
     category: "personal",
-    description: "Iâ€™m a software developer building modern web applications while expanding into AI, with a focus on writing clean, reliable, and maintainable code.",
+    description: "I’m a software developer building modern web applications while expanding into AI, with a focus on writing clean, reliable, and maintainable code.",
     color: "coral",
     iconName: "Compass",
     badge: "Personal Bio"
@@ -270,16 +270,16 @@ function respond(int $status, string $message): void {
       "High-performance CSS transform animations"
     ],
     codeSnippet: `
-    // TypeScript / React â€” Frontend
+    // TypeScript / React — Frontend
 const ProjectCard = ({ title, stack }: ProjectProps) => (
     <article className="project">
         <h2>{title}</h2>
-        <p>{stack.join(" â€¢ ")}</p>
+        <p>{stack.join(" • ")}</p>
     </article>
 );
 
 
-// Node.js â€” API
+// Node.js — API
 app.get("/api/projects", async (req, res) => {
     const projects = await db.query(
         "SELECT * FROM projects ORDER BY created_at DESC"
@@ -289,7 +289,7 @@ app.get("/api/projects", async (req, res) => {
 });
 
 
-# Python â€” AI / Backend Service
+# Python — AI / Backend Service
 def analyze_project(description: str):
     return {
         "summary": generate_summary(description),
@@ -648,7 +648,7 @@ const timelineData: TimelineMilestone[] = [
 const chatbotQA = [
   {
     question: "Are you available for internships or freelance work?",
-    answer: "Iâ€™m currently open to internships, freelance projects, and meaningful collaborations where I can contribute to real development work, learn from experienced teams, and keep growing as a developer. Iâ€™m especially interested in web development, React, backend integration, and software projects with practical impact. You can reach me through LinkedIn or the contact section of my portfolio"
+    answer: "I’m currently open to internships, freelance projects, and meaningful collaborations where I can contribute to real development work, learn from experienced teams, and keep growing as a developer. I’m especially interested in web development, React, backend integration, and software projects with practical impact. You can reach me through LinkedIn or the contact section of my portfolio"
   },
   {
     question: "What is your primary programming stack of choice?",
@@ -703,7 +703,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("yourself") ||
     q.includes("who is you")
   ) {
-    return "I am Sudin AI â€” the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
+    return "I am Sudin AI — the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
   }
 
   if (
@@ -829,7 +829,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("good morning") ||
     q.includes("good afternoon")
   ) {
-    return "Hello! I am Sudin AI â€” Sudin Neupane's interactive portfolio assistant and digital twin. Ask me anything about Sudin, his projects, or general coding questions!";
+    return "Hello! I am Sudin AI — Sudin Neupane's interactive portfolio assistant and digital twin. Ask me anything about Sudin, his projects, or general coding questions!";
   }
 
   // 11. General coding follow-up or other common topics
@@ -1455,7 +1455,7 @@ function getOfficialCertificateSvgUri(card: HorizontalCard): string {
   <!-- Serial Number & Stamp -->
   <g transform="translate(700, 885)" text-anchor="middle">
     <text x="0" y="0" font-size="11" font-weight="700" fill="#52525B" letter-spacing="3">
-      SERIAL: ${serialNo} â€¢ ISSUED: 2026 â€¢ STATUS: COMPLETED
+      SERIAL: ${serialNo} • ISSUED: 2026 • STATUS: COMPLETED
     </text>
   </g>
 </svg>`;
@@ -1662,9 +1662,9 @@ function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
                     <Trophy className="w-3.5 h-3.5 text-amber-400" />
                     Recipient: Sudin Neupane
                   </span>
-                  <span className="text-[#5C5C5C]">â€¢</span>
+                  <span className="text-[#5C5C5C]">•</span>
                   <span>Category: {activeCert.tag}</span>
-                  <span className="text-[#5C5C5C]">â€¢</span>
+                  <span className="text-[#5C5C5C]">•</span>
                   <span>Issued: {activeCert.subtitle}</span>
                 </div>
                 <div className="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
@@ -1720,7 +1720,7 @@ function BookChapterPageTurn() {
           <div className="w-16 h-1 bg-white mx-auto rounded-full mb-4" />
           
           <p className="text-[#8A8A8A] text-sm md:text-base leading-relaxed max-w-xl mx-auto font-mono">
-            "Iâ€™m building my path in tech through CSIT, hands-on projects, programming, hackathons, and active involvement in student technology communities."
+            "I’m building my path in tech through CSIT, hands-on projects, programming, hackathons, and active involvement in student technology communities."
           </p>
         </motion.div>
 
@@ -2306,9 +2306,9 @@ function BoilerlabScrollTelemetryBar({
       <div className="flex items-center gap-2 shrink-0 pr-2 border-r border-[#262626]">
         <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
         <span className="font-bold tracking-wider uppercase text-[9px] text-[#EDEDED]">
-          {direction === "DOWN" && "â–¼ SCROLLING DOWN"}
-          {direction === "UP" && "â–² SCROLLING UP"}
-          {direction === "IDLE" && "â— INERTIA LOCKED"}
+          {direction === "DOWN" && "▼ SCROLLING DOWN"}
+          {direction === "UP" && "▲ SCROLLING UP"}
+          {direction === "IDLE" && "● INERTIA LOCKED"}
         </span>
       </div>
 
@@ -2523,7 +2523,7 @@ function HUDTopLeft({ scrollY, velocity }: { scrollY: number; velocity: number }
       ctx.font = "8px monospace";
       ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
       ctx.textAlign = "center";
-      ctx.fillText(`ROT_H:${((scrollY * 0.15) % 360).toFixed(0)}Â°`, cx, cy + maxRadius + 14);
+      ctx.fillText(`ROT_H:${((scrollY * 0.15) % 360).toFixed(0)}°`, cx, cy + maxRadius + 14);
 
       animFrame = requestAnimationFrame(draw);
     };
@@ -2629,7 +2629,7 @@ function HUDBottomLeft({ scrollY, velocity, percent, activeSection }: { scrollY:
         </div>
         <div className="flex justify-between col-span-2 border-t border-[#262626] pt-1 mt-1">
           <span>PITCH_X:</span>
-          <span className="text-[#EDEDED] font-semibold">{(Math.sin(scrollY * 0.0018) * 14).toFixed(2)}Â°</span>
+          <span className="text-[#EDEDED] font-semibold">{(Math.sin(scrollY * 0.0018) * 14).toFixed(2)}°</span>
         </div>
       </div>
       <div className="h-1 w-full bg-[#262626] rounded-full overflow-hidden mt-1.5 relative">
@@ -2887,7 +2887,7 @@ function HologramInspector({ project, onClose }: HologramInspectorProps) {
   // Push telemetry logs on drag
   const logDragEvent = (px: number, py: number) => {
     const timestamp = new Date().toLocaleTimeString();
-    const formatted = `[${timestamp}] PITCH: ${(px * 180 / Math.PI).toFixed(1)}Â° | YAW: ${(py * 180 / Math.PI).toFixed(1)}Â°`;
+    const formatted = `[${timestamp}] PITCH: ${(px * 180 / Math.PI).toFixed(1)}° | YAW: ${(py * 180 / Math.PI).toFixed(1)}°`;
     setDragLogs(prev => [formatted, ...prev.slice(0, 3)]);
   };
 
@@ -5058,7 +5058,7 @@ export default function App() {
                 subtitle: "111 Days Challenge",
                 desc: "Completed the 111 Days of Learning for Change challenge by Code for Change, building consistency, discipline, and practical technical skills through daily learning and public progress sharing.",
                 tag: "Certification",
-                certTitle: "Certificate of Completion â€” 111 Days of Learning",
+                certTitle: "Certificate of Completion — 111 Days of Learning",
                 certIssuer: "111 Days of Learning Technical Initiative",
                 certDate: "2026",
                 certBadge: "Verified Challenge Achiever",
