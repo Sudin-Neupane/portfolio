@@ -15,6 +15,9 @@ import {
   ShieldCheck, Trophy, Image as ImageIcon, Download, ZoomIn
 } from "lucide-react";
 import developerAvatar from "./assets/images/sudin_neupane.png";
+import asianHackCertificate from "./assets/images/professionalism award Asianhack.png";
+import learningChallengeCertificate from "./assets/images/111 days challange.png";
+import codefestCertificate from "./assets/images/organizer certificate of codefest.png";
 
 interface AboutCard {
   id: string;
@@ -1312,6 +1315,7 @@ interface HorizontalCard {
   certBadge?: string;
   certDetails?: string[];
   certProofLink?: string;
+  imageUrl?: string;
 }
 
 // Generate high-resolution official vector certificate graphic (SVG / PNG format)
@@ -1477,7 +1481,7 @@ function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
   const [activeCert, setActiveCert] = useState<HorizontalCard | null>(null);
 
   const getCurrentImageUrl = (card: HorizontalCard) => {
-    return getOfficialCertificateSvgUri(card);
+    return card.imageUrl || getOfficialCertificateSvgUri(card);
   };
 
   const downloadCertificatePng = (card: HorizontalCard) => {
@@ -5053,7 +5057,8 @@ export default function App() {
                   'Project: CivicFlow (Full-Stack Web App)',
                   'Award: Professionalism & Architectural Excellence',
                   'Category: Civic Tech & Municipal Digital Platform'
-                ]
+                ],
+                imageUrl: asianHackCertificate
               },
               {
                 id: "111_days_learning",
@@ -5070,7 +5075,8 @@ export default function App() {
                   "Covered Core CS, Full-Stack Architecture, and System Design",
                   "Awarded Verified Certificate of Completion",
                   "111/111 Days Continuous Milestone Completion"
-                ]
+                ],
+                imageUrl: learningChallengeCertificate
               },
               {
                 id: "codefest_2026",
@@ -5087,7 +5093,8 @@ export default function App() {
                   "Developer Competition Management & Judging Portal",
                   "Student Tech Community Engagement & Coordination",
                   "Official Recognition as Technology Team Member"
-                ]
+                ],
+                imageUrl: codefestCertificate
               }
             ]} />
           </div>
