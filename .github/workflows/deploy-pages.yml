@@ -21,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -35,6 +38,10 @@ jobs:
       - name: Build portfolio
         working-directory: New Portfolio
         run: npm run build
+
+      - name: Add SPA fallback
+        shell: bash
+        run: cp "New Portfolio/dist/index.html" "New Portfolio/dist/404.html"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
