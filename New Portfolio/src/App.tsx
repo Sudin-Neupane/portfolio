@@ -14,6 +14,7 @@ import {
   FileText, Sliders, Info, Heart, Twitter, Sparkles, 
   ShieldCheck, Trophy, Image as ImageIcon, Download, ZoomIn
 } from "lucide-react";
+import developerAvatar from "./assets/images/developer_avatar_1784577138330.jpg";
 
 interface AboutCard {
   id: string;
@@ -1922,7 +1923,7 @@ function ScrollProgressiveProfileCard() {
           >
             <div className="w-full h-full rounded-full bg-[#000000] overflow-hidden flex items-center justify-center border border-[#262626]">
               <img 
-                src="src/assets/images/developer_avatar_1784577138330.jpg" 
+                src={developerAvatar}
                 alt="Sudin Neupane Profile Portrait" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
