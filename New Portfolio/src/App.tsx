@@ -14,7 +14,7 @@ import {
   FileText, Sliders, Info, Heart, Twitter, Sparkles, 
   ShieldCheck, Trophy, Image as ImageIcon, Download, ZoomIn
 } from "lucide-react";
-import developerAvatar from "./assets/images/developer_avatar_1784577138330.jpg";
+import developerAvatar from "./assets/images/sudin_neupane.png";
 
 interface AboutCard {
   id: string;
