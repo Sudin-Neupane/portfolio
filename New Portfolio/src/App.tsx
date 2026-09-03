@@ -1100,7 +1100,9 @@ function ClipPathMaskSection({
       },
     });
 
-    return () => anim.kill();
+    return () => {
+      anim.kill();
+    };
   }, [maskType]);
 
   return (
