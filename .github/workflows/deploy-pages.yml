@@ -29,24 +29,22 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: New Portfolio/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: New Portfolio
         run: npm ci
 
       - name: Build portfolio
-        working-directory: New Portfolio
         run: npm run build
 
       - name: Add SPA fallback
         shell: bash
-        run: cp "New Portfolio/dist/index.html" "New Portfolio/dist/404.html"
+        run: cp dist/index.html dist/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: New Portfolio/dist
+          path: dist
 
   deploy:
     needs: build
