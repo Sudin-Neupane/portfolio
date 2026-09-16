@@ -765,3 +765,13 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin is pursuing his BSc.CSIT (Computer Science and Information Technology) degree at Asian College of Management and Science, Kathmandu. He graduated with honors in +2 Computer Science from NIST (National Institute of Science and Technology) in 2024, and completed SEE at Tarun Ma.Vi in 2022.";
   }
+    // 7. Code for Change / CFC
+  if (
+    q.includes("code for change") ||
+    q.includes("cfc") ||
+    q.includes("representative") ||
+    q.includes("community") ||
+    q.includes("leader")
+  ) {
+    return "Sudin Neupane serves as the official College Representative for 'Code for Change Nepal' (2025/2026). In this role, he leads local IT bootcamps, runs programming workshops, and fosters student-developer peer networks in Kathmandu.";
+  }
