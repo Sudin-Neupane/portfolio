@@ -669,3 +669,26 @@ const chatbotQA = [
     answer: "My Finger Gesture Control project is a Python application powered by OpenCV and MediaPipe. It tracks real-time skeletal keypoints of fingertips in video frames, calculating spatial distances between the thumb and index finger to map dynamic gestures directly into desktop operating commands (e.g., triggering mouse clicks)."
   }
 ];
+// Robust smart fallback answer generator for the chatbot and terminal nodes
+const getSmartFallbackAnswer = (rawQuery: string): string => {
+  const q = rawQuery.toLowerCase().trim();
+
+  // 1. Direct Q&A match (fuzzy match)
+  const matched = chatbotQA.find(
+    qa => qa.question.toLowerCase().includes(q) || q.includes(qa.question.toLowerCase())
+  );
+  if (matched) {
+    return matched.answer;
+  }
+
+  // 2. Who is Sudin / Identity / Who are you / Creator
+  if (
+    q.includes("who is sudin") ||
+    q.includes("who is he") ||
+    q.includes("about him") ||
+    q.includes("tell me about him") ||
+    q.includes("sudin neupane") ||
+    (q.includes("who") && q.includes("sudin"))
+  ) {
+    return "Sudin Neupane is a highly talented 20-year-old BSc.CSIT student, developer, and tech community leader from Kathmandu, Nepal. He is the official College Representative for Code for Change  (2025/2026) and specializes in building high-fidelity React, TypeScript, PHP, and Python systems.";
+  }
