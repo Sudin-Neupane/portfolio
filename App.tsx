@@ -749,3 +749,19 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "You can contact Sudin Neupane directly via email at sudinneupane519@gmail.com, or explore his repositories and social links featured throughout this interactive dashboard!";
   }
+  // 6. Education / College / Academic
+  if (
+    q.includes("college") ||
+    q.includes("study") ||
+    q.includes("education") ||
+    q.includes("university") ||
+    q.includes("school") ||
+    q.includes("csit") ||
+    q.includes("bsc") ||
+    q.includes("nist") ||
+    q.includes("tarun") ||
+    q.includes("degree") ||
+    q.includes("academic")
+  ) {
+    return "Sudin is pursuing his BSc.CSIT (Computer Science and Information Technology) degree at Asian College of Management and Science, Kathmandu. He graduated with honors in +2 Computer Science from NIST (National Institute of Science and Technology) in 2024, and completed SEE at Tarun Ma.Vi in 2022.";
+  }
