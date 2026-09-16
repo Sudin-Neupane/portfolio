@@ -725,3 +725,27 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin resides in Raniban, Nagarjun, Kathmandu, Nepal.";
   }
+  // 4. Age
+  if (
+    q.includes("age") ||
+    q.includes("how old") ||
+    q.includes("birth") ||
+    q.includes("years old")
+  ) {
+    return "Sudin is 20 years old, born in Nepal.";
+  }
+
+  // 5. Contact / Email / Socials
+  if (
+    q.includes("email") ||
+    q.includes("gmail") ||
+    q.includes("contact") ||
+    q.includes("phone") ||
+    q.includes("reach") ||
+    q.includes("social") ||
+    q.includes("github") ||
+    q.includes("linkedin") ||
+    q.includes("facebook")
+  ) {
+    return "You can contact Sudin Neupane directly via email at sudinneupane519@gmail.com, or explore his repositories and social links featured throughout this interactive dashboard!";
+  }
