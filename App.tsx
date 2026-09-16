@@ -792,3 +792,22 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin's key projects are:\n1. **Finger Gesture Control System** (Python, OpenCV, MediaPipe for virtual desktop mouse controls)\n2. **Hospital Management System** (Structured C Programming Patient directory)\n3. **Core PHP/MySQL CRUD System** (Stable database application)\n4. **WordPress SEO Layout setups** (Search engine index & crawl optimization)";
   }
+    // 9. Skills & Languages
+  if (
+    q.includes("skill") ||
+    q.includes("experience") ||
+    q.includes("stack") ||
+    q.includes("language") ||
+    q.includes("framework") ||
+    q.includes("react") ||
+    q.includes("typescript") ||
+    q.includes("php") ||
+    q.includes("tailwind") ||
+    q.includes("c programming") ||
+    q.includes("mysql") ||
+    q.includes("seo") ||
+    q.includes("wordpress")
+  ) {
+    return "Sudin's technical mastery includes: React, TypeScript, Tailwind CSS, Framer Motion, Core PHP, C Programming, Python (OOP, Computer Vision), MySQL Relational Databases, and SEO dashboard architectures.";
+  }
+
