@@ -14,7 +14,6 @@ import {
   FileText, Sliders, Info, Heart, Twitter, Sparkles, 
   ShieldCheck, Trophy, Image as ImageIcon, Download, ZoomIn
 } from "lucide-react";
-import developerAvatar from "./assets/images/sudin_neupane.png";
 import asianHackCertificate from "./assets/images/professionalism award Asianhack.png";
 import learningChallengeCertificate from "./assets/images/111 days challange.png";
 import codefestCertificate from "./assets/images/organizer certificate of codefest.png";
@@ -1927,8 +1926,8 @@ function ScrollProgressiveProfileCard() {
           >
             <div className="w-full h-full rounded-full bg-[#000000] overflow-hidden flex items-center justify-center border border-[#262626]">
               <img 
-                src={developerAvatar}
-                alt="Sudin Neupane Profile Portrait" 
+                src="/profile.png"
+                alt="Sudin Neupane profile portrait" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
