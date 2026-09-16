@@ -701,3 +701,14 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "I am Sudin AI — the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
   }
+    if (
+    q.includes("how were you made") ||
+    q.includes("how did you made") ||
+    q.includes("who made you") ||
+    q.includes("who built you") ||
+    q.includes("who created you") ||
+    q.includes("creator") ||
+    q.includes("developer")
+  ) {
+    return "I was designed and engineered by Sudin Neupane himself using a full-stack React, TypeScript, and Express architecture, powered securely by Google's Gemini LLM.";
+  }
