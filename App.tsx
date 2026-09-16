@@ -712,3 +712,16 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "I was designed and engineered by Sudin Neupane himself using a full-stack React, TypeScript, and Express architecture, powered securely by Google's Gemini LLM.";
   }
+  
+  // 3. Location / Address
+  if (
+    q.includes("live") ||
+    q.includes("location") ||
+    q.includes("address") ||
+    q.includes("where is he") ||
+    q.includes("where do you live") ||
+    q.includes("kathmandu") ||
+    q.includes("nepal")
+  ) {
+    return "Sudin resides in Raniban, Nagarjun, Kathmandu, Nepal.";
+  }
