@@ -775,3 +775,20 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin Neupane serves as the official College Representative for 'Code for Change Nepal' (2025/2026). In this role, he leads local IT bootcamps, runs programming workshops, and fosters student-developer peer networks in Kathmandu.";
   }
+  
+  // 8. Projects / Finger Gesture / Python / OpenCV / MediaPipe
+  if (
+    q.includes("project") ||
+    q.includes("build") ||
+    q.includes("make") ||
+    q.includes("create") ||
+    q.includes("gesture") ||
+    q.includes("finger") ||
+    q.includes("cv") ||
+    q.includes("vision") ||
+    q.includes("opencv") ||
+    q.includes("mediapipe") ||
+    q.includes("python")
+  ) {
+    return "Sudin's key projects are:\n1. **Finger Gesture Control System** (Python, OpenCV, MediaPipe for virtual desktop mouse controls)\n2. **Hospital Management System** (Structured C Programming Patient directory)\n3. **Core PHP/MySQL CRUD System** (Stable database application)\n4. **WordPress SEO Layout setups** (Search engine index & crawl optimization)";
+  }
