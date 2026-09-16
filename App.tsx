@@ -811,3 +811,19 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     return "Sudin's technical mastery includes: React, TypeScript, Tailwind CSS, Framer Motion, Core PHP, C Programming, Python (OOP, Computer Vision), MySQL Relational Databases, and SEO dashboard architectures.";
   }
 
+  // 10. Greetings
+  if (
+    q.includes("hello") ||
+    q.includes("hi") ||
+    q.includes("hey") ||
+    q.includes("greet") ||
+    q.includes("good morning") ||
+    q.includes("good afternoon")
+  ) {
+    return "Hello! I am Sudin AI — Sudin Neupane's interactive portfolio assistant and digital twin. Ask me anything about Sudin, his projects, or general coding questions!";
+  }
+
+  // 11. General coding follow-up or other common topics
+  return "I'm still studying that area, but I'd love to learn and adapt to any tech challenge you throw my way! Let's schedule a chat.";
+};
+
