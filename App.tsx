@@ -642,3 +642,30 @@ const timelineData: TimelineMilestone[] = [
   },
  
 ];
+// Mock QA responses for our interactive chatbot
+const chatbotQA = [
+  {
+    question: "Are you available for internships or freelance work?",
+    answer: "I’m currently open to internships, freelance projects, and meaningful collaborations where I can contribute to real development work, learn from experienced teams, and keep growing as a developer. I’m especially interested in web development, React, backend integration, and software projects with practical impact. You can reach me through LinkedIn or the contact section of my portfolio"
+  },
+  {
+    question: "What is your primary programming stack of choice?",
+    answer: "Currently, I specialize in web frontend engineering using modern React, TypeScript, and Tailwind CSS, coupled with high-fidelity UI layout replication. For backend systems and database logic, I write clean PHP with MySQL databases, and I have robust academic foundations in low-level procedural C and Python."
+  },
+  {
+    question: "What role do you play in Code for Change ",
+    answer: "As the official College Representative for Asian College for the 2025/2026 tenure, I act as the central communication node. I represent our student developer community, establish inter-campus bridges, coordinate technical workshops, and host local programming bootcamps to foster tech awareness."
+  },
+  {
+    question: "How do you handle complex problem-solving?",
+    answer: "I follow a clean engineering lifecycle: 1. Deconstruct complex architectures into isolated modular chunks. 2. Establish robust data structures (procedural or relational). 3. Write self-documenting code with precise safety checks. 4. Run profiling and continuous verification loops to optimize execution paths."
+  },
+  {
+    question: "What is your academic focus in BSc.CSIT?",
+    answer: "I maintain peak focus on my BSc.CSIT curriculum at Asian College of Management and Science. My core focus centers on Discrete Structures, Database Management Systems (DBMS), Operating System kernels, Object-Oriented Programming (OOP) in C++/Python, and Analysis of Algorithms."
+  },
+  {
+    question: "Tell me about your Computer Vision project.",
+    answer: "My Finger Gesture Control project is a Python application powered by OpenCV and MediaPipe. It tracks real-time skeletal keypoints of fingertips in video frames, calculating spatial distances between the thumb and index finger to map dynamic gestures directly into desktop operating commands (e.g., triggering mouse clicks)."
+  }
+];
