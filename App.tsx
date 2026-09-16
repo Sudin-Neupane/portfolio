@@ -692,3 +692,12 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   ) {
     return "Sudin Neupane is a highly talented 20-year-old BSc.CSIT student, developer, and tech community leader from Kathmandu, Nepal. He is the official College Representative for Code for Change  (2025/2026) and specializes in building high-fidelity React, TypeScript, PHP, and Python systems.";
   }
+  if (
+    q.includes("who are you") ||
+    q.includes("what are you") ||
+    q.includes("your identity") ||
+    q.includes("yourself") ||
+    q.includes("who is you")
+  ) {
+    return "I am Sudin AI — the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
+  }
