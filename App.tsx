@@ -827,6 +827,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   return "I'm still studying that area, but I'd love to learn and adapt to any tech challenge you throw my way! Let's schedule a chat.";
 };
 
+
 // =========================================================
 // GSAP + LENIS REUSABLE KINETIC MOTION COMPONENTS
 // =========================================================
@@ -903,3 +904,13 @@ function FilmGrainCanvas() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none z-[999] opacity-[0.035] mix-blend-overlay transform-gpu"
+      aria-hidden="true"
+    />
+  );
+}
+
