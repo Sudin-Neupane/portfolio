@@ -827,3 +827,79 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   return "I'm still studying that area, but I'd love to learn and adapt to any tech challenge you throw my way! Let's schedule a chat.";
 };
 
+// =========================================================
+// GSAP + LENIS REUSABLE KINETIC MOTION COMPONENTS
+// =========================================================
+
+// 0. SUBTLE FILM GRAIN CANVAS OVERLAY
+function FilmGrainCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Create offscreen noise buffer for high performance
+    const bufferSize = 128;
+    const buffer = document.createElement("canvas");
+    buffer.width = bufferSize;
+    buffer.height = bufferSize;
+    const bufferCtx = buffer.getContext("2d");
+    if (!bufferCtx) return;
+
+    const imgData = bufferCtx.createImageData(bufferSize, bufferSize);
+    const data = imgData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const value = Math.floor(Math.random() * 255);
+      data[i] = value;     // R
+      data[i + 1] = value; // G
+      data[i + 2] = value; // B
+      data[i + 3] = 30;    // Alpha (~12% on 128x128 buffer)
+    }
+    bufferCtx.putImageData(imgData, 0, 0);
+
+    let animId: number;
+    let lastFrame = 0;
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    const render = (time: number) => {
+      // Throttle noise redraw to ~22fps for cinematic film look & minimal CPU usage
+      if (time - lastFrame > 45) {
+        lastFrame = time;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Tile buffer pattern with random shift
+        const pattern = ctx.createPattern(buffer, "repeat");
+        if (pattern) {
+          const offsetX = Math.floor(Math.random() * bufferSize);
+          const offsetY = Math.floor(Math.random() * bufferSize);
+          ctx.save();
+          ctx.translate(offsetX, offsetY);
+          ctx.fillStyle = pattern;
+          ctx.fillRect(-offsetX, -offsetY, canvas.width + bufferSize, canvas.height + bufferSize);
+          ctx.restore();
+        }
+      }
+      animId = requestAnimationFrame(render);
+    };
+
+    animId = requestAnimationFrame(render);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
