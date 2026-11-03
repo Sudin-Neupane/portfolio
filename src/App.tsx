@@ -689,6 +689,11 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
 
   // 2. Who is Sudin / Identity / Who are you / Creator
   if (
+    q.includes("who are you") ||
+    q.includes("who") && q.includes("you") ||
+    q.includes("what are you") ||
+    q.includes("your identity") ||
+    q.includes("yourself") ||
     q.includes("who is sudin") ||
     q.includes("who is he") ||
     q.includes("about him") ||
@@ -696,7 +701,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("sudin neupane") ||
     (q.includes("who") && q.includes("sudin"))
   ) {
-    return "Sudin Neupane is a highly talented 20-year-old BSc.CSIT student, developer, and tech community leader from Kathmandu, Nepal. He is the official College Representative for Code for Change  (2025/2026) and specializes in building high-fidelity React, TypeScript, PHP, and Python systems.";
+    return "Sudin Neupane is a 20-year-old BSc.CSIT student, developer, and tech community leader from Kathmandu, Nepal. He is the official College Representative for Code for Change  (2025/2026) and specializes in building high-fidelity React, TypeScript, PHP, and Python systems.";
   }
 
   if (
@@ -704,6 +709,15 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("what are you") ||
     q.includes("your identity") ||
     q.includes("yourself") ||
+    q.includes("tell me about yourself") ||
+    q.includes("who is sudin ai") ||
+    q.includes("sudin ai") ||
+    q.includes("sudin's ai") ||
+    q.includes("sudin's assistant") ||
+    q.includes("sudin's digital twin") ||
+    q.includes("sudin's portfolio assistant") ||
+    q.includes("sudin's interactive assistant") ||
+    q.includes("sudin's interactive portfolio assistant") ||
     q.includes("who is you")
   ) {
     return "I am Sudin AI — the digital twin and interactive portfolio assistant of Sudin Neupane. I can answer any general coding question, write/debug scripts, or provide details about Sudin's academic and technical milestones!";
