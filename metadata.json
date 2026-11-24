@@ -1,0 +1,8 @@
+{
+  "name": "Sudin Neupane Portfolio",
+  "description": "Official portfolio of Sudin Neupane — Software developer, CSIT student, and tech community leader. Explore software engineering projects, technical skills, and interactive AI chatbot.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

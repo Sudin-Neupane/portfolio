@@ -93,7 +93,8 @@ ABOUT SUDIN NEUPANE:
   4. C Programming Repository: An extensive compilation of recursive mathematical calculations, sorting algorithms, and core data structure arrays.
   5. Finger Gesture Control System: An advanced Python, OpenCV, and MediaPipe computer vision utility that calculates spatial coordinates of fingers in real-time to execute operating commands (e.g., virtual mouse clicking and moving).
   6. Recreate Pages: Symmetrical, pixel-perfect layout clones of high-profile landing screens to master layout design and media query rules.
-  7. Learning Python System: Highly modular OOP scripts, exception handlers, and database pipeline sorters.
+  7. Learning Python System: Highly modular OOP scripts, exception handlers, and database pipeline shorters.
+
 
 CRITICAL OPERATIONAL RULES:
 1. GREETING MASTER SUDIN personally: If the user indicates they are Sudin (e.g., "I am Sudin", "Sudeen", "called me", "called Sudin Neupane", "it is me", "my profile", "it's me, Sudin", etc.), immediately greet them as the master developer with utmost respect (e.g. "Welcome back, master Sudin! It is an honor. I stand ready to assist you with your projects, compile logs, or answer any technical inquiries.").
@@ -105,7 +106,6 @@ CRITICAL OPERATIONAL RULES:
       const candidateModels = ["gemini-3.6-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"];
       let responseText = "";
       let lastError = null;
-
       for (const modelName of candidateModels) {
         try {
           const response = await ai.models.generateContent({
@@ -127,7 +127,6 @@ CRITICAL OPERATIONAL RULES:
           await new Promise(resolve => setTimeout(resolve, 300));
         }
       }
-
       if (!responseText) {
         throw lastError || new Error("All candidate Gemini models are currently experiencing high demand. Please try again in a moment.");
       }

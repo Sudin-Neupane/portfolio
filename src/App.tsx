@@ -798,7 +798,7 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
     q.includes("community") ||
     q.includes("leader")
   ) {
-    return "Sudin Neupane serves as the official College Representative for 'Code for Change Nepal' (2025/2026). In this role, he leads local IT bootcamps, runs programming workshops, and fosters student-developer peer networks in Kathmandu.";
+    return "Sudin Neupane serves as the official College Representative for 'Code for Change Nepal' (2025/2026). In this role, he leads local IT bootcamps, codefest organizer, runs programming workshops, and fosters student-developer peer networks in Kathmandu.";
   }
 
   // 8. Projects / Finger Gesture / Python / OpenCV / MediaPipe
@@ -852,10 +852,6 @@ const getSmartFallbackAnswer = (rawQuery: string): string => {
   // 11. General coding follow-up or other common topics
   return "I'm still studying that area, but I'd love to learn and adapt to any tech challenge you throw my way! Let's schedule a chat.";
 };
-
-// =========================================================
-// GSAP + LENIS REUSABLE KINETIC MOTION COMPONENTS
-// =========================================================
 
 // 0. SUBTLE FILM GRAIN CANVAS OVERLAY
 function FilmGrainCanvas() {
@@ -1699,9 +1695,7 @@ function GSAPHorizontalScrollRow({ cards }: { cards: HorizontalCard[] }) {
   );
 }
 
-// =========================================================
 // CUSTOM SCROLL-DRIVEN INTERACTIVE PORTFOLIO COMPONENTS
-// =========================================================
 
 function BookChapterPageTurn() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -2211,9 +2205,9 @@ function ThreeDSkillBatchRow({ batch, batchIdx }: { key?: React.Key; batch: Skil
   );
 }
 
-// =========================================================
+
 // 3D SCROLL & HIGH-FIDELITY HUD OVERLAYS (Professional 3D)
-// =========================================================
+
 
 interface ThreeDScrollSectionProps {
   children: React.ReactNode;
@@ -2881,9 +2875,8 @@ function HUDDiagnosticsModal({ activeSection, onClose }: { activeSection: string
   );
 }
 
-// ---------------------------------------------------------
 // 3D HOLOGRAM PROJECT INSPECTOR MODAL (Pop-Up / Pop-Out)
-// ---------------------------------------------------------
+
 
 interface HologramInspectorProps {
   project: Project;
@@ -3558,7 +3551,7 @@ const heroStatsSets = [
     { value: 7, suffix: "+", label: "Projects Built", isDecimal: false }
   ],
   [
-    { value: 3.8, suffix: "", label: "BSc.CSIT GPA", isDecimal: true },
+    { value: 2, suffix: "nd year", label: "BSc. CSIT", isDecimal: false },
     { value: 1480, suffix: "+", label: "Git Commits", isDecimal: false },
     { value: 2025, suffix: "/26", label: "CFC Representative", isDecimal: false }
   ],
@@ -4177,9 +4170,8 @@ export default function App() {
     }
   };
 
-  // ---------------------------------------------------------
   // DEVELOPER TERMINAL COMMAND PROCESSING ENGINE
-  // ---------------------------------------------------------
+
   const processTerminalCommand = (commandRaw: string) => {
     const tokens = commandRaw.trim().split(" ");
     const primaryCmd = tokens[0].toLowerCase();
@@ -4415,9 +4407,8 @@ export default function App() {
     processTerminalCommand(cmd);
   };
 
-  // ---------------------------------------------------------
   // INTERACTIVE CHATBOT BOT ENGINE
-  // ---------------------------------------------------------
+
   const renderMessageText = (text: string) => {
     // Splits text by triple-backticks to separate code blocks from prose
     const parts = text.split(/(```[\s\S]*?```)/g);
